@@ -1,0 +1,3349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magyar Út — Hungarian A2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FBF5EB;
+  --bg-alt: #F4EDD9;
+  --sidebar-bg: #160810;
+  --red: #C8102E;
+  --red-light: #E8344A;
+  --red-pale: #FDEAED;
+  --green: #3D6B46;
+  --green-light: #558B5E;
+  --green-pale: #E6F4E8;
+  --gold: #C4911F;
+  --gold-light: #EDB840;
+  --gold-pale: #FDF4DC;
+  --white: #FFFFFF;
+  --text: #1A0A0D;
+  --text-2: #5A3D35;
+  --text-3: #9C7B70;
+  --text-sb: #F0E6D3;
+  --border: #E8D8C0;
+  --shadow-s: 0 2px 8px rgba(26,10,13,.08);
+  --shadow-m: 0 4px 16px rgba(26,10,13,.13);
+  --shadow-l: 0 8px 32px rgba(26,10,13,.18);
+  --r-s: 6px; --r-m: 12px; --r-l: 20px;
+  --sw: 270px;
+  --trans: .2s ease;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;overflow-x:hidden}
+
+/* SIDEBAR */
+.sidebar{width:var(--sw);min-height:100vh;background:var(--sidebar-bg);position:fixed;left:0;top:0;bottom:0;display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sb-brand{padding:28px 22px 18px;border-bottom:1px solid rgba(240,230,211,.1)}
+.sb-brand .tag{font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.sb-brand h1{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;color:var(--text-sb);line-height:1.1}
+.sb-brand h1 em{font-style:italic;color:var(--gold-light)}
+.sb-brand .sub{font-size:11px;color:rgba(240,230,211,.4);margin-top:3px}
+.sb-prog{padding:14px 22px;border-bottom:1px solid rgba(240,230,211,.07)}
+.sb-prog-lbl{display:flex;justify-content:space-between;font-size:10px;color:rgba(240,230,211,.4);margin-bottom:7px}
+.sb-prog-lbl span:last-child{color:var(--gold-light);font-weight:700}
+.prog-track{height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+.sb-nav{flex:1;padding:14px 10px}
+.nav-sec{font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(240,230,211,.25);padding:8px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:var(--r-s);cursor:pointer;transition:all var(--trans);margin-bottom:2px;position:relative}
+.nav-item:hover{background:rgba(200,16,46,.12)}
+.nav-item.active{background:rgba(200,16,46,.18)}
+.nav-item.active::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;background:var(--red);border-radius:0 2px 2px 0}
+.nav-item.locked{opacity:.35;cursor:not-allowed}
+.nav-item.done .ni{background:var(--green)}
+.ni{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all var(--trans)}
+.nt{flex:1}
+.nt .ln{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(240,230,211,.3);line-height:1}
+.nt .lname{font-size:13px;font-weight:600;color:var(--text-sb);line-height:1.3;margin-top:1px}
+.nav-item.active .lname{color:#fff}
+.nav-check{font-size:13px;color:var(--green-light)}
+.nav-lock{font-size:11px;color:rgba(240,230,211,.2)}
+
+/* MAIN */
+.main{margin-left:var(--sw);flex:1;min-height:100vh;display:flex;flex-direction:column}
+
+/* HERO */
+.hero{background:var(--sidebar-bg);padding:36px 48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(200,16,46,.15) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 0% 50%,rgba(201,150,42,.08) 0%,transparent 70%)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(200,16,46,.18);border:1px solid rgba(200,16,46,.28);color:var(--red-light);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:14px;position:relative}
+.hero h2{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--text-sb);position:relative;line-height:1.2}
+.hero h2 em{color:var(--gold-light);font-style:italic}
+.hero p{font-size:14px;color:rgba(240,230,211,.55);margin-top:10px;position:relative;max-width:500px;line-height:1.65}
+.hero-meta{display:flex;gap:22px;margin-top:18px;position:relative}
+.hm{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(240,230,211,.45)}
+.hm strong{color:rgba(240,230,211,.8)}
+
+/* TABS */
+.tabs-bar{background:var(--white);border-bottom:2px solid var(--border);padding:0 48px;display:flex;position:sticky;top:0;z-index:50}
+.tab-btn{padding:15px 22px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--text-3);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:all var(--trans);margin-bottom:-2px;display:flex;align-items:center;gap:7px}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--red);border-bottom-color:var(--red)}
+.tab-content{display:none;padding:36px 48px;animation:fsi .3s ease}
+.tab-content.active{display:block}
+@keyframes fsi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* LESSON SECTION */
+.ls{display:none}
+.ls.active{display:block}
+
+/* SECTION HEADER */
+.sec-hdr{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.sec-hdr h3{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;color:var(--text)}
+.badge{background:var(--red-pale);color:var(--red);font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.5px}
+.badge.g{background:var(--green-pale);color:var(--green)}
+.badge.gold{background:var(--gold-pale);color:var(--gold)}
+
+/* VOCAB TABLE */
+.vt{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--r-m);overflow:hidden;box-shadow:var(--shadow-s)}
+.vt thead th{background:var(--red);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:11px 15px;text-align:left}
+.vt tbody tr{border-bottom:1px solid var(--border);transition:background var(--trans)}
+.vt tbody tr:hover{background:var(--bg)}
+.vt tbody tr:last-child{border-bottom:none}
+.vt td{padding:11px 15px;vertical-align:middle}
+.vhu{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:var(--text)}
+.vph{font-family:'Fira Mono',monospace;font-size:12px;color:var(--text-3);background:var(--bg-alt);padding:2px 7px;border-radius:4px}
+.ven{font-size:13px;color:var(--text-2);font-weight:500}
+.spk{background:var(--bg);border:1px solid var(--border);color:var(--text-3);border-radius:7px;padding:5px 9px;font-size:13px;cursor:pointer;transition:all var(--trans);display:flex;align-items:center;gap:3px;white-space:nowrap}
+.spk:hover{background:var(--red-pale);border-color:var(--red);color:var(--red)}
+.spk:active{transform:scale(.94)}
+
+/* GRAMMAR NOTE */
+.gn{background:var(--gold-pale);border:1px solid rgba(196,145,31,.28);border-left:4px solid var(--gold);border-radius:var(--r-m);padding:18px 22px;margin:22px 0}
+.gn-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+.gn p{font-size:13.5px;line-height:1.75;color:var(--text-2)}
+.gn .ex{margin-top:11px;padding:10px 15px;background:rgba(255,255,255,.7);border-radius:8px;font-family:'Playfair Display',serif;font-size:15px;line-height:1.6}
+.gn .ex em{color:var(--red);font-style:normal;font-weight:600}
+
+/* FLASHCARD */
+.fc-deck{display:flex;flex-direction:column;align-items:center}
+.fc-ctr{font-size:12px;color:var(--text-3);margin-bottom:14px}
+.fc-wrap{perspective:1000px;width:380px;height:210px;cursor:pointer}
+.fc{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.fc.flipped{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;border-radius:var(--r-l);display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;padding:22px;box-shadow:var(--shadow-l)}
+.fc-front{background:linear-gradient(135deg,var(--red),#9B0B23)}
+.fc-back{background:linear-gradient(135deg,var(--green),#2A4E33);transform:rotateY(180deg)}
+.fc-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:7px}
+.fc-word{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#fff;text-align:center;line-height:1.2}
+.fc-ph{font-family:'Fira Mono',monospace;font-size:13px;color:rgba(255,255,255,.55);margin-top:7px}
+.fc-hint{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
+.fc-btns{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;justify-content:center}
+.fcb{padding:9px 18px;border-radius:100px;border:none;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all var(--trans)}
+.fcb.knew{background:var(--green);color:#fff}
+.fcb.knew:hover{background:var(--green-light)}
+.fcb.again{background:var(--bg-alt);color:var(--text-2)}
+.fcb.again:hover{background:var(--border)}
+.fcb.nav{background:var(--white);color:var(--text);border:1px solid var(--border)}
+.fcb.nav:hover{border-color:var(--red);color:var(--red)}
+
+/* MULTIPLE CHOICE */
+.mc-q{background:var(--white);border-radius:var(--r-l);padding:26px;box-shadow:var(--shadow-s);margin-bottom:14px}
+.mc-qn{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:7px}
+.mc-qt{font-size:17px;font-weight:600;color:var(--text);margin-bottom:18px;line-height:1.45}
+.mc-qt .hl{font-family:'Playfair Display',serif;color:var(--red);font-weight:700}
+.mc-opts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.mc-opt{padding:13px 16px;border:2px solid var(--border);border-radius:var(--r-m);font-size:14px;font-weight:600;cursor:pointer;transition:all var(--trans);background:var(--bg);color:var(--text-2);text-align:left}
+.mc-opt:hover:not(.answered){border-color:var(--red);color:var(--red);background:var(--red-pale)}
+.mc-opt.correct{border-color:var(--green)!important;background:var(--green-pale)!important;color:var(--green)!important}
+.mc-opt.wrong{border-color:var(--red)!important;background:var(--red-pale)!important;color:var(--red)!important;text-decoration:line-through}
+.mc-exp{margin-top:12px;padding:11px 15px;background:var(--gold-pale);border-radius:8px;font-size:13px;color:var(--text-2);display:none;line-height:1.6}
+.mc-exp.show{display:block}
+
+/* FILL IN BLANK */
+.fib-q{background:var(--white);border-radius:var(--r-l);padding:26px;box-shadow:var(--shadow-s);margin-bottom:14px}
+.fib-prompt{font-size:13px;color:var(--text-3);margin-bottom:4px}
+.fib-sent{font-family:'Playfair Display',serif;font-size:19px;color:var(--text);margin-bottom:14px;line-height:1.45}
+.fib-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.fib-in{border:2px solid var(--border);border-radius:var(--r-m);padding:9px 15px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;color:var(--text);background:var(--bg);outline:none;transition:border-color var(--trans);min-width:150px}
+.fib-in:focus{border-color:var(--red)}
+.fib-in.correct{border-color:var(--green);background:var(--green-pale);color:var(--green)}
+.fib-in.wrong{border-color:var(--red);background:var(--red-pale);color:var(--red)}
+.chk-btn{padding:9px 18px;background:var(--red);color:#fff;border:none;border-radius:var(--r-m);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--trans)}
+.chk-btn:hover{background:var(--red-light);transform:translateY(-1px)}
+.fib-res{margin-top:9px;font-size:13px;font-weight:600;display:none}
+.fib-res.show{display:block}
+.fib-res.correct{color:var(--green)}
+.fib-res.wrong{color:var(--red)}
+
+/* MATCHING */
+.match-cols{display:flex;gap:16px;flex-wrap:wrap}
+.match-col{display:flex;flex-direction:column;gap:8px;flex:1;min-width:140px}
+.match-col h4{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:3px;text-align:center}
+.match-btn{background:var(--bg-alt);border:2px solid var(--border);border-radius:var(--r-s);padding:10px 14px;cursor:pointer;text-align:left;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);transition:var(--trans);font-weight:600;line-height:1.4}
+.match-btn:hover{border-color:var(--gold)}
+.match-btn.m-sel{border-color:var(--gold);background:var(--gold-pale)}
+.match-btn.m-done{border-color:var(--green);background:var(--green-pale)}
+.match-btn.m-used{opacity:.45;pointer-events:none}
+
+/* DIVIDER */
+.div{height:1px;background:var(--border);margin:30px 0}
+
+/* COMPLETE BTN */
+.done-btn{display:block;width:100%;padding:17px;background:linear-gradient(135deg,var(--red),#9B0B23);color:#fff;border:none;border-radius:var(--r-l);font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:all var(--trans);margin-top:30px;box-shadow:0 4px 20px rgba(200,16,46,.4)}
+.done-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(200,16,46,.5)}
+.done-btn:disabled{opacity:.3;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+/* EX SECTION */
+.ex-sec{margin-bottom:44px}
+.ex-title{display:flex;align-items:center;gap:9px;margin-bottom:18px}
+.ex-title h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:600}
+
+/* VOCAB SECTION */
+.vs{margin-bottom:32px}
+
+/* LESSON QUIZ */
+.quiz-sec{margin-top:10px}
+.quiz-wrap{background:var(--white);border:2px solid var(--red);border-radius:var(--r-l);padding:26px;box-shadow:0 4px 24px rgba(200,16,46,.13)}
+.qz-hdr{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:16px;border-bottom:2px solid var(--border)}
+.qz-hdr-icon{font-size:28px;flex-shrink:0}
+.qz-hdr h4{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text)}
+.qz-hdr p{font-size:12px;color:var(--text-3);margin-top:2px}
+.qz-q{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.qz-num{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:6px}
+.qz-text{font-size:16px;font-weight:600;color:var(--text);margin-bottom:12px;line-height:1.45}
+.qz-text .hl{font-family:'Playfair Display',serif;color:var(--red);font-weight:700}
+.qz-opts{display:flex;flex-direction:column;gap:7px}
+.qz-opt{display:flex;align-items:center;gap:10px;padding:10px 14px;border:2px solid var(--border);border-radius:var(--r-m);cursor:pointer;transition:all var(--trans)}
+.qz-opt:hover:not(.q-done){border-color:var(--red);background:var(--red-pale)}
+.qz-opt.selected{border-color:var(--gold);background:var(--gold-pale)}
+.qz-opt input[type=radio]{accent-color:var(--red);width:15px;height:15px;cursor:pointer;flex-shrink:0}
+.qz-opt label{cursor:pointer;font-size:14px;font-weight:500;color:var(--text-2);flex:1;pointer-events:none}
+.qz-opt.q-correct{border-color:var(--green)!important;background:var(--green-pale)!important}
+.qz-opt.q-correct label{color:var(--green)!important;font-weight:700}
+.qz-opt.q-wrong{border-color:var(--red)!important;background:var(--red-pale)!important}
+.qz-opt.q-wrong label{color:var(--red)!important;font-weight:700;text-decoration:line-through}
+.qz-fib{border:2px solid var(--border);border-radius:var(--r-m);padding:10px 14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;width:100%;max-width:300px;outline:none;transition:border-color var(--trans);background:var(--bg);display:block;margin-top:4px}
+.qz-fib:focus{border-color:var(--red)}
+.qz-fib.q-correct{border-color:var(--green);background:var(--green-pale);color:var(--green)}
+.qz-fib.q-wrong{border-color:var(--red);background:var(--red-pale);color:var(--red)}
+.qz-exp{font-size:12px;color:var(--text-2);margin-top:8px;padding:8px 12px;background:var(--gold-pale);border-radius:7px;display:none;line-height:1.55}
+.qz-exp.show{display:block}
+.qz-submit{display:block;width:100%;padding:16px;background:var(--red);color:#fff;border:none;border-radius:var(--r-l);font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all var(--trans);margin-top:22px;box-shadow:0 4px 18px rgba(200,16,46,.38)}
+.qz-submit:hover{background:var(--red-light);transform:translateY(-1px)}
+.qz-result{margin-top:18px;border-radius:var(--r-l);padding:24px;display:none;text-align:center}
+.qz-result.show{display:block;animation:fsi .3s ease}
+.qz-result.pass{background:var(--green-pale);border:2px solid var(--green)}
+.qz-result.fail{background:var(--red-pale);border:2px solid var(--red)}
+.qz-score{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;line-height:1}
+.qz-result.pass .qz-score{color:var(--green)}
+.qz-result.fail .qz-score{color:var(--red)}
+.qz-msg{font-size:14px;margin-top:9px;line-height:1.65}
+.qz-result.pass .qz-msg{color:var(--green)}
+.qz-result.fail .qz-msg{color:var(--red)}
+.qz-retry{margin-top:14px;padding:10px 24px;background:var(--red);color:#fff;border:none;border-radius:100px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--trans)}
+.qz-retry:hover{background:var(--red-light)}
+.cert-box{background:linear-gradient(135deg,var(--gold-pale),var(--green-pale));border:3px solid var(--gold);border-radius:var(--r-l);padding:28px 24px;text-align:center;margin-top:16px}
+.cert-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--red);margin-bottom:8px}
+.cert-sub{font-size:14px;color:var(--text-2);margin-bottom:16px;line-height:1.65}
+.cert-btn{display:inline-block;padding:14px 32px;background:var(--green);color:#fff;border:none;border-radius:100px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all var(--trans)}
+.cert-btn:hover{background:var(--green-light);transform:translateY(-2px)}
+
+/* RESET */
+.sb-reset{padding:12px 22px 22px;border-top:1px solid rgba(240,230,211,.07)}
+.sb-reset button{width:100%;padding:9px;background:rgba(200,16,46,.09);border:1px solid rgba(200,16,46,.16);color:rgba(240,230,211,.38);border-radius:var(--r-m);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all var(--trans);letter-spacing:.5px}
+.sb-reset button:hover{background:rgba(200,16,46,.22);border-color:var(--red);color:var(--red-light)}
+
+/* MOBILE */
+.mob-btn{display:none;position:fixed;top:14px;left:14px;z-index:200;background:var(--sidebar-bg);color:#fff;border:none;padding:9px 13px;border-radius:var(--r-s);font-size:17px;cursor:pointer;box-shadow:var(--shadow-m)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ── A2-SPECIFIC: CONJUGATION TABLE ── */
+.ct-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.ct-inf{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--red)}
+.ct-en{font-size:14px;color:var(--text-3)}
+.ct-type{font-size:11px;background:var(--gold-pale);color:var(--gold);border-radius:100px;padding:2px 10px;font-weight:700}
+.ct-indef{color:var(--red)!important}
+.ct-def{color:var(--green)!important}
+.ct-note{font-size:12px;color:var(--text-2);background:var(--gold-pale);padding:8px 12px!important}
+.conj-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.ctab{padding:7px 16px;border:2px solid var(--border);border-radius:100px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all var(--trans);background:var(--bg);color:var(--text-2)}
+.ctab.active{background:var(--red);color:#fff;border-color:var(--red)}
+.conj-block{display:none}
+.conj-block.active{display:block}
+
+/* ── A2-SPECIFIC: CASE GRID 3×3 ── */
+.cgrid{display:grid;grid-template-columns:auto repeat(3,1fr);gap:6px;overflow-x:auto;margin:16px 0}
+.cgh{background:var(--red);color:#fff;font-weight:800;font-size:12px;text-align:center;padding:10px 8px;border-radius:var(--r-s)}
+.cgh-q{font-size:9px;font-weight:400;display:block;opacity:.75}
+.cgh-blank{background:transparent}
+.cgr{background:var(--sidebar-bg);color:var(--text-sb);font-size:11px;font-weight:700;padding:10px 12px;border-radius:var(--r-s);display:flex;flex-direction:column;justify-content:center}
+.cgr.cg-to{background:rgba(61,107,70,.85)}
+.cgr.cg-fr{background:rgba(196,145,31,.75)}
+.cgq{color:var(--gold-light);font-style:italic;font-size:10px;margin-top:3px}
+.cgc{background:var(--bg-alt);border:1.5px solid var(--border);border-radius:var(--r-s);padding:10px 12px;text-align:center}
+.cgc.cg-to{border-color:rgba(61,107,70,.3);background:var(--green-pale)}
+.cgc.cg-fr{border-color:rgba(196,145,31,.3);background:var(--gold-pale)}
+.cgs{font-weight:800;color:var(--red);font-size:14px;margin-bottom:4px}
+.cgc.cg-to .cgs{color:var(--green)}
+.cgc.cg-fr .cgs{color:var(--gold)}
+.cgx{font-size:12px;color:var(--text-2);font-style:italic}
+.cge{font-size:11px;color:var(--text-3)}
+
+/* ── PLURAL RULE CHIP ── */
+.rule-chip{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:var(--red-pale);color:var(--red);margin-left:6px}
+
+/* ── COMPARATIVE TABLE ── */
+.comp-row-irr td{background:var(--gold-pale)!important}
+
+@media(max-width:900px){
+  :root{--sw:0px}
+  .sidebar{transform:translateX(-270px);transition:transform .3s ease;width:270px}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .hero{padding:24px 20px}
+  .tab-content{padding:22px 20px}
+  .tabs-bar{padding:0 20px}
+  .fc-wrap{width:300px;height:180px}
+  .mc-opts{grid-template-columns:1fr}
+  .mob-btn{display:block}
+  .cgrid{font-size:11px}
+}
+@keyframes tIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+</style>
+</head>
+<body>
+
+<button class="mob-btn" onclick="toggleSB()">☰</button>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sb">
+  <div class="sb-brand">
+    <div class="tag">A2 Course</div>
+    <h1>Magyar <em>Út</em></h1>
+    <div class="sub">Hungarian Elementary</div>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-lbl"><span>Your Progress</span><span id="pct">0%</span></div>
+    <div class="prog-track"><div class="prog-fill" id="pbar"></div></div>
+  </div>
+  <div class="sb-nav">
+    <div class="nav-sec">Lessons</div>
+    <div id="nav-list"></div>
+    <div class="nav-sec" style="margin-top:10px">Assessment</div>
+    <div class="nav-item locked" id="nav-test" onclick="goTo('test')">
+      <div class="ni">📝</div>
+      <div class="nt"><div class="ln">Final</div><div class="lname">A2 Assessment</div></div>
+      <span class="nav-lock" id="test-lock">🔒</span>
+    </div>
+  </div>
+  <div class="sb-reset">
+    <div id="voice-status" style="font-size:10px;text-align:center;padding:0 0 8px;opacity:.5;line-height:1.4">🔊 Checking voice…</div>
+    <a href="index.html" style="display:block;width:100%;padding:9px;background:rgba(240,230,211,.06);border:1px solid rgba(240,230,211,.12);color:rgba(240,230,211,.5);border-radius:var(--r-m);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all var(--trans);letter-spacing:.5px;text-align:center;text-decoration:none;margin-bottom:8px" onmouseover="this.style.background='rgba(240,230,211,.12)';this.style.color='rgba(240,230,211,.85)'" onmouseout="this.style.background='rgba(240,230,211,.06)';this.style.color='rgba(240,230,211,.5)'">← All Courses</a>
+    <button onclick="resetProgress()">↺ Reset All Progress</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="main">
+
+<!-- ══════════════════════════════════════
+     LESSON 1 — PLURAL NOUNS
+     ══════════════════════════════════════ -->
+<section class="ls active" id="l-plurals">
+  <div class="hero">
+    <div class="hero-badge">📝 Lesson 1 of 10</div>
+    <h2>Plural <em>Nouns</em></h2>
+    <p>Hungarian plurals use the suffix <strong>-k</strong>, but the linking vowel before it depends on vowel harmony. Learn the rules and you'll handle any noun!</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>15 words</strong></div>
+      <div class="hm">⏱ <strong>~20 min</strong></div>
+      <div class="hm">🎯 <strong>Vowel harmony rules</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('plurals','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('plurals','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="plurals-learn">
+
+    <div class="gn">
+      <div class="gn-title">💡 The Plural Rule</div>
+      <p>Add <strong>-k</strong> to the noun. If the noun ends in a consonant, insert a linking vowel first. The linking vowel follows vowel harmony:</p>
+      <div class="gn .ex" style="margin-top:11px;padding:10px 15px;background:rgba(255,255,255,.7);border-radius:8px;font-size:14px;line-height:2">
+        <strong>Back vowel words</strong> (a, á, o, ó, u, ú) → link with <em style="color:var(--red)">-o-</em> → <strong>asztal → asztal<em style="color:var(--red)">ok</em></strong><br>
+        <strong>Front unrounded words</strong> (e, é, i, í) → link with <em style="color:var(--green)">-e-</em> → <strong>ember → ember<em style="color:var(--green)">ek</em></strong><br>
+        <strong>Front rounded words</strong> (ö, ő, ü, ű) → link with <em style="color:var(--gold)">-ö-</em> → <strong>tükör → tükr<em style="color:var(--gold)">ök</em></strong><br>
+        <strong>Nouns ending in a vowel</strong> → the final <em>-a/-e</em> lengthens: <strong>alma → almá<em style="color:var(--red)">k</em></strong>
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr">
+        <h3>Singular → Plural</h3>
+        <span class="badge">15 pairs</span>
+      </div>
+      <table class="vt">
+        <thead><tr><th>Singular</th><th>Plural</th><th>Pronunciation</th><th>English</th><th>Rule</th><th>🔊</th></tr></thead>
+        <tbody id="plurals-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn">
+      <div class="gn-title">⚠️ Watch out: Vowel loss</div>
+      <p>Some nouns lose their last vowel when a suffix is added. This is called <strong>vowel loss (tővégi magánhangzó-kiesés)</strong>.</p>
+      <div class="gn .ex" style="margin-top:11px;padding:10px 15px;background:rgba(255,255,255,.7);border-radius:8px;font-family:'Playfair Display',serif;font-size:15px;line-height:1.8">
+        tükör → tükr<em>ök</em> &nbsp;(the inner ö drops)<br>
+        kenyér → kenyerек &nbsp;(é → e before suffix)<br>
+        kéz → kezek &nbsp;(é → e before suffix)
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="plurals-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🃏 Flashcards</h3><span class="badge gold">Sing → Plural</span></div>
+      <div class="fc-deck" id="plurals-fc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Blank</h3><span class="badge">Type the plural</span></div>
+      <div id="plurals-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice</h3></div>
+      <div id="plurals-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-plurals"></div>
+    </div>
+
+    <button class="done-btn" id="done-plurals" disabled onclick="finish('plurals')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 2 — VERB CONJUGATION
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-conjugation">
+  <div class="hero">
+    <div class="hero-badge">🔄 Lesson 2 of 10</div>
+    <h2>Verb <em>Conjugation</em></h2>
+    <p>Hungarian verbs conjugate in two ways: <strong>indefinite</strong> (no specific object) and <strong>definite</strong> (specific, known object). This distinction is one of the most important features of Hungarian grammar.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>4 verbs × 6 forms</strong></div>
+      <div class="hm">⏱ <strong>~30 min</strong></div>
+      <div class="hm">🎯 <strong>Def. vs. indef. conjugation</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('conjugation','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('conjugation','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="conjugation-learn">
+
+    <div class="gn">
+      <div class="gn-title">💡 The Big Rule: Definite vs. Indefinite</div>
+      <p>Hungarian verbs have <strong>two complete conjugation paradigms</strong>. Which one you use depends on the object of the sentence:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <div style="background:var(--red-pale);border:2px solid var(--red);border-radius:var(--r-m);padding:14px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--red);margin-bottom:7px">INDEFINITE CONJUGATION</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7">Use when the object is <strong>indefinite</strong> — you don't know which specific one, or there's no object at all.</p>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;margin-top:8px;color:var(--text)">Látok <em style="color:var(--red)">egy</em> macskát.<br><small style="font-family:Nunito,sans-serif;font-size:12px;color:var(--text-3)">I see <em>a</em> cat. (any cat)</small></div>
+        </div>
+        <div style="background:var(--green-pale);border:2px solid var(--green);border-radius:var(--r-m);padding:14px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--green);margin-bottom:7px">DEFINITE CONJUGATION</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.7">Use when the object is <strong>definite</strong> — a specific thing, marked by <em>a/az</em>, a name, or already known.</p>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;margin-top:8px;color:var(--text)">Látom <em style="color:var(--green)">a</em> macskát.<br><small style="font-family:Nunito,sans-serif;font-size:12px;color:var(--text-3)">I see <em>the</em> cat. (that specific cat)</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">🔑 Quick Test: Which form?</div>
+      <p style="font-size:13.5px;line-height:1.75;color:var(--text-2)">
+        → Object has <strong>a / az</strong> (the)? → <strong style="color:var(--green)">Definite</strong><br>
+        → Object is a <strong>name</strong> (Annát, Pétert)? → <strong style="color:var(--green)">Definite</strong><br>
+        → Object has <strong>egy</strong> (a/an) or no article? → <strong style="color:var(--red)">Indefinite</strong><br>
+        → No object at all (intransitive verb)? → <strong style="color:var(--red)">Indefinite</strong><br>
+        → The word <strong>engem/téged/minket/titeket</strong> as object (me/you/us/you-pl)? → <strong style="color:var(--red)">Indefinite</strong>
+      </p>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Conjugation Tables</h3><span class="badge">Click the verb tabs</span></div>
+
+      <div class="conj-tabs">
+        <button class="ctab active" onclick="showConj('lat',this)">látni — to see</button>
+        <button class="ctab" onclick="showConj('ker',this)">kérni — to ask/want</button>
+        <button class="ctab" onclick="showConj('olvas',this)">olvasni — to read</button>
+        <button class="ctab" onclick="showConj('foz',this)">főzni — to cook</button>
+      </div>
+
+      <div class="conj-block active" id="conj-lat"></div>
+      <div class="conj-block" id="conj-ker"></div>
+      <div class="conj-block" id="conj-olvas"></div>
+      <div class="conj-block" id="conj-foz"></div>
+    </div>
+
+    <div class="gn">
+      <div class="gn-title">📐 Pattern: -ik verbs</div>
+      <p>Some verbs end in <strong>-ik</strong> in the 3rd person singular indefinite (e.g., <em>eszik</em> — eats, <em>iszik</em> — drinks, <em>dolgozik</em> — works). These are called <strong>ikes igék</strong>. The 1st person singular indefinite also changes: <em>eszem</em> instead of <em>eszek</em>.</p>
+      <div class="gn .ex" style="margin-top:11px;padding:10px 15px;background:rgba(255,255,255,.7);border-radius:8px;font-family:'Playfair Display',serif;font-size:15px;line-height:1.8">
+        dolgozni (to work): dolgozom / dolgozol / <em style="color:var(--red)">dolgozik</em> / dolgozunk / dolgoztok / dolgoznak
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">💬 Real sentences — compare the pairs</div>
+      <div style="display:grid;gap:8px;margin-top:4px">
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.8">
+          <span style="color:var(--red);font-weight:700">Olvasok</span> egy könyvet. — I'm reading <em>a</em> book. (indefinite)<br>
+          <span style="color:var(--green);font-weight:700">Olvasom</span> a könyvet. — I'm reading <em>the</em> book. (definite)
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.8">
+          <span style="color:var(--red);font-weight:700">Kérek</span> egy kávét. — I'd like <em>a</em> coffee. (indefinite)<br>
+          <span style="color:var(--green);font-weight:700">Kérem</span> a számlát. — I'd like <em>the</em> bill. (definite)
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.8">
+          <span style="color:var(--red);font-weight:700">Látok</span> valamit. — I see something. (indefinite)<br>
+          <span style="color:var(--green);font-weight:700">Látom</span> Annát. — I see Anna. (definite — name)
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="conjugation-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Choose: Definite or Indefinite?</h3><span class="badge">Context matters!</span></div>
+      <div id="conj-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Correct Form</h3></div>
+      <div id="conj-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-conjugation"></div>
+    </div>
+
+    <button class="done-btn" id="done-conjugation" disabled onclick="finish('conjugation')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 3 — LOCATIVE CASES
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-cases">
+  <div class="hero">
+    <div class="hero-badge">📍 Lesson 3 of 10</div>
+    <h2>Locative <em>Cases</em></h2>
+    <p>Hungarian has <strong>9 locative suffixes</strong> organised in a 3×3 grid. Master the grid logic and you'll always know which suffix to use — it's a system, not a list to memorise!</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>9 case suffixes</strong></div>
+      <div class="hm">⏱ <strong>~35 min</strong></div>
+      <div class="hm">🎯 <strong>Where / Where to / Where from</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('cases','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('cases','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="cases-learn">
+
+    <div class="gn">
+      <div class="gn-title">💡 The 3 Questions × 3 Relationships</div>
+      <p>Every location in Hungarian is described by answering <strong>one of three questions</strong> (where? / where to? / where from?) and specifying the <strong>relationship</strong> (in · on · at). These two choices together pick your suffix.</p>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>The 3×3 Case Grid</h3><span class="badge">The full system</span></div>
+      <div id="case-grid-container"></div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">🔑 IN vs ON vs AT — which to choose?</div>
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text-2)">
+        <strong>IN (container — -ban/-ben)</strong> → enclosed spaces: house, room, city, country*, shop, school<br>
+        <strong>ON (surface — -on/-en/-ön)</strong> → surfaces + vehicles + open spaces: table, train, bus, street, mountain, island; also most countries end in -on/-en<br>
+        <strong>AT (proximity — -nál/-nél)</strong> → being near a person, institution or landmark: at the doctor, at the bank, at the window
+      </p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;margin-top:6px;font-size:13px;color:var(--text-2)">
+        ⚠️ <strong>Cities and countries are tricky!</strong> Budapest takes <em>-en</em> (surface): <em>Budapesten</em>. Hungary takes <em>-on</em>: <em>Magyarországon</em>. Most cities follow surface rules. Always check!
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Places in context</h3><span class="badge">10 key locations</span></div>
+      <table class="vt">
+        <thead><tr><th>Place</th><th>WHERE? (hol?)</th><th>WHERE TO? (hova?)</th><th>WHERE FROM? (honnan?)</th><th>Note</th><th>🔊</th></tr></thead>
+        <tbody id="cases-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">🧠 Vowel harmony reminder</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">
+        Every suffix has a front and back variant:<br>
+        <strong>-ban / -ben</strong> → ház<em>ban</em> (back) · iskola<em>ban</em> (back) · könyv<em>ben</em> (front)<br>
+        <strong>-ból / -ből</strong> → ház<em>ból</em> (back) · könyv<em>ből</em> (front)<br>
+        <strong>-nál / -nél</strong> → bolt<em>nál</em> (back) · bolt<em>nál</em> · szék<em>nél</em> (front)<br>
+        The vowel in the suffix always matches the vowel class of the noun's last syllable.
+      </p>
+    </div>
+
+    <div class="gn">
+      <div class="gn-title">📝 Sample sentences</div>
+      <div style="display:grid;gap:8px;margin-top:4px">
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;font-size:14px;line-height:1.9">
+          A macska a ház<strong style="color:var(--red)">ban</strong> van. — The cat is <em>in</em> the house.<br>
+          A macska a ház<strong style="color:var(--green)">ba</strong> megy. — The cat goes <em>into</em> the house.<br>
+          A macska a ház<strong style="color:var(--gold)">ból</strong> jön. — The cat comes <em>out of</em> the house.
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;font-size:14px;line-height:1.9">
+          A könyv az asztal<strong style="color:var(--red)">on</strong> van. — The book is <em>on</em> the table.<br>
+          A könyv az asztal<strong style="color:var(--green)">ra</strong> kerül. — The book goes <em>onto</em> the table.<br>
+          A könyv az asztal<strong style="color:var(--gold)">ról</strong> esik. — The book falls <em>off</em> the table.
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;font-size:14px;line-height:1.9">
+          Péter a bolt<strong style="color:var(--red)">nál</strong> vár. — Péter is waiting <em>at</em> the shop.<br>
+          Péter a bolt<strong style="color:var(--green)">hoz</strong> megy. — Péter goes <em>towards</em> the shop.<br>
+          Péter a bolt<strong style="color:var(--gold)">tól</strong> jön. — Péter comes <em>from</em> the shop.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="cases-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice — Pick the Right Case</h3></div>
+      <div id="cases-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Case Suffix</h3></div>
+      <div id="cases-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-cases"></div>
+    </div>
+
+    <button class="done-btn" id="done-cases" disabled onclick="finish('cases')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 4 — DATIVE & INSTRUMENTAL
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-cases2">
+  <div class="hero">
+    <div class="hero-badge">🔗 Lesson 4 of 10</div>
+    <h2>Dative &amp; <em>Instrumental</em></h2>
+    <p>Two more essential cases: the <strong>dative</strong> (-nak/-nek) marks the recipient of an action ("to/for someone"), and the <strong>instrumental</strong> (-val/-vel) means "with" or "by means of" — and it has a fascinating consonant assimilation rule!</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>2 new cases + pronouns</strong></div>
+      <div class="hm">⏱ <strong>~25 min</strong></div>
+      <div class="hm">🎯 <strong>Giving, helping, travelling with</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('cases2','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('cases2','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="cases2-learn">
+
+    <!-- DATIVE -->
+    <div class="sec-hdr" style="margin-top:0"><h3>Part 1 — The Dative Case (-nak / -nek)</h3><span class="badge">TO / FOR someone</span></div>
+
+    <div class="gn">
+      <div class="gn-title">💡 When to use the Dative</div>
+      <p>Add <strong>-nak</strong> (back vowel words) or <strong>-nek</strong> (front vowel words) to mark the <em>indirect object</em> — the person who receives something or benefits from an action.</p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:14px;line-height:2">
+        Adok <strong style="color:var(--red)">Annának</strong> egy könyvet. — I give Anna a book. (<em>to Anna</em>)<br>
+        Segítek <strong style="color:var(--red)">a barátomnak</strong>. — I help my friend. (<em>to my friend</em>)<br>
+        <strong style="color:var(--red)">Neked</strong> tetszik a film? — Do you like the film? (<em>to you — it pleases you</em>)<br>
+        Ez jó <strong style="color:var(--red)">neked</strong>. — This is good for you.
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">👤 Dative Personal Pronouns</div>
+      <p style="font-size:13px;color:var(--text-2);margin-bottom:10px">Hungarian has special dative pronoun forms — learn these by heart:</p>
+      <table class="vt">
+        <thead><tr><th>Pronoun</th><th>Dative form</th><th>Meaning</th><th>🔊</th></tr></thead>
+        <tbody id="dative-pron-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="vs" style="margin-top:24px">
+      <div class="sec-hdr"><h3>Dative in sentences</h3><span class="badge">7 examples</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>English</th><th>Note</th><th>🔊</th></tr></thead>
+        <tbody id="dative-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- INSTRUMENTAL -->
+    <div class="sec-hdr"><h3>Part 2 — The Instrumental Case (-val / -vel)</h3><span class="badge">WITH / BY</span></div>
+
+    <div class="gn">
+      <div class="gn-title">💡 When to use the Instrumental</div>
+      <p>Add <strong>-val</strong> (back vowel words) or <strong>-vel</strong> (front vowel words) to mean <em>with, together with,</em> or <em>by means of</em>.</p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:14px;line-height:2">
+        Autó<strong style="color:var(--green)">val</strong> megyek. — I go by car.<br>
+        A barátom<strong style="color:var(--green)">mal</strong> megyek. — I'm going with my friend.<br>
+        Kés<strong style="color:var(--green)">sel</strong> eszem. — I eat with a knife.<br>
+        Busz<strong style="color:var(--green)">szal</strong> utazom. — I travel by bus.
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">⚡ Consonant Assimilation — the KEY rule</div>
+      <p>If the noun ends in a <strong>consonant</strong>, the <em>v</em> of <strong>-val/-vel</strong> assimilates (doubles) to match that consonant:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px;font-size:14px;line-height:2">
+          barát + val → barát<strong style="color:var(--red)">tal</strong> (t doubles)<br>
+          kés + vel → kés<strong style="color:var(--red)">sel</strong> (s doubles)<br>
+          busz + szal → busz<strong style="color:var(--red)">szal</strong> (sz doubles)<br>
+          ceruza + val → ceruza<strong style="color:var(--red)">val</strong> (ends in vowel — no change)
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px;font-size:14px;line-height:2">
+          toll + val → toll<strong style="color:var(--red)">al</strong> (ll already double)<br>
+          autó + val → autó<strong style="color:var(--red)">val</strong> (ends in vowel — no change)<br>
+          vonat + tal → vonat<strong style="color:var(--red)">tal</strong> (t doubles)<br>
+          repülő + vel → repülő<strong style="color:var(--red)">vel</strong> (ends in vowel — no change)
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:10px 14px;background:rgba(200,16,46,.08);border-radius:8px;font-size:13px;color:var(--text-2)">
+        📌 <strong>Rule:</strong> noun ends in <em>vowel</em> → just add -val/-vel unchanged.<br>
+        📌 noun ends in <em>consonant</em> → the <em>v</em> becomes a copy of that consonant.
+      </div>
+    </div>
+
+    <div class="vs" style="margin-top:24px">
+      <div class="sec-hdr"><h3>Instrumental in sentences</h3><span class="badge">7 examples</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>English</th><th>Note</th><th>🔊</th></tr></thead>
+        <tbody id="instrumental-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--gold)">
+      <div class="gn-title" style="color:var(--gold)">➕ Bonus: -ért (for the purpose of / for the sake of)</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">
+        The <strong>-ért</strong> suffix means "for (a reason/purpose)" — it does NOT assimilate:<br>
+      </p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;margin-top:8px;font-size:14px;line-height:2">
+        Vodká<strong style="color:var(--gold)">ért</strong> megyek a boltba. — I'm going to the shop <em>for</em> vodka.<br>
+        Köszönöm a segítség<strong style="color:var(--gold)">ért</strong>. — Thank you <em>for</em> the help.<br>
+        Miért? — Why? (literally: "for what?")
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="cases2-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice — Dative &amp; Instrumental</h3></div>
+      <div id="cases2-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Correct Form</h3></div>
+      <div id="cases2-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-cases2"></div>
+    </div>
+
+    <button class="done-btn" id="done-cases2" disabled onclick="finish('cases2')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 5 — PAST TENSE
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-past">
+  <div class="hero">
+    <div class="hero-badge">⏪ Lesson 5 of 10</div>
+    <h2>The <em>Past Tense</em></h2>
+    <p>Hungarian past tense uses a <strong>-t / -tt</strong> suffix inserted between the verb stem and the personal ending. The definite/indefinite distinction still applies — and some common verbs have irregular stems.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>8 key verbs</strong></div>
+      <div class="hm">⏱ <strong>~30 min</strong></div>
+      <div class="hm">🎯 <strong>-t/-tt suffix + irregular stems</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('past','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('past','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="past-learn">
+
+    <div class="gn">
+      <div class="gn-title">💡 How to Form the Past Tense</div>
+      <p>Insert <strong>-t</strong> (after a vowel or certain consonants) or <strong>-tt</strong> (after most consonants) between the verb stem and the personal ending. The indefinite/definite split from Lesson 2 still applies fully.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <div style="background:var(--red-pale);border:2px solid var(--red);border-radius:var(--r-m);padding:14px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--red);margin-bottom:8px">INDEFINITE PAST</div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;line-height:2.1;color:var(--text)">
+            lát<strong style="color:var(--red)">tam</strong> — I saw<br>
+            lát<strong style="color:var(--red)">tál</strong> — you saw<br>
+            lát<strong style="color:var(--red)">ott</strong> — he/she saw<br>
+            lát<strong style="color:var(--red)">tunk</strong> — we saw<br>
+            lát<strong style="color:var(--red)">tatok</strong> — you (pl.) saw<br>
+            lát<strong style="color:var(--red)">tak</strong> — they saw
+          </div>
+        </div>
+        <div style="background:var(--green-pale);border:2px solid var(--green);border-radius:var(--r-m);padding:14px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--green);margin-bottom:8px">DEFINITE PAST</div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;line-height:2.1;color:var(--text)">
+            lát<strong style="color:var(--green)">tam</strong> — I saw it<br>
+            lát<strong style="color:var(--green)">tad</strong> — you saw it<br>
+            lát<strong style="color:var(--green)">ta</strong> — he/she saw it<br>
+            lát<strong style="color:var(--green)">tuk</strong> — we saw it<br>
+            lát<strong style="color:var(--green)">tátok</strong> — you (pl.) saw it<br>
+            lát<strong style="color:var(--green)">ták</strong> — they saw it
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:10px 14px;background:rgba(196,145,31,.1);border-radius:8px;font-size:13px;color:var(--text-2)">
+        💡 Note: <strong>1st person singular</strong> is identical in both indefinite and definite for most verbs (láttam = I saw / I saw it). Context tells them apart!
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">⚡ -t vs -tt — which one?</div>
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text-2)">
+        <strong>-t</strong> after: vowels and l, r, ly, n, ny → megy → <em>ment</em>, kér → <em>kért</em><br>
+        <strong>-tt</strong> after: most other consonants → lát → <em>látott</em>, olvas → <em>olvasott</em><br>
+        <strong>Irregular:</strong> some verbs change their stem completely — these must be memorised.
+      </p>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Past Tense Reference Table</h3><span class="badge">8 key verbs</span></div>
+      <table class="vt">
+        <thead><tr><th>Infinitive</th><th>English</th><th>Indef. 1sg</th><th>Indef. 3sg</th><th>Def. 3sg</th><th>Example sentence</th><th>🔊</th></tr></thead>
+        <tbody id="past-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--gold)">
+      <div class="gn-title" style="color:var(--gold)">🧠 Irregular Past Stems — memorise these!</div>
+      <p style="font-size:13px;color:var(--text-2);margin-bottom:10px">These common verbs change their stem in the past — you cannot predict them from rules alone:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px;font-size:14px;line-height:2">
+          <strong>menni</strong> (to go) → <em style="color:var(--red)">ment-</em><br>
+          <strong>jönni</strong> (to come) → <em style="color:var(--red)">jött-</em><br>
+          <strong>venni</strong> (to buy) → <em style="color:var(--red)">vett-</em><br>
+          <strong>inni</strong> (to drink) → <em style="color:var(--red)">ivott-</em>
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px;font-size:14px;line-height:2">
+          <strong>enni</strong> (to eat) → <em style="color:var(--red)">evett-</em><br>
+          <strong>lenni</strong> (to be) → <em style="color:var(--red)">volt-</em><br>
+          <strong>tenni</strong> (to put/do) → <em style="color:var(--red)">tett-</em><br>
+          <strong>vinni</strong> (to carry) → <em style="color:var(--red)">vitt-</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">💬 Real sentences — indefinite vs definite in past</div>
+      <div style="display:grid;gap:8px;margin-top:4px">
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.9">
+          <span style="color:var(--red);font-weight:700">Láttam</span> egy macskát. — I saw <em>a</em> cat. (indef.)<br>
+          <span style="color:var(--green);font-weight:700">Láttam</span> a macskát. — I saw <em>the</em> cat. (def. — same form, different context!)
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.9">
+          <span style="color:var(--red);font-weight:700">Kértem</span> egy kávét. — I ordered <em>a</em> coffee. (indef.)<br>
+          <span style="color:var(--green);font-weight:700">Kértem</span> a kávét. — I ordered <em>the</em> coffee. (def.)
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.9">
+          <span style="color:var(--red);font-weight:700">Vettem</span> egy autót. — I bought <em>a</em> car. (indef.)<br>
+          <span style="color:var(--green);font-weight:700">Vettem</span> az autót. — I bought <em>the</em> car. (def.)
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;font-size:14px;line-height:1.9">
+          Tegnap <span style="color:var(--gold);font-weight:700">voltam</span> otthon. — Yesterday I <em>was</em> at home. (lenni → volt)<br>
+          Hol <span style="color:var(--gold);font-weight:700">voltál</span> tegnap? — Where were <em>you</em> yesterday?
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="past-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice — Past Tense Forms</h3></div>
+      <div id="past-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Past Tense Form</h3></div>
+      <div id="past-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-past"></div>
+    </div>
+
+    <button class="done-btn" id="done-past" disabled onclick="finish('past')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 6 — POSTPOSITIONS
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-postpos">
+  <div class="hero">
+    <div class="hero-badge">🗺️ Lesson 6 of 10</div>
+    <h2><em>Postpositions</em></h2>
+    <p>Where English uses <em>prepositions</em> (in front of a noun), Hungarian uses <strong>postpositions</strong> — words that come <em>after</em> the noun. They're the key to expressing spatial and abstract relationships that cases don't cover.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>12 postpositions</strong></div>
+      <div class="hm">⏱ <strong>~25 min</strong></div>
+      <div class="hm">🎯 <strong>Space, time &amp; abstract</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('postpos','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('postpos','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="postpos-learn">
+
+    <div class="gn">
+      <div class="gn-title">💡 Postpositions — the basics</div>
+      <p>Unlike English <em>prepositions</em> (before the noun), Hungarian postpositions come <strong>after</strong> the noun. The noun itself takes <strong>no case suffix</strong> — the postposition carries all the meaning.</p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:14px;line-height:2">
+        az asztal <strong style="color:var(--red)">alatt</strong> — <em>under</em> the table &nbsp;(lit: the table under)<br>
+        a ház <strong style="color:var(--red)">mögött</strong> — <em>behind</em> the house<br>
+        az iskola <strong style="color:var(--red)">előtt</strong> — <em>in front of</em> the school / <em>before</em> the school
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">🔑 Postpositions with pronouns — they fuse!</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">When a postposition is used with a <strong>personal pronoun</strong>, it fuses into one word with a possessive-style suffix:</p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:8px;font-size:14px;line-height:2">
+        mögöttem — behind <em>me</em> &nbsp;·&nbsp; mögötted — behind <em>you</em> &nbsp;·&nbsp; mögötte — behind <em>him/her</em><br>
+        előttem — in front of <em>me</em> &nbsp;·&nbsp; előtted — in front of <em>you</em> &nbsp;·&nbsp; előtte — in front of <em>him/her</em><br>
+        mellettem — next to <em>me</em> &nbsp;·&nbsp; melletted — next to <em>you</em> &nbsp;·&nbsp; mellette — next to <em>him/her</em>
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>The 12 Essential Postpositions</h3><span class="badge">With example sentences</span></div>
+      <table class="vt">
+        <thead><tr><th>Postposition</th><th>Pronunciation</th><th>Meaning</th><th>Example</th><th>English</th><th>🔊</th></tr></thead>
+        <tbody id="postpos-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--gold)">
+      <div class="gn-title" style="color:var(--gold)">📍 Motion postpositions — three forms</div>
+      <p style="font-size:13px;color:var(--text-2);margin-bottom:10px">Some spatial postpositions have <strong>three forms</strong> for WHERE / WHERE TO / WHERE FROM — just like the case grid:</p>
+      <table class="vt" style="margin-top:4px">
+        <thead><tr><th>WHERE? (hol?)</th><th>WHERE TO? (hova?)</th><th>WHERE FROM? (honnan?)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="vhu">alatt</span> (under)</td><td><span class="vhu" style="color:var(--green)">alá</span> (to under)</td><td><span class="vhu" style="color:var(--gold)">alól</span> (from under)</td></tr>
+          <tr><td><span class="vhu">fölött / felett</span> (above)</td><td><span class="vhu" style="color:var(--green)">fölé</span> (to above)</td><td><span class="vhu" style="color:var(--gold)">fölül</span> (from above)</td></tr>
+          <tr><td><span class="vhu">előtt</span> (in front of)</td><td><span class="vhu" style="color:var(--green)">elé</span> (to in front of)</td><td><span class="vhu" style="color:var(--gold)">elől</span> (from in front of)</td></tr>
+          <tr><td><span class="vhu">mögött</span> (behind)</td><td><span class="vhu" style="color:var(--green)">mögé</span> (to behind)</td><td><span class="vhu" style="color:var(--gold)">mögül</span> (from behind)</td></tr>
+          <tr><td><span class="vhu">mellett</span> (next to)</td><td><span class="vhu" style="color:var(--green)">mellé</span> (to next to)</td><td><span class="vhu" style="color:var(--gold)">mellől</span> (from next to)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="postpos-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🃏 Flashcards</h3><span class="badge gold">Postposition → Meaning</span></div>
+      <div class="fc-deck" id="postpos-fc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice</h3></div>
+      <div id="postpos-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Postposition</h3></div>
+      <div id="postpos-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-postpos"></div>
+    </div>
+
+    <button class="done-btn" id="done-postpos" disabled onclick="finish('postpos')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 7 — COMPARATIVES
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-comp">
+  <div class="hero">
+    <div class="hero-badge">📊 Lesson 7 of 10</div>
+    <h2><em>Comparatives</em> &amp; Superlatives</h2>
+    <p>To compare in Hungarian, add <strong>-bb</strong> to the adjective for the comparative, and prefix <strong>leg-</strong> for the superlative. A handful of common adjectives are irregular — you'll learn them all here.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>15 adjectives</strong></div>
+      <div class="hm">⏱ <strong>~20 min</strong></div>
+      <div class="hm">🎯 <strong>-bb suffix + leg- prefix</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('comp','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('comp','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="comp-learn">
+
+    <div class="gn">
+      <div class="gn-title">💡 Forming Comparatives and Superlatives</div>
+      <p>The system is very regular — just two rules to remember:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
+        <div style="background:var(--bg-alt);border:2px solid var(--border);border-radius:var(--r-m);padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--text-3);margin-bottom:8px">BASE</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text)">nagy</div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:4px">big</div>
+        </div>
+        <div style="background:var(--red-pale);border:2px solid var(--red);border-radius:var(--r-m);padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--red);margin-bottom:8px">COMPARATIVE + -bb</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--red)">nagyobb</div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:4px">bigger</div>
+        </div>
+        <div style="background:var(--green-pale);border:2px solid var(--green);border-radius:var(--r-m);padding:14px;text-align:center">
+          <div style="font-size:11px;font-weight:800;letter-spacing:1px;color:var(--green);margin-bottom:8px">SUPERLATIVE leg- + -bb</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--green)">legnagyobb</div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:4px">biggest</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--gold)">
+      <div class="gn-title" style="color:var(--gold)">📐 Spelling rules for -bb</div>
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text-2)">
+        <strong>Adjective ends in a vowel</strong> → add -bb directly: &nbsp; nagy → nagy<em style="color:var(--red)">obb</em> &nbsp;·&nbsp; szép → szé<em style="color:var(--red)">bb</em><br>
+        <strong>Adjective ends in a consonant</strong> → add a linking vowel then -bb: &nbsp; magas → magasabb &nbsp;·&nbsp; gyors → gyorsabb<br>
+        <strong>Vowel harmony governs the linking vowel:</strong> back → -a- &nbsp;·&nbsp; front unrounded → -e- &nbsp;·&nbsp; front rounded → -e-<br>
+        <strong>Short final vowel lengthens</strong> before -bb: &nbsp; drága → drágá<em style="color:var(--red)">bb</em> &nbsp;·&nbsp; olcsó → olcsó<em style="color:var(--red)">bb</em>
+      </p>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">⚡ Making comparisons — mint (than)</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">Use <strong>mint</strong> (than) to compare two things. The word order is flexible but most natural as:</p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:8px;font-size:14px;line-height:2.1">
+        Péter <strong style="color:var(--red)">magasabb</strong>, mint én. — Péter is <em>taller</em> than me.<br>
+        Ez a film <strong style="color:var(--red)">érdekesebb</strong>, mint az. — This film is <em>more interesting</em> than that one.<br>
+        A vonat <strong style="color:var(--red)">gyorsabb</strong>, mint a busz. — The train is <em>faster</em> than the bus.<br>
+        Ez a <strong style="color:var(--green)">legjobb</strong> étterem a városban. — This is the <em>best</em> restaurant in the city.
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Comparative &amp; Superlative Table</h3><span class="badge">15 adjectives — irregular ones highlighted</span></div>
+      <table class="vt">
+        <thead><tr><th>Base</th><th>English</th><th>Comparative</th><th>Superlative</th><th>🔊</th></tr></thead>
+        <tbody id="comp-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">🧠 Irregulars — must memorise!</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px;font-size:14px;line-height:2.1">
+          <strong>jó</strong> (good) → <em style="color:var(--red)">jobb</em> → <em style="color:var(--green)">legjobb</em><br>
+          <strong>sok</strong> (many) → <em style="color:var(--red)">több</em> → <em style="color:var(--green)">legtöbb</em><br>
+          <strong>kevés</strong> (few) → <em style="color:var(--red)">kevesebb</em> → <em style="color:var(--green)">legkevesebb</em>
+        </div>
+        <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px;font-size:14px;line-height:2.1">
+          <strong>rossz</strong> (bad) → <em style="color:var(--red)">rosszabb</em> → <em style="color:var(--green)">legrosszabb</em> (regular!)<br>
+          <strong>szép</strong> (beautiful) → <em style="color:var(--red)">szebb</em> → <em style="color:var(--green)">legszebb</em> (shortening!)<br>
+          <strong>kis</strong> (small) → <em style="color:var(--red)">kisebb</em> → <em style="color:var(--green)">legkisebb</em>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="comp-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🃏 Flashcards</h3><span class="badge gold">Base → Comparative</span></div>
+      <div class="fc-deck" id="comp-fc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice</h3></div>
+      <div id="comp-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Comparative or Superlative</h3></div>
+      <div id="comp-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-comp"></div>
+    </div>
+
+    <button class="done-btn" id="done-comp" disabled onclick="finish('comp')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 8 — TIME EXPRESSIONS
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-time">
+  <div class="hero">
+    <div class="hero-badge">🕐 Lesson 8 of 10</div>
+    <h2>Time <em>Expressions</em></h2>
+    <p>Telling the time in Hungarian is famously tricky — <strong>fél három</strong> means 2:30, not 3:30! Learn the clock system, seasons, and essential time vocabulary to talk about when things happen.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>Clock · Seasons · Adverbs</strong></div>
+      <div class="hm">⏱ <strong>~25 min</strong></div>
+      <div class="hm">🎯 <strong>fél, negyed, háromnegyed</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('time','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('time','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="time-learn">
+
+    <!-- CLOCK -->
+    <div class="sec-hdr" style="margin-top:0"><h3>Part 1 — Telling the Time</h3><span class="badge">Hány óra van?</span></div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">⚠️ The fél rule — the most common mistake!</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">
+        In Hungarian, <strong>fél</strong> means "half" but it refers to <em>halfway to the next hour</em>, not halfway through the current one.<br>
+        So <strong>fél három</strong> = <em>half-to-three</em> = <strong>2:30</strong> (not 3:30!)<br><br>
+        Similarly: <strong>negyed</strong> (quarter) = a quarter of the way to the next hour<br>
+        <strong>negyed három</strong> = quarter past two = <strong>2:15</strong><br>
+        <strong>háromnegyed három</strong> = three-quarters of the way to three = <strong>2:45</strong>
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;text-align:center">
+        <div style="background:rgba(255,255,255,.8);border-radius:var(--r-m);padding:10px">
+          <div style="font-size:22px;font-weight:800;color:var(--red)">2:00</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;margin-top:3px">kettő óra</div>
+        </div>
+        <div style="background:rgba(255,255,255,.8);border-radius:var(--r-m);padding:10px">
+          <div style="font-size:22px;font-weight:800;color:var(--red)">2:15</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;margin-top:3px">negyed három</div>
+        </div>
+        <div style="background:rgba(255,255,255,.8);border-radius:var(--r-m);padding:10px">
+          <div style="font-size:22px;font-weight:800;color:var(--red)">2:30</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;margin-top:3px">fél három</div>
+        </div>
+        <div style="background:rgba(255,255,255,.8);border-radius:var(--r-m);padding:10px">
+          <div style="font-size:22px;font-weight:800;color:var(--red)">2:45</div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;margin-top:3px">háromnegyed három</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">🕐 Parts of the day</div>
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text-2)">
+        <strong>délelőtt</strong> (DAY-leh-luht) — before noon / a.m.<br>
+        <strong>délben</strong> (DAY-lben) — at noon / at midday<br>
+        <strong>délután</strong> (DAY-loo-tahn) — afternoon / p.m.<br>
+        <strong>este</strong> (ESH-teh) — evening<br>
+        <strong>éjjel / éjszaka</strong> (AY-yel) — at night / nighttime
+      </p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:10px 14px;margin-top:8px;font-size:14px;line-height:2">
+        Délelőtt <strong>tíz</strong> óra. — Ten in the morning (10:00 a.m.)<br>
+        Délután <strong>fél három</strong>. — Half past two in the afternoon (2:30 p.m.)<br>
+        Este <strong>nyolc</strong> óra. — Eight in the evening (8:00 p.m.)
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Clock times</h3><span class="badge">10 expressions</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>Time</th><th>Note</th><th>🔊</th></tr></thead>
+        <tbody id="clock-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- SEASONS -->
+    <div class="sec-hdr"><h3>Part 2 — Seasons</h3><span class="badge">évszakok</span></div>
+
+    <div class="gn">
+      <div class="gn-title">💡 Seasons — two forms each</div>
+      <p>Each season has a base form and a <strong>temporal adverbial</strong> form (used when saying "in spring / in summer"). The adverbial forms use various suffixes — learn them as a set.</p>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>The four seasons</h3></div>
+      <table class="vt">
+        <thead><tr><th>Season</th><th>Pronunciation</th><th>English</th><th>"In [season]"</th><th>Pronunciation</th><th>🔊</th></tr></thead>
+        <tbody id="seasons-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- TIME ADVERBS -->
+    <div class="sec-hdr"><h3>Part 3 — Essential Time Adverbs</h3><span class="badge">12 words</span></div>
+
+    <div class="vs">
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>English</th><th>🔊</th></tr></thead>
+        <tbody id="time-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--gold)">
+      <div class="gn-title" style="color:var(--gold)">📝 Time adverbs in real sentences</div>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;font-size:14px;line-height:2.2">
+        <strong>Tegnap</strong> voltam a moziban. — <em>Yesterday</em> I was at the cinema.<br>
+        <strong>Ma</strong> dolgozom, <strong>holnap</strong> pihenek. — <em>Today</em> I work, <em>tomorrow</em> I rest.<br>
+        <strong>Már</strong> ittam kávét. — I've <em>already</em> had coffee.<br>
+        <strong>Még</strong> nem ettem. — I haven't eaten <em>yet</em>.<br>
+        <strong>Soha</strong> nem eszem húst. — I <em>never</em> eat meat.<br>
+        <strong>Mindig</strong> reggel futok. — I <em>always</em> run in the morning.<br>
+        <strong>Néha</strong> moziba megyek. — <em>Sometimes</em> I go to the cinema.
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="time-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice — Time</h3></div>
+      <div id="time-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Blank</h3></div>
+      <div id="time-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-time"></div>
+    </div>
+
+    <button class="done-btn" id="done-time" disabled onclick="finish('time')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 9 — BODY & HEALTH
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-body">
+  <div class="hero">
+    <div class="hero-badge">💪 Lesson 9 of 10</div>
+    <h2>Body &amp; <em>Health</em></h2>
+    <p>Learn body parts with their <strong>possessive forms</strong> (my head, my hand…), health vocabulary, and how to tell a doctor where it hurts using the crucial verb <strong>fáj</strong>.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>16 body parts + health vocab</strong></div>
+      <div class="hm">⏱ <strong>~25 min</strong></div>
+      <div class="hm">🎯 <strong>fáj + possessives</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('body','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('body','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="body-learn">
+
+    <div class="vs">
+      <div class="sec-hdr" style="margin-top:0"><h3>Body Parts</h3><span class="badge">16 words</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>English</th><th>My ___</th><th>🔊</th></tr></thead>
+        <tbody id="body-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn">
+      <div class="gn-title">💡 Possessive suffixes — "my body part"</div>
+      <p>To say "my head", "my hand" etc., attach a <strong>possessive suffix</strong> to the noun. The suffix follows vowel harmony:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px">
+        <div style="background:var(--red-pale);border-radius:var(--r-m);padding:12px;text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--red);margin-bottom:6px">BACK vowels</div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;line-height:2">
+            kar → kar<strong style="color:var(--red)">om</strong><br>
+            has → has<strong style="color:var(--red)">am</strong><br>
+            láb → láb<strong style="color:var(--red)">am</strong>
+          </div>
+        </div>
+        <div style="background:var(--green-pale);border-radius:var(--r-m);padding:12px;text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--green);margin-bottom:6px">FRONT vowels</div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;line-height:2">
+            fej → fej<strong style="color:var(--green)">em</strong><br>
+            kéz → kez<strong style="color:var(--green)">em</strong><br>
+            szem → szem<strong style="color:var(--green)">em</strong>
+          </div>
+        </div>
+        <div style="background:var(--gold-pale);border-radius:var(--r-m);padding:12px;text-align:center">
+          <div style="font-size:11px;font-weight:800;color:var(--gold);margin-bottom:6px">FRONT rounded</div>
+          <div style="font-family:'Playfair Display',serif;font-size:15px;line-height:2">
+            fül → fül<strong style="color:var(--gold)">em</strong><br>
+            szív → szív<strong style="color:var(--gold)">em</strong><br>
+            könyök → könyök<strong style="color:var(--gold)">öm</strong>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding:10px 14px;background:rgba(200,16,46,.07);border-radius:8px;font-size:13px;color:var(--text-2)">
+        ⚠️ <strong>Vowel loss applies here too!</strong> kéz → kez<em>em</em> (é→e before suffix). nyak → nyak<em>am</em>.
+      </div>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--red)">
+      <div class="gn-title" style="color:var(--red)">🤕 "It hurts" — the verb fáj</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">
+        <strong>Fáj</strong> works like an impersonal verb — the body part is the <em>subject</em>, not you. Compare English: "My head hurts" vs Hungarian "The head hurts (to me)."
+      </p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:8px;font-size:14px;line-height:2.2">
+        Fáj a <strong style="color:var(--red)">fejem</strong>. — My head hurts. (lit: hurts the my-head)<br>
+        Fáj a <strong style="color:var(--red)">hasam</strong>. — My stomach hurts.<br>
+        Fáj a <strong style="color:var(--red)">kezem</strong>. — My hand hurts.<br>
+        Fáj a <strong style="color:var(--red)">hátam</strong>. — My back hurts.<br>
+        Fáj<strong style="color:var(--red)">nak</strong> a fogaim. — My teeth hurt. (plural body part → fájnak, pl. verb)<br>
+        Fáj<strong style="color:var(--red)">nak</strong> a lábam. — My legs hurt.
+      </div>
+      <div style="margin-top:10px;padding:10px 14px;background:rgba(196,145,31,.1);border-radius:8px;font-size:13px;color:var(--text-2)">
+        💡 Singular body part → <strong>fáj</strong> &nbsp;·&nbsp; Plural body part → <strong>fájnak</strong>
+      </div>
+    </div>
+
+    <div class="vs" style="margin-top:24px">
+      <div class="sec-hdr"><h3>Health vocabulary</h3><span class="badge">12 words</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>English</th><th>🔊</th></tr></thead>
+        <tbody id="health-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">🏥 At the doctor — useful phrases</div>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;font-size:14px;line-height:2.2">
+        Rosszul érzem magam. — I feel unwell. (lit: I feel myself badly)<br>
+        Fáj a torkom. — My throat hurts.<br>
+        Lázam van. — I have a fever. (lit: I have-my-fever)<br>
+        Köhögök. — I'm coughing.<br>
+        Allergiás vagyok ___-ra/-re. — I'm allergic to ___.<br>
+        Orvoshoz kell mennem. — I need to go to the doctor.<br>
+        Kérek egy receptet. — I'd like a prescription.
+      </div>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="body-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🃏 Flashcards — Body Parts</h3></div>
+      <div class="fc-deck" id="body-fc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice</h3></div>
+      <div id="body-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Blank</h3></div>
+      <div id="body-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to continue</span></div>
+      <div id="quiz-body"></div>
+    </div>
+
+    <button class="done-btn" id="done-body" disabled onclick="finish('body')">🔒 Pass the quiz above to unlock the next lesson</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     LESSON 10 — DAILY LIFE
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-life">
+  <div class="hero">
+    <div class="hero-badge">🏠 Lesson 10 of 10</div>
+    <h2>Daily <em>Life</em></h2>
+    <p>The final lesson covers <strong>rooms of the house</strong>, <strong>shopping phrases</strong>, and <strong>professions</strong> — the practical vocabulary you need for real A2-level conversations about everyday life.</p>
+    <div class="hero-meta">
+      <div class="hm">📚 <strong>Rooms · Shopping · Professions</strong></div>
+      <div class="hm">⏱ <strong>~25 min</strong></div>
+      <div class="hm">🎯 <strong>Real-world Hungarian</strong></div>
+    </div>
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="tab('life','learn',this)">📖 Learn</button>
+    <button class="tab-btn" onclick="tab('life','practice',this)">✏️ Practice</button>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content active" id="life-learn">
+
+    <!-- ROOMS -->
+    <div class="sec-hdr" style="margin-top:0"><h3>Part 1 — Rooms of the House</h3><span class="badge">otthon</span></div>
+
+    <div class="gn">
+      <div class="gn-title">💡 Rooms + locative cases</div>
+      <p>Combine what you learned in Lesson 3 with room vocabulary. Rooms are <strong>container nouns</strong> — they use <em>-ban/-ben</em> (in), <em>-ba/-be</em> (into), <em>-ból/-ből</em> (out of).</p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:8px;font-size:14px;line-height:2.1">
+        A nappali<strong style="color:var(--red)">ban</strong> tévézek. — I watch TV <em>in</em> the living room.<br>
+        A konyha<strong style="color:var(--red)">ban</strong> főzök. — I cook <em>in</em> the kitchen.<br>
+        A hálószobá<strong style="color:var(--red)">ba</strong> megyek aludni. — I go <em>into</em> the bedroom to sleep.<br>
+        A fürdőszobá<strong style="color:var(--red)">ból</strong> jövök. — I'm coming <em>out of</em> the bathroom.
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Rooms</h3><span class="badge">10 words</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>English</th><th>In the ___</th><th>🔊</th></tr></thead>
+        <tbody id="rooms-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- SHOPPING -->
+    <div class="sec-hdr"><h3>Part 2 — Shopping</h3><span class="badge">vásárlás</span></div>
+
+    <div class="gn" style="border-left-color:var(--green)">
+      <div class="gn-title" style="color:var(--green)">🛒 Key shopping grammar</div>
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text-2)">
+        <strong>Mennyibe kerül?</strong> — How much does it cost? (lit: into how much does it cost?)<br>
+        <strong>Lehet kapni ___-t/-et/-öt?</strong> — Can I get a ___? (accusative on the item)<br>
+        <strong>Kérem ezt / azt.</strong> — I'll take this / that one.<br>
+        <strong>Van kisebb / nagyobb méret?</strong> — Do you have a smaller / bigger size?<br>
+        <strong>Hol a pénztár?</strong> — Where is the checkout?<br>
+        <strong>Fizetni szeretnék.</strong> — I'd like to pay. (conditional — very polite)
+      </p>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Shopping phrases</h3><span class="badge">10 phrases</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>English</th><th>🔊</th></tr></thead>
+        <tbody id="shopping-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="div"></div>
+
+    <!-- PROFESSIONS -->
+    <div class="sec-hdr"><h3>Part 3 — Professions</h3><span class="badge">foglalkozások</span></div>
+
+    <div class="gn">
+      <div class="gn-title">💡 Saying your profession — no verb "to be" needed!</div>
+      <p style="font-size:13.5px;line-height:1.8;color:var(--text-2)">
+        In Hungarian, 3rd person "is" is omitted with professions and nationalities:
+      </p>
+      <div style="background:rgba(255,255,255,.7);border-radius:8px;padding:12px 14px;margin-top:8px;font-size:14px;line-height:2.1">
+        Én <strong style="color:var(--red)">tanár vagyok</strong>. — I <em>am</em> a teacher. (1st person needs vagyok)<br>
+        Ő <strong style="color:var(--red)">orvos</strong>. — He/she <em>is</em> a doctor. (3rd person — no van needed!)<br>
+        Mi <strong style="color:var(--red)">mérnökök vagyunk</strong>. — We <em>are</em> engineers.<br>
+        Milyen munkát végzel? — What kind of work do you do?<br>
+        Mi a foglalkozásod? — What is your profession?
+      </div>
+    </div>
+
+    <div class="vs">
+      <div class="sec-hdr"><h3>Professions</h3><span class="badge">12 jobs</span></div>
+      <table class="vt">
+        <thead><tr><th>Hungarian</th><th>Pronunciation</th><th>English</th><th>🔊</th></tr></thead>
+        <tbody id="professions-tb"></tbody>
+      </table>
+    </div>
+
+    <div class="gn" style="border-left-color:var(--gold)">
+      <div class="gn-title" style="color:var(--gold)">🎓 A2 Complete — What you can now do</div>
+      <p style="font-size:13.5px;line-height:1.9;color:var(--text-2)">
+        ✅ Form plural nouns with correct vowel harmony<br>
+        ✅ Conjugate verbs in definite and indefinite forms (present &amp; past)<br>
+        ✅ Navigate 9 locative cases using the 3×3 grid<br>
+        ✅ Use dative (-nak/-nek) and instrumental (-val/-vel) with assimilation<br>
+        ✅ Form past tense including irregular verbs<br>
+        ✅ Use 12 postpositions and their motion variants<br>
+        ✅ Compare things using -bb and leg-<br>
+        ✅ Tell the time including fél/negyed/háromnegyed<br>
+        ✅ Describe health using fáj + possessives<br>
+        ✅ Talk about home, shopping, and work
+      </p>
+    </div>
+
+  </div><!-- /learn -->
+
+  <!-- PRACTICE TAB -->
+  <div class="tab-content" id="life-practice">
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🃏 Flashcards — Professions</h3></div>
+      <div class="fc-deck" id="life-fc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>🎯 Multiple Choice</h3></div>
+      <div id="life-mc"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="ex-sec">
+      <div class="ex-title"><h3>✏️ Fill in the Blank</h3></div>
+      <div id="life-fib"></div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="quiz-sec">
+      <div class="ex-title"><h3>📋 Lesson Quiz</h3><span class="badge">Pass 70% to unlock the Final Assessment!</span></div>
+      <div id="quiz-life"></div>
+    </div>
+
+    <button class="done-btn" id="done-life" disabled onclick="finish('life')">🔒 Pass the quiz above to unlock the Final Assessment</button>
+
+  </div><!-- /practice -->
+</section>
+
+<!-- ══════════════════════════════════════
+     FINAL ASSESSMENT
+     ══════════════════════════════════════ -->
+<section class="ls" id="l-test">
+  <div class="hero">
+    <div class="hero-badge">📝 Final Assessment</div>
+    <h2>A2 <em>Final Test</em></h2>
+    <p>30 questions covering all 10 lessons. You need <strong>21/30 (70%)</strong> to pass and earn your A2 certificate. Take your time — read each question carefully!</p>
+    <div class="hero-meta">
+      <div class="hm">📋 <strong>30 questions</strong></div>
+      <div class="hm">🎯 <strong>70% to pass</strong></div>
+      <div class="hm">🏆 <strong>Certificate on pass</strong></div>
+    </div>
+  </div>
+
+  <div style="padding:36px 48px">
+    <div id="quiz-test"></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+// ═══════════════════════════════
+// DATA — PLURAL NOUNS
+// ═══════════════════════════════
+const PLURALS = [
+  {sing:'ház',     pl:'házak',    ph_s:'hahz',      ph_p:'HAH-zok',       en:'house/houses',   rule:'back → -ak'},
+  {sing:'asztal',  pl:'asztalok', ph_s:'OS-tol',    ph_p:'OS-tol-ok',     en:'table/tables',   rule:'back → -ok'},
+  {sing:'bolt',    pl:'boltok',   ph_s:'bolt',      ph_p:'BOL-tok',       en:'shop/shops',     rule:'back → -ok'},
+  {sing:'szoba',   pl:'szobák',   ph_s:'SO-boh',    ph_p:'SO-bahk',       en:'room/rooms',     rule:'a → ák'},
+  {sing:'autó',    pl:'autók',    ph_s:'OW-toh',    ph_p:'OW-tohk',       en:'car/cars',       rule:'ó → ók'},
+  {sing:'könyv',   pl:'könyvek',  ph_s:'kuhn-v',    ph_p:'KUHN-vek',      en:'book/books',     rule:'front → -ek'},
+  {sing:'szék',    pl:'székek',   ph_s:'sayk',      ph_p:'SAY-kek',       en:'chair/chairs',   rule:'front → -ek'},
+  {sing:'kenyér',  pl:'kenyerek', ph_s:'KEH-nyayr', ph_p:'KEH-nyeh-rek',  en:'bread (loaves)', rule:'é→e, front → -ek'},
+  {sing:'alma',    pl:'almák',    ph_s:'OL-moh',    ph_p:'OL-mahk',       en:'apple/apples',   rule:'a → ák'},
+  {sing:'ember',   pl:'emberek',  ph_s:'EM-ber',    ph_p:'EM-beh-rek',    en:'person/people',  rule:'front → -ek'},
+  {sing:'tükör',   pl:'tükrök',   ph_s:'TEW-kuhr',  ph_p:'TEUK-ruhk',     en:'mirror/mirrors', rule:'front → -ök (vowel loss)'},
+  {sing:'város',   pl:'városok',  ph_s:'VAH-rosh',  ph_p:'VAH-ro-shok',   en:'city/cities',    rule:'back → -ok'},
+  {sing:'gyerek',  pl:'gyerekek', ph_s:'DYEH-rek',  ph_p:'DYEH-reh-kek',  en:'child/children', rule:'front → -ek'},
+  {sing:'ajtó',    pl:'ajtók',    ph_s:'OY-toh',    ph_p:'OY-tohk',       en:'door/doors',     rule:'ó → ók'},
+  {sing:'kéz',     pl:'kezek',    ph_s:'kayz',      ph_p:'KEH-zek',       en:'hand/hands',     rule:'é→e, front → -ek'},
+];
+
+// ═══════════════════════════════
+// DATA — DAILY LIFE
+// ═══════════════════════════════
+const ROOMS = [
+  {hu:'nappali',     ph:'NOP-po-lee',      en:'living room',    in:'a nappaliban'},
+  {hu:'hálószoba',   ph:'HAH-loh-SO-boh',  en:'bedroom',        in:'a hálószobában'},
+  {hu:'konyha',      ph:'KO-nyoh',         en:'kitchen',        in:'a konyhában'},
+  {hu:'fürdőszoba',  ph:'FEWR-duh-SO-boh', en:'bathroom',       in:'a fürdőszobában'},
+  {hu:'mosdó / WC',  ph:'MOSH-doh',        en:'toilet',         in:'a mosdóban'},
+  {hu:'előszoba',    ph:'EH-luh-SO-boh',   en:'entrance hall',  in:'az előszobában'},
+  {hu:'dolgozószoba',ph:'DOL-go-zoh-SO-boh',en:'study / office',in:'a dolgozószobában'},
+  {hu:'terasz',      ph:'TEH-ros',         en:'terrace/balcony',in:'a teraszon'},
+  {hu:'pince',       ph:'PEEN-tseh',       en:'cellar/basement',in:'a pincében'},
+  {hu:'kert',        ph:'kert',            en:'garden',         in:'a kertben'},
+];
+
+const SHOPPING_PHRASES = [
+  {hu:'Mennyibe kerül?',     ph:'MEN-nyee-beh KEH-rewl',   en:'How much does it cost?'},
+  {hu:'Lehet kapni ezt?',    ph:'LEH-het KOP-nee',         en:'Can I get this?'},
+  {hu:'Kérem ezt.',          ph:'KAY-rem ezt',             en:"I'll take this one."},
+  {hu:'Próbálhatom?',        ph:'PRO-bahl-ho-tom',         en:'Can I try it on?'},
+  {hu:'Túl nagy / kicsi.',   ph:'tool nodj / KEE-chee',    en:'Too big / small.'},
+  {hu:'Van kisebb méret?',   ph:'von KEE-shebb MAY-ret',   en:'Do you have a smaller size?'},
+  {hu:'Hol a pénztár?',      ph:'hol oh PAYNZ-tahr',       en:'Where is the checkout?'},
+  {hu:'Fizetni szeretnék.',  ph:'FEE-zet-nee SEH-ret-nayk',en:"I'd like to pay."},
+  {hu:'Visszahozhatom?',     ph:'VIS-so-HOZ-ho-tom',       en:'Can I return it?'},
+  {hu:'Köszönöm, csak nézelődöm.', ph:'KUH-suh-nuhm chok NAY-zeh-luh-duhm', en:'Thanks, just browsing.'},
+];
+
+const PROFESSIONS = [
+  {hu:'tanár / tanárnő',      ph:'TOH-nahr',          en:'teacher (m/f)'},
+  {hu:'orvos',                ph:'OR-vosh',           en:'doctor'},
+  {hu:'mérnök',               ph:'MAYR-nuhk',         en:'engineer'},
+  {hu:'ügyvéd',               ph:'EWdj-vayd',         en:'lawyer'},
+  {hu:'rendőr',               ph:'REN-dur',           en:'police officer'},
+  {hu:'tűzoltó',              ph:'TEW-zol-toh',       en:'firefighter'},
+  {hu:'szakács',              ph:'SOK-ahch',          en:'chef / cook'},
+  {hu:'pincér / felszolgáló', ph:'PEEN-tsayr',        en:'waiter'},
+  {hu:'sofőr',                ph:'SHO-fur',           en:'driver'},
+  {hu:'újságíró',             ph:'OOY-shahg-EE-roh',  en:'journalist'},
+  {hu:'fodrász',              ph:'FOD-rahs',          en:'hairdresser'},
+  {hu:'programozó',           ph:'PRO-groh-mo-zoh',   en:'programmer'},
+];
+
+// ═══════════════════════════════
+// DATA — BODY & HEALTH
+// ═══════════════════════════════
+const BODY_PARTS = [
+  {hu:'fej',    ph:'fay',    en:'head',     my:'fejem'},
+  {hu:'haj',    ph:'hoy',    en:'hair',     my:'hajam'},
+  {hu:'szem',   ph:'sem',    en:'eye',      my:'szemem'},
+  {hu:'fül',    ph:'fewl',   en:'ear',      my:'fülem'},
+  {hu:'orr',    ph:'orr',    en:'nose',     my:'orrom'},
+  {hu:'száj',   ph:'soy',    en:'mouth',    my:'szám'},
+  {hu:'fog',    ph:'fog',    en:'tooth',    my:'fogam'},
+  {hu:'nyak',   ph:'nyok',   en:'neck',     my:'nyakam'},
+  {hu:'váll',   ph:'vahl',   en:'shoulder', my:'vállam'},
+  {hu:'kar',    ph:'kor',    en:'arm',      my:'karom'},
+  {hu:'kéz',    ph:'kayz',   en:'hand',     my:'kezem'},
+  {hu:'láb',    ph:'lahb',   en:'leg / foot',my:'lábam'},
+  {hu:'has',    ph:'hosh',   en:'stomach',  my:'hasam'},
+  {hu:'hát',    ph:'haht',   en:'back',     my:'hátam'},
+  {hu:'térd',   ph:'tayrd',  en:'knee',     my:'térdem'},
+  {hu:'szív',   ph:'seev',   en:'heart',    my:'szívem'},
+];
+
+const HEALTH_VOCAB = [
+  {hu:'orvos',      ph:'OR-vosh',          en:'doctor'},
+  {hu:'kórház',     ph:'KOR-hahz',         en:'hospital'},
+  {hu:'gyógyszer',  ph:'DYODJ-ser',        en:'medicine'},
+  {hu:'recept',     ph:'REH-tsept',        en:'prescription'},
+  {hu:'beteg',      ph:'BEH-teg',          en:'sick / ill'},
+  {hu:'egészséges', ph:'EH-gays-shay-gesh',en:'healthy'},
+  {hu:'fáj',        ph:'fahy',             en:'it hurts'},
+  {hu:'fáradt',     ph:'FAH-rot',          en:'tired'},
+  {hu:'láz',        ph:'lahz',             en:'fever'},
+  {hu:'köhögés',    ph:'KUH-huh-gaysh',    en:'cough'},
+  {hu:'hányinger',  ph:'HAH-nyeen-ger',    en:'nausea'},
+  {hu:'allergiás',  ph:'ol-ler-GEE-ahsh',  en:'allergic'},
+];
+
+// ═══════════════════════════════
+// DATA — TIME EXPRESSIONS
+// ═══════════════════════════════
+const CLOCK_TIMES = [
+  {hu:'Hány óra van?',        ph:'hany OH-roh von',          time:'?',    note:'What time is it?'},
+  {hu:'Egy óra van.',         ph:'edj OH-roh von',           time:'1:00', note:'It is one o\'clock'},
+  {hu:'Kettő óra van.',       ph:'KET-tuh OH-roh von',       time:'2:00', note:'It is two o\'clock'},
+  {hu:'Negyed három.',        ph:'NEH-dyed HAH-rom',         time:'2:15', note:'Quarter of the way to 3 = 2:15'},
+  {hu:'Fél három.',           ph:'fayl HAH-rom',             time:'2:30', note:'⚠️ Half-to-three = 2:30 (not 3:30!)'},
+  {hu:'Háromnegyed három.',   ph:'HAH-rom-NEH-dyed HAH-rom', time:'2:45', note:'Three-quarters to three = 2:45'},
+  {hu:'Délelőtt tíz óra.',    ph:'DAY-leh-luht teez OH-roh', time:'10:00 a.m.', note:'délelőtt = a.m. / morning'},
+  {hu:'Délután kettő.',       ph:'DAY-loo-tahn KET-tuh',     time:'2:00 p.m.', note:'délután = p.m. / afternoon'},
+  {hu:'Este nyolc óra.',      ph:'EH-shte nyolts OH-roh',    time:'8:00 p.m.', note:'este = evening'},
+  {hu:'Éjjel tizenkettő.',    ph:'AY-yel TEE-zen-ket-tuh',   time:'midnight', note:'éjjel = at night'},
+];
+
+const SEASONS = [
+  {hu:'tavasz', ph:'TOV-os',  en:'spring', adv:'tavasszal', adv_ph:'TOV-os-sol', adv_en:'in spring'},
+  {hu:'nyár',   ph:'nyahr',   en:'summer', adv:'nyáron',    adv_ph:'NYAH-ron',   adv_en:'in summer'},
+  {hu:'ősz',    ph:'us',      en:'autumn', adv:'ősszel',    adv_ph:'US-sel',     adv_en:'in autumn'},
+  {hu:'tél',    ph:'tayl',    en:'winter', adv:'télen',     adv_ph:'TAY-len',    adv_en:'in winter'},
+];
+
+const TIME_VOCAB = [
+  {hu:'ma',       ph:'moh',        en:'today'},
+  {hu:'holnap',   ph:'HOL-nop',    en:'tomorrow'},
+  {hu:'tegnap',   ph:'TEG-nop',    en:'yesterday'},
+  {hu:'most',     ph:'mosht',      en:'now'},
+  {hu:'már',      ph:'mahr',       en:'already'},
+  {hu:'még',      ph:'mayg',       en:'still / yet'},
+  {hu:'mindig',   ph:'MIN-deeg',   en:'always'},
+  {hu:'soha',     ph:'SHO-hoh',    en:'never'},
+  {hu:'reggel',   ph:'REG-gel',    en:'in the morning (early)'},
+  {hu:'este',     ph:'ESH-teh',    en:'in the evening'},
+  {hu:'éjszaka',  ph:'AY-soh-koh', en:'at night'},
+  {hu:'néha',     ph:'NAY-hoh',    en:'sometimes'},
+];
+
+// ═══════════════════════════════
+// DATA — COMPARATIVES
+// ═══════════════════════════════
+const COMPARATIVES = [
+  {base:'nagy',     comp:'nagyobb',     sup:'legnagyobb',     en:'big',          irr:false},
+  {base:'kis',      comp:'kisebb',      sup:'legkisebb',      en:'small',        irr:false},
+  {base:'jó',       comp:'jobb',        sup:'legjobb',        en:'good',         irr:true},
+  {base:'rossz',    comp:'rosszabb',    sup:'legrosszabb',    en:'bad',          irr:false},
+  {base:'szép',     comp:'szebb',       sup:'legszebb',       en:'beautiful',    irr:true},
+  {base:'magas',    comp:'magasabb',    sup:'legmagasabb',    en:'tall / high',  irr:false},
+  {base:'alacsony', comp:'alacsonyabb', sup:'legalacsonyabb', en:'short / low',  irr:false},
+  {base:'drága',    comp:'drágább',     sup:'legdrágább',     en:'expensive',    irr:false},
+  {base:'olcsó',    comp:'olcsóbb',     sup:'legolcsóbb',     en:'cheap',        irr:false},
+  {base:'gyors',    comp:'gyorsabb',    sup:'leggyorsabb',    en:'fast',         irr:false},
+  {base:'lassú',    comp:'lassabb',     sup:'leglassabb',     en:'slow',         irr:false},
+  {base:'sok',      comp:'több',        sup:'legtöbb',        en:'many / much',  irr:true},
+  {base:'kevés',    comp:'kevesebb',    sup:'legkevesebb',    en:'few / little', irr:false},
+  {base:'hosszú',   comp:'hosszabb',    sup:'leghosszabb',    en:'long',         irr:false},
+  {base:'rövid',    comp:'rövidebb',    sup:'legrövidebb',    en:'short (length)',irr:false},
+];
+
+// ═══════════════════════════════
+// DATA — POSTPOSITIONS
+// ═══════════════════════════════
+const POSTPOSITIONS = [
+  {hu:'mellett',          ph:'MEL-let',    en:'next to',           ex_hu:'A bolt mellett van a ház.',            ex_en:'The house is next to the shop.'},
+  {hu:'előtt',            ph:'EH-luht',    en:'in front of / before', ex_hu:'Az autó az iskola előtt áll.',      ex_en:'The car stands in front of the school.'},
+  {hu:'mögött',           ph:'MUH-guht',   en:'behind',            ex_hu:'A macska a ház mögött van.',           ex_en:'The cat is behind the house.'},
+  {hu:'között',           ph:'KUH-zuht',   en:'between',           ex_hu:'A bank a bolt és az iskola között van.',ex_en:'The bank is between the shop and the school.'},
+  {hu:'alatt',            ph:'OL-lot',     en:'under / below',     ex_hu:'A kulcs az asztal alatt van.',         ex_en:'The key is under the table.'},
+  {hu:'felett / fölött',  ph:'FEH-let',    en:'above / over',      ex_hu:'A lámpa az asztal felett lóg.',        ex_en:'The lamp hangs above the table.'},
+  {hu:'körül',            ph:'KUH-rewl',   en:'around',            ex_hu:'A kerítés a ház körül van.',           ex_en:'The fence is around the house.'},
+  {hu:'után',             ph:'OO-tahn',    en:'after / behind',    ex_hu:'Az iskola után megyek haza.',          ex_en:'I go home after school.'},
+  {hu:'nélkül',           ph:'NAY-lewl',   en:'without',           ex_hu:'Kávé nélkül nem tudok dolgozni.',      ex_en:"I can't work without coffee."},
+  {hu:'miatt',            ph:'MEE-ot',     en:'because of',        ex_hu:'Az eső miatt maradok otthon.',         ex_en:"I'm staying home because of the rain."},
+  {hu:'felé',             ph:'FEH-lay',    en:'towards',           ex_hu:'A park felé megyek.',                  ex_en:"I'm going towards the park."},
+  {hu:'helyett',          ph:'HEH-yet',    en:'instead of',        ex_hu:'Tea helyett kávét kérek.',             ex_en:"I'd like coffee instead of tea."},
+];
+
+// ═══════════════════════════════
+// DATA — PAST TENSE
+// ═══════════════════════════════
+const PAST_VERBS = [
+  {inf:'látni',   en:'to see',      i1:'láttam',   i3:'látott',   d3:'látta',   irr:false,
+   ex:'Láttam egy szép filmet. — I saw a nice film.'},
+  {inf:'kérni',   en:'to ask/want', i1:'kértem',   i3:'kért',     d3:'kérte',   irr:false,
+   ex:'Kértem egy kávét. — I ordered a coffee.'},
+  {inf:'olvasni', en:'to read',     i1:'olvastam', i3:'olvasott', d3:'olvasta', irr:false,
+   ex:'Olvastam a könyvet. — I read the book.'},
+  {inf:'menni',   en:'to go',       i1:'mentem',   i3:'ment',     d3:'—',       irr:true,
+   ex:'Tegnap mentem a boltba. — Yesterday I went to the shop.'},
+  {inf:'jönni',   en:'to come',     i1:'jöttem',   i3:'jött',     d3:'—',       irr:true,
+   ex:'Jöttem haza hatkor. — I came home at six.'},
+  {inf:'venni',   en:'to buy/take', i1:'vettem',   i3:'vett',     d3:'vette',   irr:true,
+   ex:'Vettem egy új autót. — I bought a new car.'},
+  {inf:'inni',    en:'to drink',    i1:'ittam',    i3:'ivott',    d3:'itta',    irr:true,
+   ex:'Ittam egy pohár vizet. — I drank a glass of water.'},
+  {inf:'enni',    en:'to eat',      i1:'ettem',    i3:'evett',    d3:'ette',    irr:true,
+   ex:'Ettem egy almát. — I ate an apple.'},
+];
+
+// ═══════════════════════════════
+// DATA — DATIVE & INSTRUMENTAL
+// ═══════════════════════════════
+const DATIVE_PRONOUNS = [
+  {base:'én',    dat:'nekem',   en:'to/for me'},
+  {base:'te',    dat:'neked',   en:'to/for you'},
+  {base:'ő/ön',  dat:'neki',    en:'to/for him/her'},
+  {base:'mi',    dat:'nekünk',  en:'to/for us'},
+  {base:'ti',    dat:'nektek',  en:'to/for you (pl.)'},
+  {base:'ők',    dat:'nekik',   en:'to/for them'},
+];
+
+const DATIVE_PHRASES = [
+  {hu:'Adok Annának egy könyvet.',    ph:'OH-dok ON-nah-nok',  en:'I give Anna a book.',            note:'Anna + -nak = Annának'},
+  {hu:'Ez a játék neked van.',        ph:'ez oh YAH-tayk NEH-ked', en:'This toy is for you.',        note:'neked = dative of "te"'},
+  {hu:'Segítek a barátomnak.',        ph:'sheh-GEE-tek',       en:'I help my friend.',              note:'barátom + -nak = barátomnak'},
+  {hu:'Adok neki egy almát.',         ph:'OH-dok NEH-kee',     en:'I give him/her an apple.',       note:'neki = dative of "ő"'},
+  {hu:'Nekünk tetszik a film.',       ph:'NEH-kewnk TET-seek', en:'We like the film.',              note:'tetszik = it pleases (takes dative subject!)'},
+  {hu:'Mondok valamit az anyámnak.',  ph:'MON-dok',            en:'I say something to my mother.',  note:'anyám + -nak = anyámnak'},
+  {hu:'Örülök a hírnek.',             ph:'UH-rewluhk',         en:'I\'m happy about the news.',     note:'-nek = front vowel dative'},
+];
+
+const INSTR_PHRASES = [
+  {hu:'Kávéval iszom.',               ph:'KAH-vay-vol EE-som',     en:'I drink with coffee.',          note:'kávé + val = kávéval (vowel → no change)'},
+  {hu:'A barátommal megyek.',         ph:'oh bo-RAH-tom-mol',       en:"I'm going with my friend.",     note:'barátom ends in m → m+val = mmal'},
+  {hu:'Késsel eszem.',                ph:'KAYS-sel ES-sem',         en:'I eat with a knife.',           note:'kés ends in s → s+vel = ssel → késsel'},
+  {hu:'Autóval megyek dolgozni.',     ph:'OW-toh-vol MEH-dyek',     en:'I go to work by car.',          note:'autó ends in vowel → autóval'},
+  {hu:'Busszal utazom.',              ph:'BOOS-sol OO-to-zom',      en:'I travel by bus.',              note:'busz ends in sz → sz+szal = busz+szal → busszal'},
+  {hu:'Ceruzával írok.',              ph:'tseh-ROO-zah-vol EE-rok', en:'I write with a pencil.',        note:'ceruza ends in vowel → ceruzával'},
+  {hu:'Vonatal utazunk Pécsre.',      ph:'VO-not-tol',              en:'We travel to Pécs by train.',   note:'vonat ends in t → t+tal = ttal → vonattal'},
+];
+
+// ═══════════════════════════════
+// DATA — LOCATIVE CASES
+// ═══════════════════════════════
+const PLACES_CASES = [
+  {hu:'ház',          en:'house',        where:'a házban',          to:'a házba',          from:'a házból',          note:'container (IN)'},
+  {hu:'iskola',       en:'school',       where:'az iskolában',      to:'az iskolába',      from:'az iskolából',      note:'container (IN)'},
+  {hu:'bolt',         en:'shop',         where:'a boltban',         to:'a boltba',         from:'a boltból',         note:'container (IN)'},
+  {hu:'asztal',       en:'table',        where:'az asztalon',       to:'az asztalra',      from:'az asztalról',      note:'surface (ON)'},
+  {hu:'vonat',        en:'train',        where:'a vonaton',         to:'a vonatra',        from:'a vonatról',        note:'vehicles = surface (ON)'},
+  {hu:'Budapest',     en:'Budapest',     where:'Budapesten',        to:'Budapestre',       from:'Budapestről',       note:'cities = surface (ON)'},
+  {hu:'posta',        en:'post office',  where:'a postán',          to:'a postára',        from:'a postáról',        note:'some institutions = surface'},
+  {hu:'kórház',       en:'hospital',     where:'a kórházban',       to:'a kórházba',       from:'a kórházból',       note:'container (IN)'},
+  {hu:'Magyarország', en:'Hungary',      where:'Magyarországon',    to:'Magyarországra',   from:'Magyarországról',   note:'countries = surface (ON)'},
+  {hu:'kávézó',       en:'café',         where:'a kávézóban',       to:'a kávézóba',       from:'a kávézóból',       note:'container (IN)'},
+];
+
+// ═══════════════════════════════
+// DATA — VERB CONJUGATION
+// ═══════════════════════════════
+const CONJ_VERBS = [
+  {id:'lat', inf:'látni', en:'to see', type:'back',
+   indef:['látok','látsz','lát','látunk','láttok','látnak'],
+   def:  ['látom','látod','látja','látjuk','látjátok','látják'],
+   note:'3rd person definite: látja (not *látja is sometimes written lát-ja)'},
+  {id:'ker', inf:'kérni', en:'to ask for / want', type:'front unrounded',
+   indef:['kérek','kérsz','kér','kérünk','kértek','kérnek'],
+   def:  ['kérem','kéred','kéri','kérjük','kéritek','kérik'],
+   note:'Useful in restaurants: "Kérem a számlát" = I\'d like the bill'},
+  {id:'olvas', inf:'olvasni', en:'to read', type:'back',
+   indef:['olvasok','olvasol','olvas','olvasunk','olvastok','olvasnak'],
+   def:  ['olvasom','olvasod','olvassa','olvassuk','olvassátok','olvassák'],
+   note:'3rd person definite doubles the -s: olvassa, olvassuk'},
+  {id:'foz', inf:'főzni', en:'to cook', type:'front rounded',
+   indef:['főzök','főzöl','főz','főzünk','főztök','főznek'],
+   def:  ['főzöm','főzöd','főzi','főzzük','főzitek','főzik'],
+   note:'Front rounded vowels (ő) — note the -ik ending in 3rd person definite'},
+];
+
+// ═══════════════════════════════
+// DATA — LESSONS LIST
+// ═══════════════════════════════
+const LESSONS = [
+  {id:'plurals',     icon:'📝', num:1,  name:'Plural Nouns'},
+  {id:'conjugation', icon:'🔄', num:2,  name:'Verb Conjugation'},
+  {id:'cases',       icon:'📍', num:3,  name:'Locative Cases'},
+  {id:'cases2',      icon:'🔗', num:4,  name:'Dative & Instrumental'},
+  {id:'past',        icon:'⏪', num:5,  name:'Past Tense'},
+  {id:'postpos',     icon:'🗺️', num:6, name:'Postpositions'},
+  {id:'comp',        icon:'📊', num:7,  name:'Comparatives'},
+  {id:'time',        icon:'🕐', num:8,  name:'Time Expressions'},
+  {id:'body',        icon:'💪', num:9,  name:'Body & Health'},
+  {id:'life',        icon:'🏠', num:10, name:'Daily Life'},
+];
+
+// ═══════════════════════════════
+// STATE
+// ═══════════════════════════════
+const S = {
+  done: JSON.parse(localStorage.getItem('hu_a2_done') || '[]'),
+  cur: 'plurals',
+};
+
+// ═══════════════════════════════
+// SPEECH — Google Translate TTS
+// ═══════════════════════════════
+function speak(t) {
+  if (!t) return;
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(t)}&tl=hu&client=tw-ob&ttsspeed=0.8`;
+  const audio = new Audio(url);
+  audio.play().catch(() => {
+    const vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+    const v = vs.find(v => v.lang === 'hu-HU') || vs.find(v => v.lang.startsWith('hu'));
+    if (v) {
+      const u = new SpeechSynthesisUtterance(t);
+      u.lang = 'hu-HU'; u.rate = 0.8; u.voice = v;
+      window.speechSynthesis.speak(u);
+    } else {
+      toast('⚠️ Audio failed. Check internet connection (Google TTS).');
+    }
+  });
+}
+
+// ═══════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════
+function renderNav() {
+  const list = document.getElementById('nav-list');
+  list.innerHTML = '';
+  LESSONS.forEach((l, i) => {
+    const done = S.done.includes(l.id);
+    const active = S.cur === l.id;
+    const d = document.createElement('div');
+    d.className = `nav-item${active?' active':''}${done?' done':''}`;
+    d.setAttribute('data-id', l.id);
+    d.onclick = () => goTo(l.id);
+    d.innerHTML = `<div class="ni">${l.icon}</div><div class="nt"><div class="ln">Lesson ${l.num}</div><div class="lname">${l.name}</div></div>${done?'<span class="nav-check">✓</span>':''}`;
+    list.appendChild(d);
+  });
+  const navTest = document.getElementById('nav-test');
+  navTest.classList.remove('locked');
+  document.getElementById('test-lock').style.display='none';
+  const pct = Math.round(S.done.length / LESSONS.length * 100);
+  document.getElementById('pct').textContent = pct + '%';
+  document.getElementById('pbar').style.width = pct + '%';
+}
+
+function goTo(id) {
+  document.querySelectorAll('.ls').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('l-' + id);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+  S.cur = id;
+  renderNav();
+  document.getElementById('sb').classList.remove('open');
+}
+
+function toggleSB() { document.getElementById('sb').classList.toggle('open'); }
+
+// ═══════════════════════════════
+// TOAST
+// ═══════════════════════════════
+function toast(msg, type) {
+  const t = document.createElement('div');
+  t.style.cssText = `position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:${type==='ok'?'#3D6B46':type==='err'?'#C8102E':'#160810'};color:#fff;padding:11px 22px;border-radius:100px;font-family:Nunito,sans-serif;font-size:13px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.3);z-index:9999;animation:tIn .25s ease`;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2800);
+}
+
+// ═══════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════
+function tab(lesson, which, btn) {
+  const sec = document.getElementById('l-' + lesson);
+  sec.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  sec.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(lesson + '-' + which).classList.add('active');
+}
+
+// ═══════════════════════════════
+// FINISH LESSON
+// ═══════════════════════════════
+function finish(id) {
+  if (!S.done.includes(id)) {
+    S.done.push(id);
+    localStorage.setItem('hu_a2_done', JSON.stringify(S.done));
+  }
+  renderNav();
+  const idx = LESSONS.findIndex(l => l.id === id);
+  const next = LESSONS[idx + 1];
+  toast(next ? `🎉 Unlocked: ${next.name}!` : '🎉 All lessons done!', 'ok');
+  if (next) setTimeout(() => goTo(next.id), 1400);
+}
+
+// ═══════════════════════════════
+// MULTIPLE CHOICE
+// ═══════════════════════════════
+function buildMC(containerId, qs) {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  box.innerHTML = '';
+  qs.forEach((q, qi) => {
+    const d = document.createElement('div');
+    d.className = 'mc-q';
+    const opts = q.opts.map((o, i) => ({t: o, c: i === q.correct}));
+    d.innerHTML = `
+      <div class="mc-qn">Question ${qi+1} / ${qs.length}</div>
+      <div class="mc-qt">${q.q}</div>
+      <div class="mc-opts">${opts.map((o,i) => `<button class="mc-opt" onclick="answerMC(this,${o.c},'${containerId}-${qi}')">${o.t}</button>`).join('')}</div>
+      <div class="mc-exp" id="${containerId}-${qi}-exp">${q.exp||''}</div>
+    `;
+    box.appendChild(d);
+  });
+}
+
+function answerMC(btn, correct, id) {
+  const qEl = btn.closest('.mc-q');
+  if (qEl.classList.contains('answered')) return;
+  qEl.classList.add('answered');
+  qEl.querySelectorAll('.mc-opt').forEach(b => b.classList.add('answered'));
+  if (correct) { btn.classList.add('correct'); toast('✓ Correct!', 'ok'); }
+  else {
+    btn.classList.add('wrong');
+    qEl.querySelectorAll('.mc-opt').forEach(b => { if (b.onclick.toString().includes('true')) b.classList.add('correct'); });
+    toast('✗ Not quite!', 'err');
+  }
+  const expEl = document.getElementById(id + '-exp');
+  if (expEl && expEl.textContent.trim()) expEl.classList.add('show');
+}
+
+// ═══════════════════════════════
+// FILL IN BLANK
+// ═══════════════════════════════
+function buildFIB(containerId, qs) {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  box.innerHTML = '';
+  qs.forEach((q, qi) => {
+    const iid = `fi-${containerId}-${qi}`;
+    const rid = `fr-${containerId}-${qi}`;
+    const d = document.createElement('div');
+    d.className = 'fib-q';
+    d.innerHTML = `
+      <div class="fib-prompt">${q.prompt}</div>
+      <div class="fib-sent">${q.sentence}</div>
+      <div class="fib-row">
+        <input class="fib-in" id="${iid}" type="text" placeholder="${q.ph||'Type in Hungarian...'}">
+        <button class="chk-btn" onclick="checkFIB('${iid}',${JSON.stringify(q.ans)},'${rid}')">Check</button>
+      </div>
+      <div class="fib-res" id="${rid}"></div>
+    `;
+    d.querySelector('input').addEventListener('keydown', e => { if(e.key==='Enter') checkFIB(iid, q.ans, rid); });
+    box.appendChild(d);
+  });
+}
+
+function checkFIB(iid, ans, rid) {
+  const inp = document.getElementById(iid);
+  const res = document.getElementById(rid);
+  if (!inp || !res) return;
+  const val = inp.value.trim().toLowerCase();
+  const ok = ans.map(a => a.toLowerCase()).includes(val);
+  inp.classList.remove('correct','wrong');
+  inp.classList.add(ok ? 'correct' : 'wrong');
+  res.className = `fib-res ${ok?'correct':'wrong'} show`;
+  res.textContent = ok ? '✓ Correct!' : `✗ Answer: ${ans[0]}`;
+}
+
+// ═══════════════════════════════
+// FLASHCARDS
+// ═══════════════════════════════
+const FC = {};
+
+function buildFC(cid, cards) {
+  FC[cid] = {i: 0, cards};
+  drawFC(cid);
+}
+
+function drawFC(cid) {
+  const box = document.getElementById(cid);
+  if (!box) return;
+  const {i, cards} = FC[cid];
+  const c = cards[i];
+  const fid = 'fc-' + cid;
+  box.innerHTML = `
+    <div class="fc-ctr">Card ${i+1} of ${cards.length}</div>
+    <div class="fc-wrap" onclick="flipFC('${fid}')">
+      <div class="fc" id="${fid}">
+        <div class="fc-face fc-front">
+          <div class="fc-lbl">Hungarian</div>
+          <div class="fc-word">${c.hu}</div>
+          <div class="fc-ph">[${c.ph||''}]</div>
+          <div class="fc-hint">Click to reveal →</div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-lbl">English</div>
+          <div class="fc-word">${c.en}</div>
+          ${c.note?`<div class="fc-ph">${c.note}</div>`:''}
+        </div>
+      </div>
+    </div>
+    <div class="fc-btns">
+      <button class="fcb nav" onclick="stepFC('${cid}',-1)">← Prev</button>
+      <button class="fcb again" onclick="stepFC('${cid}',0)">↩ Again</button>
+      <button class="fcb knew" onclick="stepFC('${cid}',1)">✓ Got it</button>
+      <button class="fcb nav" onclick="stepFC('${cid}',1)">Next →</button>
+    </div>
+    <button onclick="speak('${c.hu.replace(/'/g,"\\'")}'); return false;" style="margin-top:10px;background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">🔊 Pronounce</button>
+  `;
+}
+
+function flipFC(id) { document.getElementById(id)?.classList.toggle('flipped'); }
+function stepFC(cid, dir) { const s = FC[cid]; s.i = (s.i + dir + s.cards.length) % s.cards.length; drawFC(cid); }
+
+// ═══════════════════════════════
+// QUIZ ENGINE
+// ═══════════════════════════════
+const QD = {};
+
+function buildQuiz(cid, qs, lid) {
+  QD[cid] = {qs, lid};
+  _drawQuiz(cid);
+}
+
+function _drawQuiz(cid) {
+  const {qs, lid} = QD[cid];
+  const need = Math.ceil(qs.length * 0.7);
+  const box = document.getElementById(cid);
+  if (!box) return;
+  box.innerHTML = `
+    <div class="quiz-wrap">
+      <div class="qz-hdr">
+        <div class="qz-hdr-icon">📋</div>
+        <div>
+          <h4>Lesson Quiz</h4>
+          <p>${qs.length} questions &nbsp;·&nbsp; Need ${need}/${qs.length} correct to pass (70%)</p>
+        </div>
+      </div>
+      ${qs.map((q,i) => `
+        <div class="qz-q" id="${cid}Q${i}">
+          <div class="qz-num">Question ${i+1} / ${qs.length}</div>
+          <div class="qz-text">${q.q}</div>
+          ${q.type==='mc'
+            ? `<div class="qz-opts">${q.opts.map((o,oi)=>`<div class="qz-opt" onclick="qzPick(this)"><input type="radio" name="${cid}Q${i}" value="${oi}"><label>${o}</label></div>`).join('')}</div>`
+            : `<input class="qz-fib" id="${cid}Q${i}F" type="text" placeholder="Type in Hungarian...">`}
+          <div class="qz-exp" id="${cid}Q${i}E"></div>
+        </div>`).join('')}
+      <button class="qz-submit" id="${cid}SUB" onclick="qzSubmit('${cid}')">Submit Quiz →</button>
+      <div class="qz-result" id="${cid}RES">
+        <div class="qz-score" id="${cid}SC"></div>
+        <div class="qz-msg" id="${cid}MSG"></div>
+        <button class="qz-retry" id="${cid}RETRY" onclick="_drawQuiz('${cid}')" style="display:none">↩ Try Again</button>
+      </div>
+    </div>`;
+  qs.forEach((q,i) => {
+    if (q.type==='fib') {
+      const inp = document.getElementById(`${cid}Q${i}F`);
+      if (inp) inp.addEventListener('keydown', e => { if(e.key==='Enter') qzSubmit(cid); });
+    }
+  });
+}
+
+function qzPick(el) {
+  el.closest('.qz-opts').querySelectorAll('.qz-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input[type=radio]').checked = true;
+}
+
+function qzSubmit(cid) {
+  const {qs, lid} = QD[cid];
+  let score = 0, answered = 0;
+  qs.forEach((q,i) => {
+    const qEl = document.getElementById(`${cid}Q${i}`);
+    const expEl = document.getElementById(`${cid}Q${i}E`);
+    if (q.type==='mc') {
+      const checked = qEl.querySelector('input[type=radio]:checked');
+      if (!checked) return;
+      answered++;
+      const chosen = parseInt(checked.value);
+      qEl.querySelectorAll('.qz-opt').forEach((o,oi) => {
+        o.classList.add('q-done');
+        o.querySelector('input').disabled = true;
+        if (oi===q.correct) o.classList.add('q-correct');
+        else if (oi===chosen) o.classList.add('q-wrong');
+      });
+      if (chosen===q.correct) score++;
+      else if (q.exp) { expEl.textContent='💡 '+q.exp; expEl.classList.add('show'); }
+    } else {
+      const inp = document.getElementById(`${cid}Q${i}F`);
+      if (!inp||!inp.value.trim()) return;
+      answered++;
+      const val = inp.value.trim().toLowerCase();
+      const ok = q.ans.map(a=>a.toLowerCase()).includes(val);
+      inp.disabled = true;
+      inp.classList.add(ok?'q-correct':'q-wrong');
+      if (ok) score++;
+      else { expEl.textContent=`💡 Answer: ${q.ans[0]}${q.exp?' — '+q.exp:''}`; expEl.classList.add('show'); }
+    }
+  });
+  if (answered < qs.length) { toast('Please answer every question first!'); return; }
+  const need = Math.ceil(qs.length * 0.7);
+  const passed = score >= need;
+  document.getElementById(`${cid}SUB`).style.display = 'none';
+  const res = document.getElementById(`${cid}RES`);
+  res.classList.add('show', passed?'pass':'fail');
+  document.getElementById(`${cid}SC`).textContent = `${score} / ${qs.length}`;
+  if (lid === 'test') {
+    if (passed) {
+      document.getElementById(`${cid}MSG`).innerHTML = `🏆 ${Math.round(score/qs.length*100)}% — You passed the A2 Final Assessment!<div class="cert-box"><div class="cert-title">🇭🇺 A2 Hungarian Complete!</div><div class="cert-sub">You have demonstrated A2-level proficiency in Hungarian.<br>You can use plural nouns, conjugate verbs in definite & indefinite forms, navigate locative cases, form past tense, use postpositions, comparatives, and handle daily life vocabulary.<br><br><strong>Gratulálok! (Congratulations!)</strong></div><button class="cert-btn" onclick="toast('B1 course coming soon! Keep practicing A2 in the meantime. 🌟','ok')">🚀 Proceed to B1 (coming soon)</button></div>`;
+      launchConfetti();
+    } else {
+      document.getElementById(`${cid}MSG`).textContent = `You scored ${Math.round(score/qs.length*100)}% (${score}/30). You need 70% (21/30) to pass. Review the lessons that gave you trouble, then try again!`;
+      document.getElementById(`${cid}RETRY`).style.display = 'inline-block';
+    }
+    return;
+  }
+  if (passed) {
+    document.getElementById(`${cid}MSG`).textContent = `🎉 ${Math.round(score/qs.length*100)}% — you know this material! You may now complete the lesson.`;
+    const btn = document.getElementById('done-'+lid);
+    if (btn) { btn.disabled=false; btn.textContent='✓ Quiz Passed — Mark Lesson Complete →'; }
+  } else {
+    document.getElementById(`${cid}MSG`).textContent = `You scored ${Math.round(score/qs.length*100)}%. You need 70% to pass. Review the lesson then try again!`;
+    document.getElementById(`${cid}RETRY`).style.display = 'inline-block';
+  }
+}
+
+// ═══════════════════════════════
+// CONFETTI
+// ═══════════════════════════════
+function launchConfetti() {
+  const colors = ['#C8102E','#3D6B46','#C4911F','#fff','#EDB840'];
+  for (let i = 0; i < 120; i++) {
+    const p = document.createElement('div');
+    const size = Math.random() * 10 + 6;
+    p.style.cssText = `position:fixed;top:-20px;left:${Math.random()*100}vw;width:${size}px;height:${size}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};z-index:99999;pointer-events:none;animation:cf ${2+Math.random()*2}s ease-in forwards;animation-delay:${Math.random()*1}s`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 4000);
+  }
+  if (!document.getElementById('cf-style')) {
+    const s = document.createElement('style');
+    s.id = 'cf-style';
+    s.textContent = `@keyframes cf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}`;
+    document.head.appendChild(s);
+  }
+}
+
+// ═══════════════════════════════
+// A2-SPECIFIC: CONJUGATION TABLE
+// ═══════════════════════════════
+function buildConjTable(cid, verb) {
+  const box = document.getElementById(cid);
+  if (!box) return;
+  const pronouns = ['én','te','ő/ön','mi','ti','ők'];
+  const eng = ['I','you (sg)','he/she/you(formal)','we','you (pl)','they'];
+  let rows = pronouns.map((p,i) => `
+    <tr>
+      <td><span class="vhu">${p}</span></td>
+      <td><span class="vhu ct-indef">${verb.indef[i]}</span></td>
+      <td><span class="vhu ct-def">${verb.def && verb.def[i] !== '-' ? verb.def[i] : '<span style="color:var(--text-3);font-size:12px">—</span>'}</span></td>
+      <td class="ven">${eng[i]}</td>
+      <td><button class="spk" onclick="speak('${verb.indef[i].replace(/'/g,"\\'")}')">🔊</button></td>
+    </tr>`).join('');
+  if (verb.note) rows += `<tr><td colspan="5" class="ct-note">💡 ${verb.note}</td></tr>`;
+  box.innerHTML = `
+    <div class="ct-header">
+      <span class="ct-inf">${verb.inf}</span>
+      <span class="ct-en">${verb.en}</span>
+      ${verb.type ? `<span class="ct-type">${verb.type} vowels</span>` : ''}
+    </div>
+    <table class="vt">
+      <thead><tr><th>Pronoun</th><th style="color:#ffccd4">Indefinite</th><th style="color:#b8f0c4">Definite</th><th>English</th><th>🔊</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+// ═══════════════════════════════
+// A2-SPECIFIC: CASE GRID 3×3
+// ═══════════════════════════════
+function buildCaseGrid(cid) {
+  const box = document.getElementById(cid);
+  if (!box) return;
+  box.innerHTML = `
+    <div class="cgrid">
+      <div class="cgh-blank"></div>
+      <div class="cgh">IN <span class="cgh-q">(container)</span></div>
+      <div class="cgh">ON <span class="cgh-q">(surface)</span></div>
+      <div class="cgh">AT <span class="cgh-q">(proximity)</span></div>
+
+      <div class="cgr">WHERE?<span class="cgq">hol?</span></div>
+      <div class="cgc"><div class="cgs">-ban/-ben</div><div class="cgx">a ház<b>ban</b></div><div class="cge">in the house</div></div>
+      <div class="cgc"><div class="cgs">-on/-en/-ön</div><div class="cgx">az asztal<b>on</b></div><div class="cge">on the table</div></div>
+      <div class="cgc"><div class="cgs">-nál/-nél</div><div class="cgx">a bolt<b>nál</b></div><div class="cge">at the shop</div></div>
+
+      <div class="cgr cg-to">WHERE TO?<span class="cgq">hova?</span></div>
+      <div class="cgc cg-to"><div class="cgs">-ba/-be</div><div class="cgx">a ház<b>ba</b></div><div class="cge">into the house</div></div>
+      <div class="cgc cg-to"><div class="cgs">-ra/-re</div><div class="cgx">az asztal<b>ra</b></div><div class="cge">onto the table</div></div>
+      <div class="cgc cg-to"><div class="cgs">-hoz/-hez/-höz</div><div class="cgx">a bolt<b>hoz</b></div><div class="cge">towards the shop</div></div>
+
+      <div class="cgr cg-fr">WHERE FROM?<span class="cgq">honnan?</span></div>
+      <div class="cgc cg-fr"><div class="cgs">-ból/-ből</div><div class="cgx">a ház<b>ból</b></div><div class="cge">out of the house</div></div>
+      <div class="cgc cg-fr"><div class="cgs">-ról/-ről</div><div class="cgx">az asztal<b>ról</b></div><div class="cge">off the table</div></div>
+      <div class="cgc cg-fr"><div class="cgs">-tól/-től</div><div class="cgx">a bolt<b>tól</b></div><div class="cge">away from the shop</div></div>
+    </div>`;
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 10: DAILY LIFE
+// ═══════════════════════════════
+function renderLife() {
+  // Rooms table
+  const rt = document.getElementById('rooms-tb');
+  if (rt) ROOMS.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${r.hu}</span></td>
+      <td><span class="vph">${r.ph}</span></td>
+      <td class="ven">${r.en}</td>
+      <td><span class="vhu" style="color:var(--red);font-size:14px">${r.in}</span></td>
+      <td><button class="spk" onclick="speak('${r.hu.replace(/'/g,"\\'")}')">🔊</button></td>
+    `;
+    rt.appendChild(tr);
+  });
+
+  // Shopping table
+  const st = document.getElementById('shopping-tb');
+  if (st) SHOPPING_PHRASES.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${p.hu}</span></td>
+      <td><span class="vph">${p.ph}</span></td>
+      <td class="ven">${p.en}</td>
+      <td><button class="spk" onclick="speak('${p.hu.replace(/'/g,"\\'")}')">🔊</button></td>
+    `;
+    st.appendChild(tr);
+  });
+
+  // Professions table
+  const pt = document.getElementById('professions-tb');
+  if (pt) PROFESSIONS.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${p.hu}</span></td>
+      <td><span class="vph">${p.ph}</span></td>
+      <td class="ven">${p.en}</td>
+      <td><button class="spk" onclick="speak('${p.hu.split('/')[0].trim()}')">🔊</button></td>
+    `;
+    pt.appendChild(tr);
+  });
+
+  // Flashcards — professions
+  buildFC('life-fc', PROFESSIONS.map(p => ({
+    hu: p.hu, ph: p.ph, en: p.en, note: ''
+  })));
+
+  buildMC('life-mc', [
+    {q:'How do you ask "How much does it cost?" in Hungarian?',
+     opts:['Mennyit fizetek?','Mennyibe kerül?','Mennyi van?','Mekkora az ára?'], correct:1,
+     exp:'"Mennyibe kerül?" = How much does it cost? (lit: into how much does it cost?)'},
+    {q:'Which room is the <span class="hl">konyha</span>?',
+     opts:['bedroom','bathroom','kitchen','living room'], correct:2,
+     exp:'"konyha" = kitchen. Main cooking space.'},
+    {q:'"Ő orvos." means:',
+     opts:['He is going to the doctor.','He is a doctor.','He has a doctor.','He was a doctor.'], correct:1,
+     exp:'"Ő orvos." = He/she is a doctor. In Hungarian, 3rd person "is" (van) is dropped with professions.'},
+    {q:'Which phrase means "Can I try it on?"',
+     opts:['Visszahozhatom?','Mennyibe kerül?','Próbálhatom?','Van kisebb méret?'], correct:2,
+     exp:'"Próbálhatom?" = Can I try it on? (probál = to try/attempt)'},
+    {q:'What case suffix do rooms use when saying "in the kitchen"?',
+     opts:['-on/-en/-ön','-ban/-ben','-nál/-nél','-ba/-be'], correct:1,
+     exp:'Rooms are container nouns → use -ban/-ben for static location. "a konyhában" = in the kitchen.'},
+    {q:'How do you say "I\'d like to pay"? (politely)',
+     opts:['Fizetek.','Fizetni akarok.','Fizetni szeretnék.','Kérem a fizetést.'], correct:2,
+     exp:'"Fizetni szeretnék." uses the conditional (szeretne = would like) — very polite. Akarok is more blunt.'},
+    {q:'What is a <span class="hl">programozó</span>?',
+     opts:['journalist','engineer','hairdresser','programmer'], correct:3,
+     exp:'"programozó" = programmer. Mérnök = engineer. Újságíró = journalist. Fodrász = hairdresser.'},
+  ]);
+
+  buildFIB('life-fib', [
+    {prompt:'Room — I cook in the kitchen:', sentence:'A ___ főzök.', ph:'konyha + ban…', ans:['konyhában']},
+    {prompt:'Room — I sleep in the bedroom:', sentence:'A ___ alszom.', ph:'hálószoba + ban…', ans:['hálószobában']},
+    {prompt:'Shopping — how much does it cost?', sentence:'___ kerül?', ph:'first word…', ans:['mennyibe','Mennyibe']},
+    {prompt:'Shopping — "Can I try it on?"', sentence:'___?', ph:'one word…', ans:['próbálhatom','Próbálhatom']},
+    {prompt:'Profession — "I am a teacher":',  sentence:'Tanár ___.',  ph:'verb…', ans:['vagyok']},
+    {prompt:'"Where is the checkout?"', sentence:'Hol a ___?', ph:'one word…', ans:['pénztár']},
+    {prompt:'Room — I watch TV in the living room:', sentence:'A ___ tévézek.', ph:'nappali + ban…', ans:['nappaliban']},
+    {prompt:'"I\'d like to pay" — polite form:', sentence:'Fizetni ___.',  ph:'conditional…', ans:['szeretnék']},
+  ]);
+
+  buildQuiz('quiz-life', [
+    {type:'fib', q:'Complete: A ___ főzök. (in the kitchen)', ans:['konyhában'],
+     exp:'"konyha" + -ban = konyhában. Rooms use the container case.'},
+    {type:'mc',  q:'How do you ask "How much does it cost?"',
+     opts:['Mennyit fizetek?','Mennyibe kerül?','Mi az ár?','Mennyit kérek?'], correct:1,
+     exp:'"Mennyibe kerül?" is the standard phrase for asking a price.'},
+    {type:'fib', q:'Complete: "I am a doctor" — Orvos ___.',  ans:['vagyok'],
+     exp:'1st person singular of lenni = vagyok. "Orvos vagyok." = I am a doctor.'},
+    {type:'mc',  q:'"Próbálhatom?" means:',
+     opts:['Can I return it?','Where is the checkout?','Can I try it on?','Do you have a smaller size?'], correct:2,
+     exp:'"Próbálhatom?" = Can I try it on/try it? (probálhat + -om)'},
+    {type:'mc',  q:'Which room is the "hálószoba"?',
+     opts:['kitchen','living room','bedroom','bathroom'], correct:2,
+     exp:'"hálószoba" = bedroom. háló = sleeping, szoba = room.'},
+    {type:'fib', q:'"Can I return it?" in Hungarian:', ans:['visszahozhatom','Visszahozhatom'],
+     exp:'"Visszahozhatom?" = Can I bring it back? (visszahoz = to bring back)'},
+    {type:'mc',  q:'In Hungarian, "She is a lawyer" is:',
+     opts:['Ő van ügyvéd.','Ő egy ügyvéd.','Ő ügyvéd.','Ő ügyvéd van.'], correct:2,
+     exp:'"Ő ügyvéd." — 3rd person "is" (van) is dropped when stating professions and nationalities.'},
+  ], 'life');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 9: BODY & HEALTH
+// ═══════════════════════════════
+function renderBody() {
+  // Body parts table
+  const bt = document.getElementById('body-tb');
+  if (bt) BODY_PARTS.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${p.hu}</span></td>
+      <td><span class="vph">${p.ph}</span></td>
+      <td class="ven">${p.en}</td>
+      <td><span class="vhu" style="color:var(--green)">Fáj a ${p.my}.</span></td>
+      <td><button class="spk" onclick="speak('${p.hu}')">🔊</button></td>
+    `;
+    bt.appendChild(tr);
+  });
+
+  // Health vocab table
+  const ht = document.getElementById('health-tb');
+  if (ht) HEALTH_VOCAB.forEach(v => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${v.hu}</span></td>
+      <td><span class="vph">${v.ph}</span></td>
+      <td class="ven">${v.en}</td>
+      <td><button class="spk" onclick="speak('${v.hu}')">🔊</button></td>
+    `;
+    ht.appendChild(tr);
+  });
+
+  // Flashcards
+  buildFC('body-fc', BODY_PARTS.map(p => ({
+    hu: p.hu, ph: p.ph, en: p.en, note: `my ${p.en} = ${p.my}`
+  })));
+
+  buildMC('body-mc', [
+    {q:'How do you say "My head hurts"?',
+     opts:['Fájnak a fejem.','Fáj a fejem.','Fáj a fej.','Fejem fáj nekem.'], correct:1,
+     exp:'"fáj" = it hurts (singular). "a fejem" = the my-head. Fáj a fejem. = My head hurts.'},
+    {q:'What does <span class="hl">beteg</span> mean?',
+     opts:['healthy','tired','sick / ill','doctor'], correct:2,
+     exp:'"beteg" = sick/ill. The opposite is "egészséges" = healthy.'},
+    {q:'"My teeth hurt" — teeth is plural, so which verb form?',
+     opts:['Fáj a fogaim.','Fájnak a fogaim.','Fájnak a fogam.','Fáj a fogak.'], correct:1,
+     exp:'Plural body part → plural verb: fájnak. fogaim = my teeth (plural possessive).'},
+    {q:'What is "my hand" in Hungarian?',
+     opts:['kézem','kezem','kezam','kézam'], correct:1,
+     exp:'"kéz" → vowel loss before suffix: kéz → kez + em = kezem. (é → e)'},
+    {q:'What does <span class="hl">láz</span> mean?',
+     opts:['cough','nausea','tired','fever'], correct:3,
+     exp:'"láz" = fever. Lázam van = I have a fever.'},
+    {q:'"I feel unwell" in Hungarian is:',
+     opts:['Rosszul érzem magam.','Beteg érzem.','Fáj az egészségem.','Nem vagyok jól.'], correct:0,
+     exp:'"Rosszul érzem magam." = I feel myself badly = I feel unwell. This is the standard phrase.'},
+    {q:'Which word means "prescription"?',
+     opts:['gyógyszer','orvos','recept','kórház'], correct:2,
+     exp:'"recept" = prescription (borrowed from Latin/German). "gyógyszer" = medicine.'},
+  ]);
+
+  buildFIB('body-fib', [
+    {prompt:'My head hurts — complete the sentence:', sentence:'Fáj a ___.',             ph:'fejem / hasam / …', ans:['fejem']},
+    {prompt:'"my stomach" (has):',                    sentence:'A ___ fáj.',             ph:'possessive form…', ans:['hasam']},
+    {prompt:'"my back" (hát):',                       sentence:'Fáj a ___.',             ph:'possessive form…', ans:['hátam']},
+    {prompt:'"my hand" (kéz — watch vowel loss!):',   sentence:'Fáj a ___.',             ph:'possessive form…', ans:['kezem']},
+    {prompt:'I have a fever — complete:',              sentence:'___ van.',               ph:'láz possessive…', ans:['lázam']},
+    {prompt:'Plural: My teeth hurt:',                  sentence:'___ a fogaim.',          ph:'fáj or fájnak?…', ans:['fájnak']},
+    {prompt:'"sick" in Hungarian:',                    sentence:'___ vagyok, nem tudok dolgozni.', ph:'adj.…', ans:['beteg']},
+    {prompt:'"I\'m going to the doctor":',             sentence:'Orvos___ kell mennem.',  ph:'case suffix…', ans:['hoz','orvoshoz']},
+  ]);
+
+  buildQuiz('quiz-body', [
+    {type:'mc', q:'How do you say "my head" (used in fáj a ___)?',
+     opts:['fej','fejm','fejem','fejemet'], correct:2,
+     exp:'"fej" + em = fejem (my head). Front vowel word.'},
+    {type:'fib', q:'Complete: Fáj a ___ (my stomach — has).', ans:['hasam'],
+     exp:'"has" + am = hasam. Back vowel word.'},
+    {type:'mc', q:'When do you use "fájnak" instead of "fáj"?',
+     opts:['Always with body parts','When the body part is plural','When the speaker is female','With health problems only'], correct:1,
+     exp:'"fájnak" is used when the body part is plural: Fájnak a fogaim (my teeth hurt).'},
+    {type:'fib', q:'What is the Hungarian for "doctor"?', ans:['orvos'],
+     exp:'"orvos" = doctor. Going to the doctor: orvoshoz megyek.'},
+    {type:'mc', q:'"Lázam van" means:',
+     opts:['I am tired','I have a cough','I have a fever','I am allergic'], correct:2,
+     exp:'"láz" = fever. "lázam van" = I have a fever (lit: my-fever exists).'},
+    {type:'fib', q:'How do you say "healthy"?', ans:['egészséges'],
+     exp:'"egészséges" = healthy. Opposite: beteg = sick.'},
+    {type:'mc', q:'"My hand hurts" — what happens to kéz before the suffix?',
+     opts:['It stays as kéz','The é shortens: kez','A linking vowel is added','Nothing changes'], correct:1,
+     exp:'"kéz" loses its é: kez + em = kezem. This is vowel loss in possessives.'},
+  ], 'body');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 8: TIME
+// ═══════════════════════════════
+function renderTime() {
+  // Clock table
+  const ct = document.getElementById('clock-tb');
+  if (ct) CLOCK_TIMES.forEach(t => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${t.hu}</span></td>
+      <td><span class="vph">${t.ph}</span></td>
+      <td style="font-weight:800;color:var(--red);font-size:16px">${t.time}</td>
+      <td style="font-size:12px;color:var(--text-2)">${t.note}</td>
+      <td><button class="spk" onclick="speak('${t.hu.replace(/'/g,"\\'")}')">🔊</button></td>
+    `;
+    ct.appendChild(tr);
+  });
+
+  // Seasons table
+  const st = document.getElementById('seasons-tb');
+  if (st) SEASONS.forEach(s => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${s.hu}</span></td>
+      <td><span class="vph">${s.ph}</span></td>
+      <td class="ven">${s.en}</td>
+      <td><span class="vhu" style="color:var(--green)">${s.adv}</span></td>
+      <td><span class="vph">${s.adv_ph}</span></td>
+      <td><button class="spk" onclick="speak('${s.adv}')">🔊</button></td>
+    `;
+    st.appendChild(tr);
+  });
+
+  // Time vocab table
+  const tt = document.getElementById('time-tb');
+  if (tt) TIME_VOCAB.forEach(v => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${v.hu}</span></td>
+      <td><span class="vph">${v.ph}</span></td>
+      <td class="ven">${v.en}</td>
+      <td><button class="spk" onclick="speak('${v.hu}')">🔊</button></td>
+    `;
+    tt.appendChild(tr);
+  });
+
+  buildMC('time-mc', [
+    {q:'What time is <span class="hl">fél három</span>?',
+     opts:['3:30','3:00','2:30','2:00'], correct:2,
+     exp:'"fél" = half-to. Fél három = halfway TO three = 2:30. This is the most common mistake!'},
+    {q:'What time is <span class="hl">negyed három</span>?',
+     opts:['3:15','2:15','3:45','2:45'], correct:1,
+     exp:'"negyed" = quarter. Negyed három = a quarter of the way to three = 2:15.'},
+    {q:'What time is <span class="hl">háromnegyed három</span>?',
+     opts:['3:45','3:15','2:15','2:45'], correct:3,
+     exp:'"háromnegyed" = three-quarters. Three-quarters of the way to three = 2:45.'},
+    {q:'How do you say "in summer" in Hungarian?',
+     opts:['nyárban','nyárban','nyáron','nyárra'], correct:2,
+     exp:'"nyáron" = in summer. Seasons use various suffixes: tavasszal, nyáron, ősszel, télen.'},
+    {q:'What does <span class="hl">tegnap</span> mean?',
+     opts:['today','tomorrow','yesterday','last week'], correct:2,
+     exp:'"tegnap" = yesterday. ma = today, holnap = tomorrow.'},
+    {q:'Which phrase means "in the evening"?',
+     opts:['reggel','most','este','már'], correct:2,
+     exp:'"este" = in the evening. reggel = in the morning (early). éjszaka = at night.'},
+    {q:'"Még nem ettem." What does "még" mean here?',
+     opts:['already','still / yet','never','sometimes'], correct:1,
+     exp:'"még nem" = not yet. "még" alone = still. "már" = already.'},
+  ]);
+
+  buildFIB('time-fib', [
+    {prompt:'How do you say 2:30 in Hungarian?', sentence:'Fél ___ (2:30)', ph:'which hour?…', ans:['három']},
+    {prompt:'"In spring" — seasonal adverb:', sentence:'___ sok virág nyílik.', ph:'tavasz form…', ans:['tavasszal']},
+    {prompt:'"In winter" — seasonal adverb:', sentence:'___ sokat havazik.', ph:'tél form…', ans:['télen']},
+    {prompt:'What time is negyed öt?', sentence:'Negyed öt = ___ (write the time)', ph:'e.g. 4:15…', ans:['4:15']},
+    {prompt:'"Yesterday" in Hungarian:', sentence:'___ voltam a moziban.', ph:'time adverb…', ans:['tegnap']},
+    {prompt:'"I never eat meat" — which word?', sentence:'___ nem eszem húst.', ph:'never…', ans:['soha']},
+    {prompt:'"Already" in Hungarian:', sentence:'___ megettem a reggelit.', ph:'already…', ans:['már']},
+    {prompt:'"In autumn" — seasonal adverb:', sentence:'___ sárga a levelek.', ph:'ősz form…', ans:['ősszel']},
+  ]);
+
+  buildQuiz('quiz-time', [
+    {type:'mc', q:'What time is "fél négy"?',
+     opts:['4:30','3:30','4:00','3:00'], correct:1,
+     exp:'"fél négy" = half-to-four = 3:30. Remember: fél refers to the NEXT hour!'},
+    {type:'fib', q:'How do you say "2:15" in Hungarian? (negyed ___)', ans:['három'],
+     exp:'negyed három = 2:15. A quarter of the way to three.'},
+    {type:'mc', q:'How do you say "in summer"?',
+     opts:['nyárban','nyárba','nyáron','nyárhoz'], correct:2,
+     exp:'"nyáron" = in summer. Surface case (-on) used for seasons.'},
+    {type:'fib', q:'Complete: ___ nem ettem. (I haven\'t eaten yet)', ans:['még'],
+     exp:'"még nem" = not yet. "már" = already.'},
+    {type:'mc', q:'What does "reggel" mean?',
+     opts:['in the evening','at night','in the morning (early)','yesterday'], correct:2,
+     exp:'"reggel" = early morning / in the morning. este = evening.'},
+    {type:'fib', q:'How do you say "in winter"?', ans:['télen'],
+     exp:'"télen" = in winter. (tél + -en, surface case)'},
+    {type:'mc', q:'"Mindig" means:',
+     opts:['sometimes','never','already','always'], correct:3,
+     exp:'"mindig" = always. soha = never. néha = sometimes. már = already.'},
+  ], 'time');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 7: COMPARATIVES
+// ═══════════════════════════════
+function renderComp() {
+  const tb = document.getElementById('comp-tb');
+  if (tb) COMPARATIVES.forEach(a => {
+    const tr = document.createElement('tr');
+    if (a.irr) tr.classList.add('comp-row-irr');
+    tr.innerHTML = `
+      <td><span class="vhu">${a.base}</span>${a.irr ? '<span class="rule-chip">irregular</span>' : ''}</td>
+      <td class="ven">${a.en}</td>
+      <td><span class="vhu" style="color:var(--red)">${a.comp}</span></td>
+      <td><span class="vhu" style="color:var(--green)">${a.sup}</span></td>
+      <td><button class="spk" onclick="speak('${a.comp}')">🔊</button></td>
+    `;
+    tb.appendChild(tr);
+  });
+
+  buildFC('comp-fc', COMPARATIVES.map(a => ({
+    hu: a.base,
+    ph: a.en,
+    en: `${a.comp} / ${a.sup}`,
+    note: a.irr ? '⚠️ irregular' : 'regular -bb'
+  })));
+
+  buildMC('comp-mc', [
+    {q:'What is the comparative of <span class="hl">nagy</span> (big)?',
+     opts:['nagyabb','legnagyobb','nagysabb','nagysabb'], correct:0,
+     exp:'"nagy" + -obb (back vowel, ends in consonant + linking -o-) = nagyobb.'},
+    {q:'What is the superlative of <span class="hl">jó</span> (good)?',
+     opts:['legjóbb','legjobb','legtöbb','jobb'], correct:1,
+     exp:'"jó" is irregular: comparative = jobb, superlative = legjobb.'},
+    {q:'"The train is <span class="hl">faster</span> than the bus." Which word fills the blank?',
+     opts:['gyors','gyorsabb','leggyorsabb','gyorsabban'], correct:1,
+     exp:'"gyorsabb" = faster (comparative). "mint" follows for "than": A vonat gyorsabb, mint a busz.'},
+    {q:'What is the comparative of <span class="hl">sok</span> (many)?',
+     opts:['sokabb','sokbb','több','legtöbb'], correct:2,
+     exp:'"sok" is irregular! Comparative = több, superlative = legtöbb.'},
+    {q:'What is the superlative of <span class="hl">szép</span> (beautiful)?',
+     opts:['legszépbb','legszébb','legszebb','legszebbebb'], correct:2,
+     exp:'"szép" shortens before -bb: szép → szebb → legszebb.'},
+    {q:'How do you say "than" in Hungarian comparisons?',
+     opts:['hogy','mert','mint','és'], correct:2,
+     exp:'"mint" = than. Péter magasabb, mint én = Péter is taller than me.'},
+    {q:'Which is the correct superlative of <span class="hl">drága</span> (expensive)?',
+     opts:['legdrágásabb','legdrágább','legdrága','drágábbabb'], correct:1,
+     exp:'"drága" ends in -a which lengthens: drágább → legdrágább.'},
+  ]);
+
+  buildFIB('comp-fib', [
+    {prompt:'Comparative of "magas" (tall):', sentence:'Péter ___ , mint én.', ph:'comparative…', ans:['magasabb']},
+    {prompt:'Superlative of "jó" (good):', sentence:'Ez a ___ étterem a városban.', ph:'superlative…', ans:['legjobb']},
+    {prompt:'Comparative of "sok" (many) — irregular:', sentence:'Több könyvet olvasok, mint te. What is "több"?', ph:'it means…', ans:['több','more']},
+    {prompt:'Comparative of "gyors" (fast):', sentence:'A repülő ___ , mint a vonat.', ph:'comparative…', ans:['gyorsabb']},
+    {prompt:'Superlative of "nagy" (big):', sentence:'Ez a ___ ház az utcában.', ph:'superlative…', ans:['legnagyobb']},
+    {prompt:'Comparative of "szép" (beautiful) — irregular:', sentence:'Ez a virág ___ , mint az.', ph:'comparative…', ans:['szebb']},
+    {prompt:'Superlative of "olcsó" (cheap):', sentence:'Ez a ___ szálloda a városban.', ph:'superlative…', ans:['legolcsóbb']},
+    {prompt:'Comparative of "rövid" (short):', sentence:'Ez a film ___ , mint a másik.', ph:'comparative…', ans:['rövidebb']},
+  ]);
+
+  buildQuiz('quiz-comp', [
+    {type:'fib', q:'What is the comparative of "nagy" (big)?', ans:['nagyobb'],
+     exp:'"nagy" + linking -o- + -bb = nagyobb.'},
+    {type:'mc',  q:'What is the superlative of "jó" (good)?',
+     opts:['legjóbb','legjobb','legtöbb','jóbb'], correct:1,
+     exp:'"jó" is irregular: jobb → legjobb.'},
+    {type:'fib', q:'Complete: A vonat ___ , mint a busz. (faster — gyors)', ans:['gyorsabb'],
+     exp:'"gyors" + -abb (back vowel) = gyorsabb.'},
+    {type:'mc',  q:'Which word means "than" in Hungarian comparisons?',
+     opts:['hogy','mint','mert','vagy'], correct:1,
+     exp:'"mint" = than. Péter magasabb, mint én.'},
+    {type:'fib', q:'Superlative of "sok" (many/much) — irregular:', ans:['legtöbb'],
+     exp:'"sok" → több → legtöbb. Fully irregular.'},
+    {type:'mc',  q:'What is the comparative of "szép" (beautiful)?',
+     opts:['szépebb','szépbb','szebb','legszebb'], correct:2,
+     exp:'"szép" shortens: szebb (not szépebb). legszebb = most beautiful.'},
+    {type:'fib', q:'Superlative of "magas" (tall):', ans:['legmagasabb'],
+     exp:'leg- + magasabb = legmagasabb.'},
+  ], 'comp');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 6: POSTPOSITIONS
+// ═══════════════════════════════
+function renderPostpos() {
+  const tb = document.getElementById('postpos-tb');
+  if (tb) POSTPOSITIONS.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu" style="color:var(--red)">${p.hu}</span></td>
+      <td><span class="vph">${p.ph}</span></td>
+      <td class="ven">${p.en}</td>
+      <td><span style="font-family:'Playfair Display',serif;font-size:14px;color:var(--text)">${p.ex_hu}</span></td>
+      <td style="font-size:12px;color:var(--text-3);font-style:italic">${p.ex_en}</td>
+      <td><button class="spk" onclick="speak('${p.ex_hu.replace(/'/g,"\\'")}')">🔊</button></td>
+    `;
+    tb.appendChild(tr);
+  });
+
+  buildFC('postpos-fc', POSTPOSITIONS.map(p => ({
+    hu: p.hu, ph: p.ph, en: p.en, note: p.ex_hu
+  })));
+
+  buildMC('postpos-mc', [
+    {q:'The key is <span class="hl">under</span> the table. Which postposition?',
+     opts:['felett','mellett','alatt','között'], correct:2,
+     exp:'"alatt" = under/below. Az asztal alatt = under the table.'},
+    {q:'"I can\'t work <span class="hl">without</span> coffee." Which postposition?',
+     opts:['miatt','nélkül','helyett','után'], correct:1,
+     exp:'"nélkül" = without. Kávé nélkül = without coffee.'},
+    {q:'Where does the postposition go in Hungarian?',
+     opts:['Before the noun','After the noun','Before the verb','At the end of the sentence'], correct:1,
+     exp:'Hungarian POSTPOSITIONS come AFTER the noun, unlike English prepositions.'},
+    {q:'"I\'m staying home <span class="hl">because of</span> the rain." Which word?',
+     opts:['nélkül','körül','miatt','felé'], correct:2,
+     exp:'"miatt" = because of. Az eső miatt = because of the rain.'},
+    {q:'"The bank is <span class="hl">between</span> the shop and the school." Which postposition?',
+     opts:['mellett','mögött','között','körül'], correct:2,
+     exp:'"között" = between. A bolt és az iskola között = between the shop and school.'},
+    {q:'"<span class="hl">Instead of</span> tea, I\'d like coffee." Which postposition?',
+     opts:['után','helyett','felé','nélkül'], correct:1,
+     exp:'"helyett" = instead of. Tea helyett = instead of tea.'},
+    {q:'Which postposition means "towards"?',
+     opts:['körül','után','felé','felett'], correct:2,
+     exp:'"felé" = towards. A park felé = towards the park.'},
+  ]);
+
+  buildFIB('postpos-fib', [
+    {prompt:'Under the table (az asztal):',     sentence:'A kulcs az asztal ___ van.',     ph:'postposition…', ans:['alatt']},
+    {prompt:'Behind the house (a ház):',         sentence:'A macska a ház ___ bújt.',       ph:'postposition…', ans:['mögé','mögött']},
+    {prompt:'Next to the shop (a bolt):',        sentence:'A ház a bolt ___ van.',          ph:'postposition…', ans:['mellett']},
+    {prompt:'Without coffee (kávé):',            sentence:'Kávé ___ nem reggelizem.',       ph:'postposition…', ans:['nélkül']},
+    {prompt:'After school (az iskola):',         sentence:'Az iskola ___ focizunk.',        ph:'postposition…', ans:['után']},
+    {prompt:'Because of the rain (az eső):',     sentence:'Az eső ___ nem megyek ki.',      ph:'postposition…', ans:['miatt']},
+    {prompt:'In front of the house (a ház):',    sentence:'Az autó a ház ___ parkol.',      ph:'postposition…', ans:['előtt']},
+    {prompt:'Instead of bread (a kenyér):',      sentence:'Kenyér ___ rizst eszem.',        ph:'postposition…', ans:['helyett']},
+  ]);
+
+  buildQuiz('quiz-postpos', [
+    {type:'fib', q:'What is the postposition for "next to"?', ans:['mellett'],
+     exp:'"mellett" = next to. A bolt mellett = next to the shop.'},
+    {type:'mc',  q:'What does "az asztal alatt" mean?',
+     opts:['above the table','on the table','under the table','next to the table'], correct:2,
+     exp:'"alatt" = under/below. Az asztal alatt = under the table.'},
+    {type:'fib', q:'Complete: Kávé ___ nem tudok dolgozni. (without coffee)', ans:['nélkül'],
+     exp:'"nélkül" = without.'},
+    {type:'mc',  q:'"Előtt" means:',
+     opts:['behind','next to','in front of / before','above'], correct:2,
+     exp:'"előtt" = in front of (spatial) or before (temporal). Az iskola előtt = in front of the school.'},
+    {type:'mc',  q:'Postpositions in Hungarian come ___',
+     opts:['before the noun, like English','after the noun','before the verb','attached to the noun as a suffix'], correct:1,
+     exp:'Hungarian postpositions follow the noun. The noun itself takes no case suffix.'},
+    {type:'fib', q:'What is the postposition for "because of"?', ans:['miatt'],
+     exp:'"miatt" = because of. Az eső miatt = because of the rain.'},
+    {type:'mc',  q:'Which postposition means "behind" (static location)?',
+     opts:['mögé','mögül','mögött','mellé'], correct:2,
+     exp:'"mögött" = behind (static WHERE?). mögé = to behind (motion). mögül = from behind.'},
+  ], 'postpos');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 5: PAST TENSE
+// ═══════════════════════════════
+function renderPast() {
+  const tb = document.getElementById('past-tb');
+  if (tb) PAST_VERBS.forEach(v => {
+    const tr = document.createElement('tr');
+    tr.style.background = v.irr ? 'var(--gold-pale)' : '';
+    tr.innerHTML = `
+      <td><span class="vhu">${v.inf}</span>${v.irr ? '<span class="rule-chip">irregular</span>' : ''}</td>
+      <td class="ven">${v.en}</td>
+      <td><span class="vhu" style="color:var(--red)">${v.i1}</span></td>
+      <td><span class="vhu" style="color:var(--text-2)">${v.i3}</span></td>
+      <td><span class="vhu" style="color:var(--green)">${v.d3}</span></td>
+      <td style="font-size:13px;color:var(--text-2);font-style:italic">${v.ex}</td>
+      <td><button class="spk" onclick="speak('${v.i1}')">🔊</button></td>
+    `;
+    tb.appendChild(tr);
+  });
+
+  buildMC('past-mc', [
+    {q:'What is the past tense of <span class="hl">menni</span> (to go), 1st person singular?',
+     opts:['mentem','menttam','mentettem','ment'], correct:0,
+     exp:'"menni" is irregular: stem changes to "ment-". 1sg = mentem.'},
+    {q:'Which past form is DEFINITE 3rd person singular of <span class="hl">látni</span>?',
+     opts:['látott','láttak','látta','látták'], correct:2,
+     exp:'Definite 3sg = látta (she saw it / they saw the specific thing).'},
+    {q:'"I drank a coffee yesterday" — which form is correct?',
+     opts:['Ittam egy kávét tegnap.','Ivottam egy kávét tegnap.','Ivtam egy kávét tegnap.','Ittám egy kávét tegnap.'], correct:0,
+     exp:'"inni" is irregular: past stem = ivott- for 3sg, but 1sg = ittam.'},
+    {q:'Tegnap <span class="hl">voltam</span> otthon. What is the infinitive of "voltam"?',
+     opts:['voln','volt','lenni','van'], correct:2,
+     exp:'"volt" is the past of "lenni" (to be). voltam = I was.'},
+    {q:'She read the book (definite): ___',
+     opts:['Olvasott a könyvet.','Olvasta a könyvet.','Olvastam a könyvet.','Olvasta egy könyvet.'], correct:1,
+     exp:'Definite 3sg of olvasni = olvasta. "a könyvet" = the book = definite.'},
+    {q:'"They came home": Haza ___.',
+     opts:['jöttek','jöttem','jöttek','jött'], correct:0,
+     exp:'"jönni" past: 3rd person plural = jöttek. Haza jöttek = they came home.'},
+    {q:'Why is the 1st person singular often the same for both definite and indefinite past?',
+     opts:['It\'s a different tense','The -m ending is shared by both paradigms','It\'s always definite','Hungarian has no indefinite past'], correct:1,
+     exp:'The 1sg ending -m appears in both: láttam (indef: I saw something) and láttam (def: I saw it). Context tells them apart.'},
+  ]);
+
+  buildFIB('past-fib', [
+    {prompt:'Past tense — I went (menni):',        sentence:'Tegnap ___ a boltba.',        ph:'menni past 1sg…', ans:['mentem']},
+    {prompt:'Past tense — she ate (enni, indef):', sentence:'___ egy almát.',              ph:'enni past 3sg indef…', ans:['evett']},
+    {prompt:'Past tense — I was (lenni):',         sentence:'Pénteken otthon ___.',        ph:'lenni past 1sg…', ans:['voltam']},
+    {prompt:'Past tense — we came (jönni):',       sentence:'Hatkor ___ haza.',            ph:'jönni past 1pl…', ans:['jöttünk']},
+    {prompt:'Past tense — I bought (venni, indef):',sentence:'___ egy új cipőt.',          ph:'venni past 1sg…', ans:['vettem']},
+    {prompt:'Past tense def — she saw it (látni):', sentence:'___ a filmet.',              ph:'látni def 3sg…', ans:['látta']},
+    {prompt:'Past tense — I drank (inni):',        sentence:'___ egy pohár vizet.',        ph:'inni past 1sg…', ans:['ittam']},
+    {prompt:'Past tense def — they read it (olvasni):',sentence:'___ a könyvet.',         ph:'olvasni def 3pl…', ans:['olvassák','olvasták']},
+  ]);
+
+  buildQuiz('quiz-past', [
+    {type:'fib', q:'What is the 1st person singular past of "látni"?', ans:['láttam'],
+     exp:'látni → lát + tt + am = láttam.'},
+    {type:'mc',  q:'What is the past tense stem of "menni" (to go)?',
+     opts:['ment-','menn-','men-','ment'], correct:0,
+     exp:'"menni" is irregular: past stem = ment-. mentem, mentél, ment, mentünk…'},
+    {type:'fib', q:'Complete: Tegnap ___ egy kávét. (I drank / inni, indef.)', ans:['ittam'],
+     exp:'"inni" past 1sg = ittam.'},
+    {type:'mc',  q:'Which is the definite 3rd person singular past of "kérni"?',
+     opts:['kért','kérte','kértem','kértek'], correct:1,
+     exp:'Definite 3sg = kérte. (She asked for it / ordered it — specific object.)'},
+    {type:'fib', q:'He was at home: Otthon ___ (lenni).', ans:['volt'],
+     exp:'"lenni" past 3sg = volt. Volt otthon = he was at home.'},
+    {type:'mc',  q:'"Vettem az autót" uses which form?',
+     opts:['Indefinite past 1sg','Definite past 1sg','Indefinite past 3sg','Definite past 3sg'], correct:1,
+     exp:'vettem = past 1sg of venni. "az autót" = definite object → definite form. (1sg is same in both paradigms — context = definite here.)'},
+    {type:'fib', q:'We bought it (venni, definite 1pl): ___ az autót.', ans:['vettük'],
+     exp:'Definite 1pl of venni = vettük.'},
+  ], 'past');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 4: CASES2
+// ═══════════════════════════════
+function renderCases2() {
+  // Dative pronoun table
+  const pt = document.getElementById('dative-pron-tb');
+  if (pt) DATIVE_PRONOUNS.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><span class="vhu">${p.base}</span></td><td><span class="vhu" style="color:var(--red)">${p.dat}</span></td><td class="ven">${p.en}</td><td><button class="spk" onclick="speak('${p.dat}')">🔊</button></td>`;
+    pt.appendChild(tr);
+  });
+
+  // Dative sentences table
+  const dt = document.getElementById('dative-tb');
+  if (dt) DATIVE_PHRASES.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><span class="vhu">${p.hu}</span></td><td class="ven">${p.en}</td><td><span class="rule-chip">${p.note}</span></td><td><button class="spk" onclick="speak('${p.hu.replace(/'/g,"\\'")}')">🔊</button></td>`;
+    dt.appendChild(tr);
+  });
+
+  // Instrumental sentences table
+  const it = document.getElementById('instrumental-tb');
+  if (it) INSTR_PHRASES.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><span class="vhu">${p.hu}</span></td><td class="ven">${p.en}</td><td><span class="rule-chip">${p.note}</span></td><td><button class="spk" onclick="speak('${p.hu.replace(/'/g,"\\'")}')">🔊</button></td>`;
+    it.appendChild(tr);
+  });
+
+  buildMC('cases2-mc', [
+    {q:'I give Peter a book: Adok <span class="hl">Péternek</span> egy könyvet. What does -nek mark here?',
+     opts:['The subject','The direct object','The indirect object (recipient)','Location'], correct:2,
+     exp:'-nak/-nek = dative = marks the recipient. Péternek = to/for Péter.'},
+    {q:'Which sentence is correct for "I go with my friend"?',
+     opts:['A barátomval megyek.','A barátommal megyek.','A barátommel megyek.','A barátomvel megyek.'], correct:1,
+     exp:'barátom ends in m → consonant assimilation: m + val → mmal → barátommal.'},
+    {q:'"I travel by train" — vonat + tal gives:',
+     opts:['vonatval','vonatvel','vonattal','vonatal'], correct:2,
+     exp:'vonat ends in t → t + tal → ttal → vonattal. The t doubles.'},
+    {q:'Nekem tetszik a zene. What does "nekem" mean?',
+     opts:['I like','To/for me','By me','From me'], correct:1,
+     exp:'nekem = dative of én = to/for me. Lit: "The music pleases to me."'},
+    {q:'"I eat with a fork (villa)." Villa ends in a vowel, so the instrumental is:',
+     opts:['villával','villavel','villával','villál'], correct:0,
+     exp:'villa ends in vowel -a → no assimilation, vowel lengthens: villával.'},
+    {q:'Köszönöm a segítségért. What does <span class="hl">-ért</span> mean?',
+     opts:['with the help','from the help','for the help','in the help'], correct:2,
+     exp:'-ért = for the purpose/sake of. "Thank you for the help."'},
+    {q:'Anna barátjának adok virágot. The dative marks:',
+     opts:['Anna','barátja (her friend)','virágot','adok'], correct:1,
+     exp:'barátjának = to/for her friend. The -nak marks the indirect object (recipient).'},
+  ]);
+
+  buildFIB('cases2-fib', [
+    {prompt:'Dative — to/for Anna:',             sentence:'Adok ___ egy könyvet.', ph:'Anna + -nak…', ans:['annának','Annának']},
+    {prompt:'Dative — to/for me:',               sentence:'Ez a sütemény ___ való.', ph:'dative of én…', ans:['nekem']},
+    {prompt:'Dative — to/for us:',               sentence:'___ tetszik a film.', ph:'dative of mi…', ans:['nekünk']},
+    {prompt:'Instrumental — with my friend (barátom):',  sentence:'A ___ megyek moziba.', ph:'barátom + val…', ans:['barátommal']},
+    {prompt:'Instrumental — by bus (busz):',     sentence:'___ utazom.', ph:'busz + szal…', ans:['busszal']},
+    {prompt:'Instrumental — with a pencil (ceruza):', sentence:'___ írok.', ph:'ceruza + val…', ans:['ceruzával']},
+    {prompt:'Instrumental — by train (vonat):',  sentence:'___ megyek Budapestre.', ph:'vonat + tal…', ans:['vonattal']},
+    {prompt:'-ért — going to the shop for coffee:', sentence:'Kávé___ megyek a boltba.', ph:'-ért suffix…', ans:['ért','kávéért']},
+  ]);
+
+  buildQuiz('quiz-cases2', [
+    {type:'mc', q:'What does the dative case (-nak/-nek) mark?',
+     opts:['The location','The direct object','The indirect object / recipient','The instrument used'],
+     correct:2, exp:'Dative = indirect object = who receives something or benefits from the action.'},
+    {type:'fib', q:'Complete: Adok Péter___ egy könyvet. (to Péter)', ans:['nek','péternek','Péternek'],
+     exp:'Péter has front vowel é → -nek suffix → Péternek.'},
+    {type:'mc', q:'How does consonant assimilation work in the instrumental?',
+     opts:['The noun changes','The -v of -val/-vel becomes a copy of the final consonant','The suffix is always -val','Only front vowel words assimilate'],
+     correct:1, exp:'The v copies the last consonant: barát+val → baráttal; kés+vel → késsel.'},
+    {type:'fib', q:'I go with my sister (nővérem): Nővérem___ megyek.', ans:['mel','nővéremmel'],
+     exp:'nővérem ends in m → m+vel → mmel → nővéremmel.'},
+    {type:'mc', q:'What is "to/for you (singular)" in Hungarian?',
+     opts:['nekünk','nekem','neked','nekik'], correct:2,
+     exp:'neked = dative of te (you singular).'},
+    {type:'mc', q:'"Autóval" means:',
+     opts:['in the car','from the car','by/with the car','for the car'], correct:2,
+     exp:'autó (vowel ending) + val = autóval = by/with the car.'},
+    {type:'fib', q:'"Thank you for the coffee" — Köszönöm a kávé___', ans:['ért','kávéért'],
+     exp:'-ért = for the purpose of. kávéért = for the coffee.'},
+  ], 'cases2');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 3: CASES
+// ═══════════════════════════════
+function renderCases() {
+  buildCaseGrid('case-grid-container');
+
+  const tb = document.getElementById('cases-tb');
+  if (tb) PLACES_CASES.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${p.hu}</span><br><span class="ven">${p.en}</span></td>
+      <td><span class="vhu" style="color:var(--red)">${p.where}</span></td>
+      <td><span class="vhu" style="color:var(--green)">${p.to}</span></td>
+      <td><span class="vhu" style="color:var(--gold)">${p.from}</span></td>
+      <td><span class="rule-chip">${p.note}</span></td>
+      <td><button class="spk" onclick="speak('${p.where.replace(/'/g,"\\'")}')">🔊</button></td>
+    `;
+    tb.appendChild(tr);
+  });
+
+  buildMC('cases-mc', [
+    {q:'The book is on the table: A könyv az asztal<span class="hl">___</span>.',
+     opts:['asztalban','asztalon','asztalhoz','asztalra'], correct:1,
+     exp:'"on the table" = surface/WHERE? → -on suffix. asztalon.'},
+    {q:'I\'m going into the house: A ház<span class="hl">___</span> megyek.',
+     opts:['házban','házba','házból','háznál'], correct:1,
+     exp:'"into the house" = container/WHERE TO? → -ba suffix. házba.'},
+    {q:'She came out of the school: Az iskola<span class="hl">___</span> jött.',
+     opts:['iskolában','iskolába','iskolából','iskolánál'], correct:2,
+     exp:'"out of the school" = container/WHERE FROM? → -ból suffix. iskolából.'},
+    {q:'Which suffix means "I am IN Budapest"?',
+     opts:['Budapestben','Budapestig','Budapesten','Budapestre'], correct:2,
+     exp:'Cities use the surface case -on/-en/-ön. Budapest → Budapesten.'},
+    {q:'I\'m waiting at the doctor\'s: Az orvosnál várok. What does <span class="hl">-nál</span> mean here?',
+     opts:['inside the doctor','on the doctor','away from the doctor','at/near the doctor'], correct:3,
+     exp:'-nál/-nél = AT/proximity. Used for people and institutions you wait "by".'},
+    {q:'We travel by train: Vonat<span class="hl">___</span> utazunk.',
+     opts:['vonatban','vonaton','vonathoz','vonatnál'], correct:1,
+     exp:'Vehicles use the surface case -on. vonaton = on the train.'},
+    {q:'She is coming FROM the café: A kávézó<span class="hl">___</span> jön.',
+     opts:['kávézóban','kávézóba','kávézóból','kávézótól'], correct:2,
+     exp:'FROM a container = -ból/-ből. kávézóból = out of the café.'},
+    {q:'They go TO Hungary: Magyarország<span class="hl">___</span> mennek.',
+     opts:['Magyarországban','Magyarországba','Magyarországra','Magyarországhoz'], correct:2,
+     exp:'Countries use surface case. TO a surface = -ra/-re. Magyarországra.'},
+  ]);
+
+  buildFIB('cases-fib', [
+    {prompt:'WHERE is the cat? (IN the house)',    sentence:'A macska a ház___ van.',        ph:'suffix…', ans:['ban','házban']},
+    {prompt:'WHERE TO? Going into school:',        sentence:'Az iskola___ megyek.',           ph:'suffix…', ans:['ba','iskolába']},
+    {prompt:'WHERE FROM? Coming from the shop:',  sentence:'A bolt___ jövök.',              ph:'suffix…', ans:['ból','boltból']},
+    {prompt:'WHERE is the book? (ON the table)',   sentence:'A könyv az asztal___ van.',     ph:'suffix…', ans:['on','asztalon']},
+    {prompt:'WHERE TO? Going onto the table:',     sentence:'A pohár az asztal___ kerül.',   ph:'suffix…', ans:['ra','asztalra']},
+    {prompt:'WHERE? In Budapest:',                 sentence:'Budapest___ lakom.',             ph:'suffix…', ans:['en','Budapesten']},
+    {prompt:'WHERE FROM? Coming from Budapest:',  sentence:'Budapest___ jövök.',             ph:'suffix…', ans:['ről','Budapestről']},
+    {prompt:'WHERE TO? Going to Hungary:',         sentence:'Magyarország___ utazom.',        ph:'suffix…', ans:['ra','Magyarországra']},
+  ]);
+
+  buildQuiz('quiz-cases', [
+    {type:'mc', q:'What suffix means "inside, at rest" (WHERE?) for a container?',
+     opts:['-ba/-be','-ban/-ben','-ból/-ből','-ra/-re'], correct:1,
+     exp:'-ban/-ben = static location INSIDE a container (WHERE?).'},
+    {type:'fib', q:'Complete: A ház___ (into the house, WHERE TO?)', ans:['ba','házba'],
+     exp:'-ba/-be = motion INTO a container.'},
+    {type:'mc', q:'Which suffix means "off the surface / from the surface"?',
+     opts:['-ról/-ről','-ra/-re','-on/-en/-ön','-tól/-től'], correct:0,
+     exp:'-ról/-ről = WHERE FROM? off a surface.'},
+    {type:'fib', q:'Complete: Budapest___ (in Budapest)', ans:['en','Budapesten'],
+     exp:'Cities use surface case -on/-en/-ön. Budapest + en = Budapesten.'},
+    {type:'mc', q:'Trains, buses, and vehicles use which spatial relationship?',
+     opts:['Container (IN)','Surface (ON)','Proximity (AT)','None — use postpositions'], correct:1,
+     exp:'Vehicles use the surface (-on/-ra/-ről) in Hungarian, not container.'},
+    {type:'mc', q:'What is "away from the shop" (WHERE FROM, AT)?',
+     opts:['boltnál','bolthoz','bolttól','boltból'], correct:2,
+     exp:'-tól/-től = WHERE FROM? proximity/AT relationship. bolttól.'},
+    {type:'fib', q:'Complete: Az asztal___ (onto the table, WHERE TO?)', ans:['ra','asztalra'],
+     exp:'-ra/-re = motion ONTO a surface.'},
+  ], 'cases');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 2: CONJUGATION
+// ═══════════════════════════════
+function showConj(id, btn) {
+  document.querySelectorAll('.conj-block').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.ctab').forEach(b => b.classList.remove('active'));
+  document.getElementById('conj-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function renderConjugation() {
+  // Build all four conjugation tables
+  CONJ_VERBS.forEach(v => buildConjTable('conj-' + v.id, v));
+
+  // Multiple choice — definite vs indefinite context
+  buildMC('conj-mc', [
+    {q:'Fill the blank: <span class="hl">___</span> egy könyvet. (I\'m reading a book)',
+     opts:['Olvasom','Olvasod','Olvasok','Olvassa'], correct:2,
+     exp:'"egy könyvet" = indefinite object → use indefinite form: olvasok.'},
+    {q:'Fill the blank: <span class="hl">___</span> a könyvet. (I\'m reading the book)',
+     opts:['Olvasok','Olvasom','Olvasol','Olvasunk'], correct:1,
+     exp:'"a könyvet" = definite object (the book) → definite form: olvasom.'},
+    {q:'Which sentence uses the correct form?',
+     opts:['Látom egy autót.','Látok az autót.','Látok egy autót.','Látom egy autót.'], correct:2,
+     exp:'"egy autót" = indefinite → látok. "az autót" = definite → látom.'},
+    {q:'You want to say "I see Anna." Which form?',
+     opts:['Látok Annát.','Látom Annát.','Lát Annát.','Látja Annát.'], correct:1,
+     exp:'Names are specific/definite → use definite conjugation: látom Annát.'},
+    {q:'"Kérek" vs "Kérem" — which goes with <span class="hl">a számlát</span> (the bill)?',
+     opts:['Kérek a számlát','Kérem a számlát','Kér a számlát','Kéritek a számlát'], correct:1,
+     exp:'"a számlát" is definite → kérem. "Kérem a számlát" = I\'d like the bill.'},
+    {q:'What is the 3rd person singular indefinite of <span class="hl">látni</span>?',
+     opts:['látja','látom','lát','látjuk'], correct:2,
+     exp:'3rd person singular indefinite = lát (no suffix). Definite = látja.'},
+    {q:'What does the definite 1st person singular always end in?',
+     opts:['-ok / -ek / -ök','-om / -em / -öm','-unk / -ünk','-nak / -nek'], correct:1,
+     exp:'Definite 1st person sg: látom, kérem, olvasom, főzöm — always -m ending.'},
+  ]);
+
+  // Fill in the blank
+  buildFIB('conj-fib', [
+    {prompt:'Indefinite conjugation — I (én):',  sentence:'___ egy filmet. (I\'m watching a film — néz)', ph:'1st person indef…', ans:['nézek']},
+    {prompt:'Definite conjugation — I (én):', sentence:'___ a filmet. (I\'m watching the film — néz)', ph:'1st person def…', ans:['nézem']},
+    {prompt:'Definite conjugation — she/he (ő):', sentence:'___ a könyvet. (She reads the book — olvas)', ph:'3rd person def…', ans:['olvassa']},
+    {prompt:'Indefinite conjugation — we (mi):', sentence:'___ egy házat. (We see a house — lát)', ph:'1st person pl indef…', ans:['látunk']},
+    {prompt:'Definite conjugation — you (te):', sentence:'___ a kávét? (Do you want the coffee? — kér)', ph:'2nd person def…', ans:['kéred']},
+    {prompt:'Indefinite conjugation — they (ők):', sentence:'___ valamit. (They are cooking something — főz)', ph:'3rd person pl indef…', ans:['főznek']},
+    {prompt:'Definite conjugation — we (mi):', sentence:'___ a tortát. (We are reading the cake label — olvas)', ph:'1st person pl def…', ans:['olvassuk']},
+    {prompt:'Definite conjugation — you all (ti):', sentence:'___ a házat. (You all see the house — lát)', ph:'2nd person pl def…', ans:['látjátok']},
+  ]);
+
+  // Gate quiz
+  buildQuiz('quiz-conjugation', [
+    {type:'mc', q:'When do you use the DEFINITE conjugation?',
+     opts:['When there is no object','When the object is indefinite (egy/no article)','When the object is definite (a/az or a name)','Always with action verbs'],
+     correct:2, exp:'Definite conjugation = the object is specific, marked by a/az or is a proper name.'},
+    {type:'fib', q:'Complete: Látok ___ macskát. (I see a cat — what article?)', ans:['egy'], exp:'"egy" = indefinite article → indefinite verb form.'},
+    {type:'mc', q:'What is the definite 1st person singular of "látni"?',
+     opts:['látok','látsz','látom','látjuk'], correct:2, exp:'Definite 1st sg always ends in -m: látom.'},
+    {type:'fib', q:'I\'m reading the book → Olvas___ a könyvet. (complete the verb)', ans:['om','olvasom'], exp:'Definite 1st sg of olvas = olvasom.'},
+    {type:'mc', q:'"Kérem a kávét" means:',
+     opts:['I want a coffee','I want the coffee','She wants the coffee','We want the coffee'],
+     correct:1, exp:'Kérem = definite 1st sg of kérni. "a kávét" = the coffee.'},
+    {type:'mc', q:'What is the 3rd person plural definite of "látni"?',
+     opts:['látnak','lát','látják','látjátok'], correct:2, exp:'3rd person pl definite = látják.'},
+    {type:'fib', q:'Main cooking — She cooks the food: ___ az ételt. (főzni)', ans:['főzi'], exp:'Definite 3rd sg of főzni = főzi.'},
+  ], 'conjugation');
+}
+
+// ═══════════════════════════════
+// RENDER — LESSON 1: PLURALS
+// ═══════════════════════════════
+function renderPlurals() {
+  // Vocab table
+  const tb = document.getElementById('plurals-tb');
+  if (tb) PLURALS.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="vhu">${p.sing}</span></td>
+      <td><span class="vhu" style="color:var(--red)">${p.pl}</span></td>
+      <td><span class="vph">${p.ph_p}</span></td>
+      <td class="ven">${p.en}</td>
+      <td><span class="rule-chip">${p.rule}</span></td>
+      <td><button class="spk" onclick="speak('${p.pl}')">🔊</button></td>
+    `;
+    tb.appendChild(tr);
+  });
+
+  // Flashcards: singular front, plural back
+  buildFC('plurals-fc', PLURALS.map(p => ({
+    hu: p.sing, ph: p.ph_s, en: p.pl, note: p.rule
+  })));
+
+  // Fill in blank — type the plural
+  buildFIB('plurals-fib', [
+    {prompt:'What is the plural of:', sentence:'ház (house)', ph:'plural form…', ans:['házak']},
+    {prompt:'What is the plural of:', sentence:'könyv (book)', ph:'plural form…', ans:['könyvek']},
+    {prompt:'What is the plural of:', sentence:'alma (apple)', ph:'plural form…', ans:['almák']},
+    {prompt:'What is the plural of:', sentence:'ember (person)', ph:'plural form…', ans:['emberek']},
+    {prompt:'What is the plural of:', sentence:'tükör (mirror)', ph:'plural form…', ans:['tükrök']},
+    {prompt:'What is the plural of:', sentence:'autó (car)', ph:'plural form…', ans:['autók']},
+    {prompt:'What is the plural of:', sentence:'kéz (hand)', ph:'plural form…', ans:['kezek']},
+    {prompt:'What is the plural of:', sentence:'szoba (room)', ph:'plural form…', ans:['szobák']},
+  ]);
+
+  // Multiple choice
+  buildMC('plurals-mc', [
+    {q:'Which is the correct plural of <span class="hl">bolt</span> (shop)?',
+     opts:['boltek','boltok','boltök','boltak'], correct:1,
+     exp:'"bolt" has back vowels → linking vowel -o- → boltok.'},
+    {q:'Which plural uses <span class="hl">-ék</span> suffix (vowel lengthening)?',
+     opts:['asztal → asztalok','alma → almák','szék → székek','bolt → boltok'], correct:1,
+     exp:'Nouns ending in -a have it lengthened to -á before -k: alma → almák.'},
+    {q:'Why is <span class="hl">tükör → tükrök</span> (not tükörök)?',
+     opts:['Random exception','Vowel loss — the inner ö drops before suffix','Front vowel rule','Consonant assimilation'], correct:1,
+     exp:'Many 2-syllable nouns lose their last vowel when a suffix is added. tükör → tükr + ök = tükrök.'},
+    {q:'What is the plural of <span class="hl">gyerek</span> (child)?',
+     opts:['gyerekak','gyerekok','gyerekek','gyerékek'], correct:2,
+     exp:'"gyerek" has front vowel e → linking -e- → gyerekek.'},
+    {q:'"Three children" in Hungarian — what form is gyerek?',
+     opts:['gyerekek','gyerekeket','gyerek','gyereknek'], correct:2,
+     exp:'After numbers, Hungarian nouns stay SINGULAR: "három gyerek" (three child).'},
+  ]);
+
+  // Gate quiz
+  buildQuiz('quiz-plurals', [
+    {type:'fib', q:'What is the plural of "ház" (house)?', ans:['házak'], exp:'back vowels → -ak suffix.'},
+    {type:'mc',  q:'Which word has front vowels and takes -ek?',
+     opts:['asztal','ház','könyv','bolt'], correct:2,
+     exp:'"könyv" has front rounded ö → takes -ek → könyvek.'},
+    {type:'fib', q:'What is the plural of "alma" (apple)?', ans:['almák'], exp:'Nouns ending in -a lengthen to -á before -k.'},
+    {type:'mc',  q:'What is the plural of "asztal" (table)?',
+     opts:['asztalek','asztalak','asztalok','asztálok'], correct:2,
+     exp:'"asztal" has back vowel a → linking -o- → asztalok.'},
+    {type:'fib', q:'What is the plural of "ember" (person)?', ans:['emberek'], exp:'front vowel e → -ek suffix.'},
+    {type:'mc',  q:'Why is "tükör" plural "tükrök" not "tükörök"?',
+     opts:['It\'s irregular','Vowel loss — inner ö drops','It uses back vowel rule','Wrong — tükörök is correct'], correct:1,
+     exp:'Vowel loss: tükör → tükr + ök = tükrök. The inner ö is dropped.'},
+    {type:'fib', q:'What is the plural of "autó" (car)?', ans:['autók'], exp:'Nouns ending in -ó lengthen to -ók before -k.'},
+  ], 'plurals');
+}
+
+// ═══════════════════════════════
+// RENDER — FINAL ASSESSMENT
+// ═══════════════════════════════
+function renderTest() {
+  buildQuiz('quiz-test', [
+
+    // ── LESSON 1: PLURALS (Q1–3) ──
+    {type:'fib', q:'[Lesson 1 — Plurals] What is the plural of "ház" (house)?',
+     ans:['házak'], exp:'back vowel + consonant ending → linking -a- + k = házak.'},
+    {type:'mc',  q:'[Lesson 1 — Plurals] What is the plural of "könyv" (book)?',
+     opts:['könyvak','könyvok','könyvek','könyvök'], correct:2,
+     exp:'"könyv" has front vowel ö → linking -e- → könyvek.'},
+    {type:'fib', q:'[Lesson 1 — Plurals] What is the plural of "alma" (apple)?',
+     ans:['almák'], exp:'Nouns ending in -a lengthen the vowel: alma → almák.'},
+
+    // ── LESSON 2: CONJUGATION (Q4–6) ──
+    {type:'mc',  q:'[Lesson 2 — Conjugation] "Látom a filmet." uses which conjugation?',
+     opts:['Indefinite — because it\'s present tense','Definite — because "a filmet" is specific','Indefinite — because there\'s no "egy"','Definite — because it\'s a film'], correct:1,
+     exp:'"a filmet" = the film (specific, with article "a") → definite conjugation: látom.'},
+    {type:'fib', q:'[Lesson 2 — Conjugation] "I am reading a book" — Olvas___ egy könyvet. (1sg indefinite)',
+     ans:['ok','olvasok'], exp:'Indefinite 1sg of olvasni = olvasok.'},
+    {type:'mc',  q:'[Lesson 2 — Conjugation] What is the definite 3rd person singular of "kérni"?',
+     opts:['kér','kéri','kérik','kérjük'], correct:1,
+     exp:'Definite 3sg of kérni = kéri. (She orders it / asks for it.)'},
+
+    // ── LESSON 3: LOCATIVE CASES (Q7–9) ──
+    {type:'mc',  q:'[Lesson 3 — Cases] "I am in the house." Which suffix?',
+     opts:['házba','házban','háznál','házból'], correct:1,
+     exp:'Static location INSIDE a container → -ban/-ben. A házban vagyok.'},
+    {type:'fib', q:'[Lesson 3 — Cases] Complete: Budapeste___ lakom. (I live in Budapest)',
+     ans:['n','Budapesten'], exp:'Cities use the surface case: Budapest + en = Budapesten.'},
+    {type:'mc',  q:'[Lesson 3 — Cases] "Off the table" (from surface) — which suffix on asztal?',
+     opts:['asztalon','asztalra','asztalról','asztalból'], correct:2,
+     exp:'-ról/-ről = WHERE FROM? off a surface. asztalról = off the table.'},
+
+    // ── LESSON 4: DATIVE & INSTRUMENTAL (Q10–12) ──
+    {type:'fib', q:'[Lesson 4 — Dative] "I give Anna a book." — Adok Anna___ egy könyvet.',
+     ans:['nak','Annának'], exp:'Anna + -nak (back vowel dative) = Annának = to/for Anna.'},
+    {type:'mc',  q:'[Lesson 4 — Instrumental] "I go with my friend (barátom)." Consonant assimilation gives:',
+     opts:['barátomval','barátommal','barátommel','barátomvel'], correct:1,
+     exp:'barátom ends in m → m + val → mmal → barátommal.'},
+    {type:'mc',  q:'[Lesson 4 — Instrumental] What does -ért mean?',
+     opts:['with','from','for the purpose of','to/for (recipient)'], correct:2,
+     exp:'-ért = for the purpose/sake of. Kávéért megyek = I\'m going for coffee.'},
+
+    // ── LESSON 5: PAST TENSE (Q13–15) ──
+    {type:'fib', q:'[Lesson 5 — Past] What is the past tense 1sg of "menni" (to go)?',
+     ans:['mentem'], exp:'"menni" irregular past stem: ment-. 1sg = mentem.'},
+    {type:'mc',  q:'[Lesson 5 — Past] "She read the book (definite)." Which form of olvasni?',
+     opts:['olvasott','olvasta','olvastam','olvassák'], correct:1,
+     exp:'Definite 3sg past of olvasni = olvasta. "a könyvet" is definite.'},
+    {type:'fib', q:'[Lesson 5 — Past] Past tense of "lenni" (to be), 1sg:',
+     ans:['voltam'], exp:'"lenni" is fully irregular in past: volt-, 1sg = voltam = I was.'},
+
+    // ── LESSON 6: POSTPOSITIONS (Q16–18) ──
+    {type:'mc',  q:'[Lesson 6 — Postpositions] Where does a Hungarian postposition go?',
+     opts:['Before the noun','After the noun','Before the verb','At the start of the sentence'], correct:1,
+     exp:'Postpositions come AFTER the noun in Hungarian: az asztal alatt = under the table.'},
+    {type:'fib', q:'[Lesson 6 — Postpositions] "I can\'t work without coffee." — Kávé ___ nem tudok dolgozni.',
+     ans:['nélkül'], exp:'"nélkül" = without. Kávé nélkül = without coffee.'},
+    {type:'mc',  q:'[Lesson 6 — Postpositions] "Az eső miatt maradok otthon." "miatt" means:',
+     opts:['without','after','because of','instead of'], correct:2,
+     exp:'"miatt" = because of. Az eső miatt = because of the rain.'},
+
+    // ── LESSON 7: COMPARATIVES (Q19–21) ──
+    {type:'fib', q:'[Lesson 7 — Comparatives] What is the comparative of "nagy" (big)?',
+     ans:['nagyobb'], exp:'"nagy" + linking -o- + -bb = nagyobb.'},
+    {type:'mc',  q:'[Lesson 7 — Comparatives] What is the superlative of "jó" (good)?',
+     opts:['legjóbb','legjobb','legtöbb','jóbb'], correct:1,
+     exp:'"jó" is irregular: jobb → legjobb. Most common irregular comparative!'},
+    {type:'mc',  q:'[Lesson 7 — Comparatives] "The train is faster than the bus." Hungarian uses:',
+     opts:['gyors mint','gyorsabb mint','leggyorsabb mint','gyorsabban mint'], correct:1,
+     exp:'"gyorsabb mint" = faster than. Comparative + mint = comparison structure.'},
+
+    // ── LESSON 8: TIME (Q22–24) ──
+    {type:'mc',  q:'[Lesson 8 — Time] What time is "fél három"?',
+     opts:['3:30','3:00','2:30','2:15'], correct:2,
+     exp:'"fél" = half-to. Fél három = half-to-three = 2:30. NOT 3:30!'},
+    {type:'fib', q:'[Lesson 8 — Time] How do you say "in winter"?',
+     ans:['télen'], exp:'"tél" + -en (surface case) = télen = in winter.'},
+    {type:'mc',  q:'[Lesson 8 — Time] "Még nem ettem." means:',
+     opts:['I already ate','I never eat','I haven\'t eaten yet','I always eat'], correct:2,
+     exp:'"még nem" = not yet. már = already. soha = never.'},
+
+    // ── LESSON 9: BODY & HEALTH (Q25–27) ──
+    {type:'fib', q:'[Lesson 9 — Body] "My head hurts." — Fáj a ___.',
+     ans:['fejem'], exp:'"fej" + em = fejem (my head). Front vowel word.'},
+    {type:'mc',  q:'[Lesson 9 — Body] "My teeth hurt." — which verb form?',
+     opts:['Fáj a fogam.','Fájnak a fogaim.','Fáj a fogaim.','Fájnak a fogam.'], correct:1,
+     exp:'Plural body part → plural verb: fájnak. fogaim = my teeth (plural possessive).'},
+    {type:'mc',  q:'[Lesson 9 — Health] "Lázam van" means:',
+     opts:['I am tired','I have a fever','I am sick','I have a cough'], correct:1,
+     exp:'"láz" = fever. "lázam van" = I have a fever (lit: my-fever exists).'},
+
+    // ── LESSON 10: DAILY LIFE (Q28–30) ──
+    {type:'mc',  q:'[Lesson 10 — Daily Life] "I cook in the kitchen." Which form of konyha?',
+     opts:['konyhán','konyhában','konyhába','konyhánál'], correct:1,
+     exp:'Rooms use the container case. konyha + -ban = konyhában = in the kitchen.'},
+    {type:'fib', q:'[Lesson 10 — Daily Life] How do you ask "How much does it cost?"',
+     ans:['mennyibe kerül?','mennyibe kerül','Mennyibe kerül?','Mennyibe kerül'], exp:'"Mennyibe kerül?" = standard price question.'},
+    {type:'mc',  q:'[Lesson 10 — Daily Life] "Ő orvos." is correct because:',
+     opts:['van is optional everywhere','3rd person "is" is dropped with professions','orvos is an adjective','Hungarian has no verb "to be"'], correct:1,
+     exp:'With professions and nationalities in 3rd person, "van" is omitted. "Ő orvos." = She/he is a doctor.'},
+
+  ], 'test');
+}
+
+// ═══════════════════════════════
+// RESET
+// ═══════════════════════════════
+function resetProgress() {
+  if (!confirm('Reset all progress and start over from Lesson 1?')) return;
+  localStorage.removeItem('hu_a2_done');
+  S.done = [];
+  S.cur = 'plurals';
+  renderNav();
+  goTo('plurals');
+  LESSONS.forEach(l => {
+    const btn = document.getElementById('done-'+l.id);
+    if (btn) { btn.disabled=true; btn.textContent='🔒 Pass the quiz above to unlock the next lesson'; }
+  });
+  ['plurals','conjugation','cases','cases2','past','postpos','comp','time','body','life'].forEach(lid => {
+    if (QD['quiz-'+lid]) _drawQuiz('quiz-'+lid);
+  });
+  if (QD['quiz-test']) _drawQuiz('quiz-test');
+  toast('Progress reset — starting fresh! 🌱', 'ok');
+}
+
+// ═══════════════════════════════
+// INIT
+// ═══════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderNav();
+  // voice status
+  const vs = document.getElementById('voice-status');
+  if (vs) vs.textContent = '🔊 Google TTS hu-HU';
+  // render lessons
+  renderPlurals();
+  renderConjugation();
+  renderCases();
+  renderCases2();
+  renderPast();
+  renderPostpos();
+  renderComp();
+  renderTime();
+  renderBody();
+  renderLife();
+  renderTest();
+  // restore last position
+  if (S.cur && S.done.length > 0) goTo(S.cur);
+});
+</script>
+</body>
+</html>

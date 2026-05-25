@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magyar Út — Hungarian Language Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FBF5EB;
+  --bg-alt: #F4EDD9;
+  --dark: #160810;
+  --red: #C8102E;
+  --red-light: #E8344A;
+  --red-pale: #FDEAED;
+  --green: #3D6B46;
+  --green-light: #558B5E;
+  --green-pale: #E6F4E8;
+  --gold: #C4911F;
+  --gold-light: #EDB840;
+  --gold-pale: #FDF4DC;
+  --text: #1A0A0D;
+  --text-2: #5A3D35;
+  --text-3: #9C7B70;
+  --border: #E8D8C0;
+  --shadow-s: 0 2px 8px rgba(26,10,13,.08);
+  --shadow-m: 0 6px 24px rgba(26,10,13,.13);
+  --shadow-l: 0 12px 48px rgba(26,10,13,.18);
+  --r-m: 14px; --r-l: 22px; --r-xl: 32px;
+  --trans: .22s ease;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{background:var(--dark);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:60px 24px}
+
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-bg .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.18}
+.hero-bg .b1{width:600px;height:600px;background:var(--red);top:-100px;right:-150px}
+.hero-bg .b2{width:500px;height:500px;background:var(--gold);bottom:-100px;left:-100px}
+.hero-bg .b3{width:300px;height:300px;background:var(--green);top:50%;left:50%;transform:translate(-50%,-50%)}
+
+/* Folk art decorative stripes */
+.hero-stripe{position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--red) 33%,#fff 33%,#fff 66%,var(--green) 66%);opacity:.5}
+
+.hero-flag{display:flex;gap:5px;margin-bottom:28px;position:relative}
+.flag-stripe{width:38px;height:10px;border-radius:2px}
+.flag-stripe.r{background:var(--red)}
+.flag-stripe.w{background:rgba(255,255,255,.7)}
+.flag-stripe.g{background:var(--green)}
+
+.hero-eyebrow{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:rgba(240,230,211,.4);margin-bottom:14px;position:relative}
+
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(52px,8vw,96px);font-weight:900;color:#fff;line-height:1;text-align:center;position:relative}
+.hero h1 em{color:var(--gold-light);font-style:italic}
+
+.hero-sub{font-size:clamp(15px,2.5vw,19px);color:rgba(240,230,211,.55);margin-top:18px;text-align:center;max-width:520px;line-height:1.65;position:relative}
+
+.hero-scroll{margin-top:50px;position:relative;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(240,230,211,.3)}
+.hero-scroll-dot{width:2px;height:36px;background:linear-gradient(to bottom,rgba(240,230,211,.3),transparent);border-radius:1px;animation:scrollPulse 1.8s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
+
+/* Stats bar */
+.stats-bar{display:flex;justify-content:center;gap:clamp(20px,5vw,60px);margin-top:40px;position:relative;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold-light)}
+.stat-l{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(240,230,211,.35);margin-top:3px}
+
+/* ── COURSES SECTION ── */
+.courses{padding:80px 24px;max-width:1100px;margin:0 auto}
+.sec-title{text-align:center;margin-bottom:60px}
+.sec-title h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,46px);font-weight:700;color:var(--text)}
+.sec-title h2 em{color:var(--red);font-style:italic}
+.sec-title p{font-size:15px;color:var(--text-3);margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.65}
+
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+
+/* ── LEVEL CARD ── */
+.level-card{border-radius:var(--r-l);overflow:hidden;box-shadow:var(--shadow-m);transition:all var(--trans);border:2px solid transparent;position:relative}
+.level-card.available{cursor:pointer}
+.level-card.available:hover{transform:translateY(-6px);box-shadow:var(--shadow-l)}
+.level-card.available:hover .card-arrow{opacity:1;transform:translateX(0)}
+.level-card.soon{opacity:.6;cursor:not-allowed}
+
+.card-top{padding:28px 28px 22px;position:relative;overflow:hidden}
+.card-top::before{content:'';position:absolute;inset:0;opacity:.12}
+
+/* level colour themes */
+.card-a1 .card-top{background:linear-gradient(135deg,#9B0B23,var(--red))}
+.card-a2 .card-top{background:linear-gradient(135deg,#2A4E33,var(--green))}
+.card-b1 .card-top{background:linear-gradient(135deg,#8B6B10,var(--gold))}
+.card-b2 .card-top{background:linear-gradient(135deg,#1A3A6B,#2E5FA3)}
+.card-c1 .card-top{background:linear-gradient(135deg,#4A1060,#7B2FA0)}
+.card-c2 .card-top{background:linear-gradient(135deg,#0D3D2E,#1A6B4E)}
+
+.card-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:5px 14px;margin-bottom:14px}
+.card-badge-lvl{font-size:13px;font-weight:800;letter-spacing:2px;color:#fff}
+.card-badge-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6)}
+.card-badge-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.5px}
+
+.card-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;line-height:1.2}
+.card-desc{font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;line-height:1.65}
+
+.card-arrow{position:absolute;top:28px;right:28px;width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;opacity:0;transform:translateX(-6px);transition:all var(--trans)}
+
+.card-soon-badge{position:absolute;top:24px;right:24px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+
+.card-bottom{background:#fff;padding:22px 28px}
+
+.card-topics{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.topic-row{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--text-2)}
+.topic-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.card-a1 .topic-dot{background:var(--red)}
+.card-a2 .topic-dot{background:var(--green)}
+.card-b1 .topic-dot{background:var(--gold)}
+.card-b2 .topic-dot{background:#2E5FA3}
+.card-c1 .topic-dot{background:#7B2FA0}
+.card-c2 .topic-dot{background:#1A6B4E}
+
+.card-meta{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border)}
+.card-meta-item{text-align:center}
+.card-meta-n{font-size:16px;font-weight:800;color:var(--text)}
+.card-meta-l{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text-3);margin-top:2px}
+
+/* Progress bar on card */
+.card-prog{margin-bottom:16px}
+.card-prog-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--text-3);margin-bottom:6px;font-weight:600}
+.card-prog-track{height:5px;background:var(--bg-alt);border-radius:3px;overflow:hidden}
+.card-prog-fill{height:100%;border-radius:3px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.card-a1 .card-prog-fill{background:linear-gradient(90deg,var(--red),var(--red-light))}
+.card-a2 .card-prog-fill{background:linear-gradient(90deg,var(--green),var(--green-light))}
+
+.open-btn{display:block;width:100%;padding:13px;border:none;border-radius:var(--r-m);font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all var(--trans);letter-spacing:.3px}
+.card-a1 .open-btn{background:var(--red);color:#fff}
+.card-a1 .open-btn:hover{background:var(--red-light);transform:translateY(-1px)}
+.card-a2 .open-btn{background:var(--green);color:#fff}
+.card-a2 .open-btn:hover{background:var(--green-light);transform:translateY(-1px)}
+.soon-btn{display:block;width:100%;padding:13px;border:2px solid var(--border);border-radius:var(--r-m);font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text-3);background:var(--bg-alt);cursor:not-allowed;letter-spacing:.3px}
+
+/* ── ROADMAP ── */
+.roadmap{background:var(--dark);padding:80px 24px;position:relative;overflow:hidden}
+.roadmap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(200,16,46,.07) 0%,transparent 70%)}
+.roadmap-inner{max-width:800px;margin:0 auto;position:relative}
+.roadmap h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,38px);font-weight:700;color:#fff;text-align:center;margin-bottom:8px}
+.roadmap h2 em{color:var(--gold-light);font-style:italic}
+.roadmap-sub{text-align:center;font-size:14px;color:rgba(240,230,211,.4);margin-bottom:48px}
+
+.road-steps{display:flex;flex-direction:column;gap:0;position:relative}
+.road-steps::before{content:'';position:absolute;left:28px;top:28px;bottom:28px;width:2px;background:linear-gradient(to bottom,var(--red),var(--gold),var(--green));opacity:.3}
+
+.road-step{display:flex;gap:20px;align-items:flex-start;padding:18px 0}
+.road-dot{width:56px;height:56px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:800;border:3px solid;transition:all var(--trans)}
+.road-dot.done{background:var(--green);border-color:var(--green);color:#fff}
+.road-dot.active{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 20px rgba(200,16,46,.4)}
+.road-dot.soon{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.25)}
+
+.road-info{padding-top:12px}
+.road-lvl{font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.road-dot.done ~ .road-info .road-lvl{color:var(--green)}
+.road-dot.active ~ .road-info .road-lvl{color:var(--red-light)}
+.road-dot.soon ~ .road-info .road-lvl{color:rgba(240,230,211,.25)}
+.road-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:4px}
+.road-dot.soon ~ .road-info .road-name{color:rgba(255,255,255,.3)}
+.road-desc{font-size:13px;color:rgba(240,230,211,.4);line-height:1.6}
+.road-dot.soon ~ .road-info .road-desc{color:rgba(240,230,211,.2)}
+.road-tag{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.road-tag.done{background:rgba(61,107,70,.25);color:var(--green)}
+.road-tag.active{background:rgba(200,16,46,.2);color:var(--red-light)}
+.road-tag.soon{background:rgba(255,255,255,.05);color:rgba(255,255,255,.2)}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding:28px 24px;text-align:center}
+footer p{font-size:12px;color:rgba(240,230,211,.2);line-height:1.8}
+footer strong{color:rgba(240,230,211,.5)}
+
+/* ── FOLK PATTERN DIVIDER ── */
+.folk-divider{height:8px;background:repeating-linear-gradient(90deg,var(--red) 0,var(--red) 12px,#fff 12px,#fff 24px,var(--green) 24px,var(--green) 36px,#fff 36px,#fff 48px)}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ── TOAST ── */
+@keyframes tIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+
+@media(max-width:640px){
+  .hero h1{font-size:48px}
+  .stats-bar{gap:28px}
+  .courses{padding:50px 16px}
+  .roadmap{padding:50px 16px}
+  .road-steps::before{left:24px}
+  .road-dot{width:48px;height:48px;font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <div class="hero-flag">
+    <div class="flag-stripe r"></div>
+    <div class="flag-stripe w"></div>
+    <div class="flag-stripe g"></div>
+  </div>
+
+  <div class="hero-eyebrow">Your complete Hungarian journey</div>
+
+  <h1>Magyar <em>Út</em></h1>
+
+  <p class="hero-sub">A full self-study Hungarian language course — from your very first word to advanced fluency. Structured, interactive, and built to actually make you speak.</p>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-n" id="total-lessons">20</div><div class="stat-l">Lessons</div></div>
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Levels live</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">More coming</div></div>
+    <div class="stat"><div class="stat-n" id="total-pct">0%</div><div class="stat-l">Your progress</div></div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Explore</span>
+    <div class="hero-scroll-dot"></div>
+  </div>
+
+  <div class="hero-stripe"></div>
+</section>
+
+<div class="folk-divider"></div>
+
+<!-- ═══ COURSES ═══ -->
+<section class="courses">
+  <div class="sec-title">
+    <h2>Choose your <em>level</em></h2>
+    <p>Each level builds on the last. Start at A1 if you're a complete beginner — or jump in where you left off.</p>
+  </div>
+
+  <div class="course-grid">
+
+    <!-- A1 -->
+    <div class="level-card card-a1 available" onclick="openLevel('hungarian_a1.html')">
+      <div class="card-top">
+        <div class="card-badge">
+          <span class="card-badge-lvl">A1</span>
+          <span class="card-badge-dot"></span>
+          <span class="card-badge-name">Beginner</span>
+        </div>
+        <div class="card-title">Complete<br>Beginner</div>
+        <div class="card-desc">Start from zero — alphabet, greetings, numbers, basic grammar, and everyday vocabulary.</div>
+        <div class="card-arrow">→</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-prog">
+          <div class="card-prog-lbl"><span>Progress</span><span id="a1-pct">0%</span></div>
+          <div class="card-prog-track"><div class="card-prog-fill" id="a1-bar" style="width:0%"></div></div>
+        </div>
+        <div class="card-topics">
+          <div class="topic-row"><span class="topic-dot"></span>Alphabet &amp; Pronunciation</div>
+          <div class="topic-row"><span class="topic-dot"></span>Greetings · Numbers · Colors</div>
+          <div class="topic-row"><span class="topic-dot"></span>Family · Basic Verbs · Sentences</div>
+          <div class="topic-row"><span class="topic-dot"></span>Days · Months · Food &amp; Drink</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="card-meta-n">10</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~5h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">30</div><div class="card-meta-l">Final Q's</div></div>
+        </div>
+        <button class="open-btn" style="margin-top:18px">Open A1 Course →</button>
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="level-card card-a2 available" onclick="openLevel('hungarian_a2.html')">
+      <div class="card-top">
+        <div class="card-badge">
+          <span class="card-badge-lvl">A2</span>
+          <span class="card-badge-dot"></span>
+          <span class="card-badge-name">Elementary</span>
+        </div>
+        <div class="card-title">Elementary</div>
+        <div class="card-desc">Build real sentences — plural nouns, verb conjugation, locative cases, past tense and more.</div>
+        <div class="card-arrow">→</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-prog">
+          <div class="card-prog-lbl"><span>Progress</span><span id="a2-pct">0%</span></div>
+          <div class="card-prog-track"><div class="card-prog-fill" id="a2-bar" style="width:0%"></div></div>
+        </div>
+        <div class="card-topics">
+          <div class="topic-row"><span class="topic-dot"></span>Plural Nouns · Verb Conjugation</div>
+          <div class="topic-row"><span class="topic-dot"></span>Locative Cases (3×3 grid)</div>
+          <div class="topic-row"><span class="topic-dot"></span>Past Tense · Postpositions</div>
+          <div class="topic-row"><span class="topic-dot"></span>Comparatives · Time · Health</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="card-meta-n">10</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~6h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">30</div><div class="card-meta-l">Final Q's</div></div>
+        </div>
+        <button class="open-btn" style="margin-top:18px">Open A2 Course →</button>
+      </div>
+    </div>
+
+    <!-- B1 -->
+    <div class="level-card card-b1 soon">
+      <div class="card-top">
+        <div class="card-badge">
+          <span class="card-badge-lvl">B1</span>
+          <span class="card-badge-dot"></span>
+          <span class="card-badge-name">Intermediate</span>
+        </div>
+        <div class="card-title">Intermediate</div>
+        <div class="card-desc">Conditional mood, subjunctive, complex sentence structures, and extended vocabulary.</div>
+        <div class="card-soon-badge">Coming soon</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-topics">
+          <div class="topic-row"><span class="topic-dot"></span>Conditional &amp; Subjunctive Mood</div>
+          <div class="topic-row"><span class="topic-dot"></span>Complex Sentence Structures</div>
+          <div class="topic-row"><span class="topic-dot"></span>Verbal Prefixes (meg-, el-, be-…)</div>
+          <div class="topic-row"><span class="topic-dot"></span>Extended Daily Vocabulary</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="card-meta-n">12</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~8h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">30</div><div class="card-meta-l">Final Q's</div></div>
+        </div>
+        <button class="soon-btn" style="margin-top:18px">🔒 Coming Soon</button>
+      </div>
+    </div>
+
+    <!-- B2 -->
+    <div class="level-card card-b2 soon">
+      <div class="card-top">
+        <div class="card-badge">
+          <span class="card-badge-lvl">B2</span>
+          <span class="card-badge-dot"></span>
+          <span class="card-badge-name">Upper Intermediate</span>
+        </div>
+        <div class="card-title">Upper<br>Intermediate</div>
+        <div class="card-desc">Nuanced expression, idiomatic language, advanced case usage, and formal registers.</div>
+        <div class="card-soon-badge">Coming soon</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-topics">
+          <div class="topic-row"><span class="topic-dot"></span>Verbal Aspect &amp; Perfectivity</div>
+          <div class="topic-row"><span class="topic-dot"></span>Idioms &amp; Colloquial Speech</div>
+          <div class="topic-row"><span class="topic-dot"></span>Formal vs Informal Registers</div>
+          <div class="topic-row"><span class="topic-dot"></span>Reading &amp; Listening Exercises</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="card-meta-n">14</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~10h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">40</div><div class="card-meta-l">Final Q's</div></div>
+        </div>
+        <button class="soon-btn" style="margin-top:18px">🔒 Coming Soon</button>
+      </div>
+    </div>
+
+    <!-- C1 -->
+    <div class="level-card card-c1 soon">
+      <div class="card-top">
+        <div class="card-badge">
+          <span class="card-badge-lvl">C1</span>
+          <span class="card-badge-dot"></span>
+          <span class="card-badge-name">Advanced</span>
+        </div>
+        <div class="card-title">Advanced</div>
+        <div class="card-desc">Fluent expression across all contexts — literature, politics, humour, and professional language.</div>
+        <div class="card-soon-badge">Coming soon</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-topics">
+          <div class="topic-row"><span class="topic-dot"></span>Advanced Grammar &amp; Style</div>
+          <div class="topic-row"><span class="topic-dot"></span>Hungarian Literature &amp; Culture</div>
+          <div class="topic-row"><span class="topic-dot"></span>Debate &amp; Argumentation</div>
+          <div class="topic-row"><span class="topic-dot"></span>Professional &amp; Academic Language</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="card-meta-n">16</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~14h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">50</div><div class="card-meta-l">Final Q's</div></div>
+        </div>
+        <button class="soon-btn" style="margin-top:18px">🔒 Coming Soon</button>
+      </div>
+    </div>
+
+    <!-- C2 -->
+    <div class="level-card card-c2 soon">
+      <div class="card-top">
+        <div class="card-badge">
+          <span class="card-badge-lvl">C2</span>
+          <span class="card-badge-dot"></span>
+          <span class="card-badge-name">Mastery</span>
+        </div>
+        <div class="card-title">Mastery</div>
+        <div class="card-desc">Near-native fluency — subtle nuance, rare vocabulary, dialect awareness, and full comprehension.</div>
+        <div class="card-soon-badge">Coming soon</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-topics">
+          <div class="topic-row"><span class="topic-dot"></span>Native-level Fluency</div>
+          <div class="topic-row"><span class="topic-dot"></span>Dialect &amp; Regional Variation</div>
+          <div class="topic-row"><span class="topic-dot"></span>Poetry &amp; Wordplay</div>
+          <div class="topic-row"><span class="topic-dot"></span>Full Authentic Texts</div>
+        </div>
+        <div class="card-meta">
+          <div class="card-meta-item"><div class="card-meta-n">20</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~20h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">60</div><div class="card-meta-l">Final Q's</div></div>
+        </div>
+        <button class="soon-btn" style="margin-top:18px">🔒 Coming Soon</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="folk-divider"></div>
+
+<!-- ═══ ROADMAP ═══ -->
+<section class="roadmap">
+  <div class="roadmap-inner">
+    <h2>Your learning <em>roadmap</em></h2>
+    <p class="roadmap-sub">From zero to fluency — a clear path through every level of Hungarian</p>
+
+    <div class="road-steps" id="road-steps">
+
+      <div class="road-step">
+        <div class="road-dot soon" id="rd-a1">A1</div>
+        <div class="road-info">
+          <div class="road-lvl">A1 — Beginner</div>
+          <div class="road-name">First Words</div>
+          <div class="road-desc">Alphabet, greetings, numbers, colors, days, family, basic verbs, nouns, simple sentences, food.</div>
+          <span class="road-tag soon" id="rt-a1">Not started</span>
+        </div>
+      </div>
+
+      <div class="road-step">
+        <div class="road-dot soon" id="rd-a2">A2</div>
+        <div class="road-info">
+          <div class="road-lvl">A2 — Elementary</div>
+          <div class="road-name">Building Grammar</div>
+          <div class="road-desc">Plural nouns, definite/indefinite conjugation, 9 locative cases, dative, instrumental, past tense, postpositions, comparatives, time, body, daily life.</div>
+          <span class="road-tag soon" id="rt-a2">Not started</span>
+        </div>
+      </div>
+
+      <div class="road-step">
+        <div class="road-dot soon">B1</div>
+        <div class="road-info">
+          <div class="road-lvl">B1 — Intermediate</div>
+          <div class="road-name">Real Conversations</div>
+          <div class="road-desc">Conditional mood, verbal prefixes, complex sentences, extended vocabulary for everyday situations.</div>
+          <span class="road-tag soon">Coming soon</span>
+        </div>
+      </div>
+
+      <div class="road-step">
+        <div class="road-dot soon">B2</div>
+        <div class="road-info">
+          <div class="road-lvl">B2 — Upper Intermediate</div>
+          <div class="road-name">Nuanced Expression</div>
+          <div class="road-desc">Verbal aspect, idioms, formal and informal registers, reading comprehension and listening practice.</div>
+          <span class="road-tag soon">Coming soon</span>
+        </div>
+      </div>
+
+      <div class="road-step">
+        <div class="road-dot soon">C1</div>
+        <div class="road-info">
+          <div class="road-lvl">C1 — Advanced</div>
+          <div class="road-name">Fluent Speaker</div>
+          <div class="road-desc">Literature, advanced grammar, debate, professional and academic language contexts.</div>
+          <span class="road-tag soon">Coming soon</span>
+        </div>
+      </div>
+
+      <div class="road-step">
+        <div class="road-dot soon">C2</div>
+        <div class="road-info">
+          <div class="road-lvl">C2 — Mastery</div>
+          <div class="road-name">Near-Native</div>
+          <div class="road-desc">Dialect awareness, poetry, wordplay, full authentic texts — indistinguishable from a native speaker.</div>
+          <span class="road-tag soon">Coming soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Magyar Út</strong> — A self-contained Hungarian language course.<br>
+  All progress saved locally in your browser. No account required.</p>
+</footer>
+
+<script>
+function openLevel(file) {
+  window.location.href = file;
+}
+
+function loadProgress() {
+  // A1
+  const a1done = JSON.parse(localStorage.getItem('hu_a1_done') || '[]');
+  const a1pct  = Math.round(a1done.length / 10 * 100);
+  document.getElementById('a1-pct').textContent = a1pct + '%';
+  document.getElementById('a1-bar').style.width  = a1pct + '%';
+
+  // A2
+  const a2done = JSON.parse(localStorage.getItem('hu_a2_done') || '[]');
+  const a2pct  = Math.round(a2done.length / 10 * 100);
+  document.getElementById('a2-pct').textContent = a2pct + '%';
+  document.getElementById('a2-bar').style.width  = a2pct + '%';
+
+  // Overall (only counting A1+A2, 20 lessons total)
+  const totalDone = a1done.length + a2done.length;
+  const totalPct  = Math.round(totalDone / 20 * 100);
+  document.getElementById('total-pct').textContent = totalPct + '%';
+
+  // Roadmap dots
+  const rd_a1 = document.getElementById('rd-a1');
+  const rt_a1 = document.getElementById('rt-a1');
+  const rd_a2 = document.getElementById('rd-a2');
+  const rt_a2 = document.getElementById('rt-a2');
+
+  if (a1done.length === 10) {
+    rd_a1.className = 'road-dot done';
+    rt_a1.className = 'road-tag done';
+    rt_a1.textContent = '✓ Complete';
+  } else if (a1done.length > 0) {
+    rd_a1.className = 'road-dot active';
+    rt_a1.className = 'road-tag active';
+    rt_a1.textContent = `In progress — ${a1pct}%`;
+  } else {
+    rd_a1.className = 'road-dot soon';
+    rt_a1.className = 'road-tag soon';
+    rt_a1.textContent = 'Not started';
+  }
+
+  if (a2done.length === 10) {
+    rd_a2.className = 'road-dot done';
+    rt_a2.className = 'road-tag done';
+    rt_a2.textContent = '✓ Complete';
+  } else if (a2done.length > 0) {
+    rd_a2.className = 'road-dot active';
+    rt_a2.className = 'road-tag active';
+    rt_a2.textContent = `In progress — ${a2pct}%`;
+  } else {
+    rd_a2.className = 'road-dot soon';
+    rt_a2.className = 'road-tag soon';
+    rt_a2.textContent = 'Not started';
+  }
+}
+
+loadProgress();
+</script>
+</body>
+</html>
