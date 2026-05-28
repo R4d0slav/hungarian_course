@@ -2153,6 +2153,7 @@ function drawFC(cid) {
     <div style="display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap;justify-content:center">
       <button onclick="speak('${c.hu.replace(/'/g,"\\'")}'); return false;" style="background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">🔊 Pronounce</button>
       <button onclick="toggleFCMode('${cid}')" style="background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">${rev ? '🇭🇺 HU → EN' : '🔄 EN → HU'}</button>
+      <button onclick="shuffleFC('${cid}')" style="background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">🔀 Shuffle</button>
     </div>
   `;
 }
@@ -2160,6 +2161,15 @@ function drawFC(cid) {
 function flipFC(id) { document.getElementById(id)?.classList.toggle('flipped'); }
 function stepFC(cid, dir) { const s = FC[cid]; s.i = (s.i + dir + s.cards.length) % s.cards.length; drawFC(cid); }
 function toggleFCMode(cid) { FC[cid].rev = !FC[cid].rev; drawFC(cid); }
+function shuffleFC(cid) {
+  const s = FC[cid];
+  for (let i = s.cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [s.cards[i], s.cards[j]] = [s.cards[j], s.cards[i]];
+  }
+  s.i = 0;
+  drawFC(cid);
+}
 
 // ═══════════════════════════════
 // QUIZ ENGINE
