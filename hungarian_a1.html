@@ -2373,14 +2373,14 @@ function checkFIB(iid, ans, rid) {
 const FC = {};
 
 function buildFC(cid, cards) {
-  FC[cid] = {i: 0, cards};
+  FC[cid] = {i: 0, cards, rev: false};
   drawFC(cid);
 }
 
 function drawFC(cid) {
   const box = document.getElementById(cid);
   if (!box) return;
-  const {i, cards} = FC[cid];
+  const {i, cards, rev} = FC[cid];
   const c = cards[i];
   const fid = 'fc-' + cid;
   box.innerHTML = `
@@ -2388,15 +2388,15 @@ function drawFC(cid) {
     <div class="fc-wrap" onclick="flipFC('${fid}')">
       <div class="fc" id="${fid}">
         <div class="fc-face fc-front">
-          <div class="fc-lbl">Hungarian</div>
-          <div class="fc-word">${c.hu}</div>
-          <div class="fc-ph">[${c.ph}]</div>
+          <div class="fc-lbl">${rev ? 'English' : 'Hungarian'}</div>
+          <div class="fc-word">${rev ? c.en : c.hu}</div>
+          ${rev ? '' : `<div class="fc-ph">[${c.ph}]</div>`}
           <div class="fc-hint">Click to reveal →</div>
         </div>
         <div class="fc-face fc-back">
-          <div class="fc-lbl">English</div>
-          <div class="fc-word">${c.en}</div>
-          ${c.note?`<div class="fc-ph">${c.note}</div>`:''}
+          <div class="fc-lbl">${rev ? 'Hungarian' : 'English'}</div>
+          <div class="fc-word">${rev ? c.hu : c.en}</div>
+          ${rev ? `<div class="fc-ph">[${c.ph}]</div>` : (c.note ? `<div class="fc-ph">${c.note}</div>` : '')}
         </div>
       </div>
     </div>
@@ -2406,12 +2406,16 @@ function drawFC(cid) {
       <button class="fcb knew" onclick="stepFC('${cid}',1)">✓ Got it</button>
       <button class="fcb nav" onclick="stepFC('${cid}',1)">Next →</button>
     </div>
-    <button onclick="speak('${c.hu.replace(/'/g,"\\'")}'); return false;" style="margin-top:10px;background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">🔊 Pronounce</button>
+    <div style="display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap;justify-content:center">
+      <button onclick="speak('${c.hu.replace(/'/g,"\\'")}'); return false;" style="background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">🔊 Pronounce</button>
+      <button onclick="toggleFCMode('${cid}')" style="background:none;border:1px solid var(--border);border-radius:100px;padding:5px 15px;font-size:12px;cursor:pointer;color:var(--text-3)">${rev ? '🇭🇺 HU → EN' : '🔄 EN → HU'}</button>
+    </div>
   `;
 }
 
 function flipFC(id) { document.getElementById(id)?.classList.toggle('flipped'); }
 function stepFC(cid, dir) { const s = FC[cid]; s.i = (s.i + dir + s.cards.length) % s.cards.length; drawFC(cid); }
+function toggleFCMode(cid) { FC[cid].rev = !FC[cid].rev; drawFC(cid); }
 
 // ═══════════════════════════════
 // VOWEL HARMONY EXERCISE
