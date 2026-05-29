@@ -222,7 +222,7 @@ footer strong{color:rgba(240,230,211,.5)}
   <p class="hero-sub">A full self-study Hungarian language course — from your very first word to advanced fluency. Structured, interactive, and built to actually make you speak.</p>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-n" id="total-lessons">20</div><div class="stat-l">Lessons</div></div>
+    <div class="stat"><div class="stat-n" id="total-lessons">25</div><div class="stat-l">Lessons</div></div>
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Levels live</div></div>
     <div class="stat"><div class="stat-n">4</div><div class="stat-l">More coming</div></div>
     <div class="stat"><div class="stat-n" id="total-pct">0%</div><div class="stat-l">Your progress</div></div>
@@ -271,8 +271,8 @@ footer strong{color:rgba(240,230,211,.5)}
           <div class="topic-row"><span class="topic-dot"></span>Days · Months · Food &amp; Drink</div>
         </div>
         <div class="card-meta">
-          <div class="card-meta-item"><div class="card-meta-n">10</div><div class="card-meta-l">Lessons</div></div>
-          <div class="card-meta-item"><div class="card-meta-n">~5h</div><div class="card-meta-l">Est. time</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">15</div><div class="card-meta-l">Lessons</div></div>
+          <div class="card-meta-item"><div class="card-meta-n">~7h</div><div class="card-meta-l">Est. time</div></div>
           <div class="card-meta-item"><div class="card-meta-n">30</div><div class="card-meta-l">Final Q's</div></div>
         </div>
         <button class="open-btn" style="margin-top:18px">Open A1 Course →</button>
@@ -513,7 +513,7 @@ function openLevel(file) {
 function loadProgress() {
   // A1
   const a1done = JSON.parse(localStorage.getItem('hu_a1_done') || '[]');
-  const a1pct  = Math.round(a1done.length / 10 * 100);
+  const a1pct  = Math.round(a1done.length / 15 * 100);
   document.getElementById('a1-pct').textContent = a1pct + '%';
   document.getElementById('a1-bar').style.width  = a1pct + '%';
 
@@ -523,9 +523,9 @@ function loadProgress() {
   document.getElementById('a2-pct').textContent = a2pct + '%';
   document.getElementById('a2-bar').style.width  = a2pct + '%';
 
-  // Overall (only counting A1+A2, 20 lessons total)
+  // Overall (A1=15 lessons, A2=10 lessons, 25 total)
   const totalDone = a1done.length + a2done.length;
-  const totalPct  = Math.round(totalDone / 20 * 100);
+  const totalPct  = Math.round(totalDone / 25 * 100);
   document.getElementById('total-pct').textContent = totalPct + '%';
 
   // Roadmap dots
@@ -534,7 +534,7 @@ function loadProgress() {
   const rd_a2 = document.getElementById('rd-a2');
   const rt_a2 = document.getElementById('rt-a2');
 
-  if (a1done.length === 10) {
+  if (a1done.length === 15) {
     rd_a1.className = 'road-dot done';
     rt_a1.className = 'road-tag done';
     rt_a1.textContent = '✓ Complete';
