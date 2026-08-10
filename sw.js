@@ -5,7 +5,8 @@
    - Everything else (icons, manifest, Google Fonts): cache-first with a
      background refresh, so the app opens instantly and works on a plane. */
 
-const VERSION = 'v1';
+// Bump this when the shell asset list changes — it drops the stale caches.
+const VERSION = 'v2';
 const SHELL_CACHE = `magyar-shell-${VERSION}`;
 const RUNTIME_CACHE = `magyar-runtime-${VERSION}`;
 
@@ -15,10 +16,10 @@ const SHELL_ASSETS = [
   './hungarian_a1.html',
   './hungarian_a2.html',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  './apple-touch-icon.png',
-  './favicon.ico'
+  './favicon.ico',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/apple-touch-icon.png'
 ];
 
 self.addEventListener('install', event => {
