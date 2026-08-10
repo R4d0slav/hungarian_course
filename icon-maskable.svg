@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="glowR" cx="0.18" cy="0.12" r="0.62">
+      <stop offset="0%" stop-color="#C8102E" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#C8102E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowG" cx="0.84" cy="0.9" r="0.6">
+      <stop offset="0%" stop-color="#3D6B46" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="#3D6B46" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="#160810"/>
+  <rect width="512" height="512" fill="url(#glowR)"/>
+  <rect width="512" height="512" fill="url(#glowG)"/>
+<g transform="translate(256 256) scale(0.78) translate(-256 -256)">
+  <text x="256" y="308" font-family="Georgia, 'DejaVu Serif', serif" font-size="240" font-weight="bold"
+        fill="#EDB840" text-anchor="middle">M</text>
+  <g transform="translate(256 352)">
+    <rect x="-81" y="0" width="54" height="14" rx="4" fill="#C8102E"/>
+    <rect x="-27" y="0" width="54" height="14" rx="4" fill="#F4EDD9"/>
+    <rect x="27"  y="0" width="54" height="14" rx="4" fill="#3D6B46"/>
+  </g>
+</g>
+</svg>

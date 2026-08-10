@@ -1,0 +1,44 @@
+{
+  "name": "Magyar Út — Hungarian Course",
+  "short_name": "Magyar Út",
+  "description": "A complete A1–A2 Hungarian language course with lessons, exercises and flashcards.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#160810",
+  "theme_color": "#160810",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "A1 Course",
+      "short_name": "A1",
+      "url": "./hungarian_a1.html"
+    },
+    {
+      "name": "A2 Course",
+      "short_name": "A2",
+      "url": "./hungarian_a2.html"
+    }
+  ]
+}
